@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CityGuestSociety</string>
+    <string name="not_network">没有网络连接</string>
 </resources>

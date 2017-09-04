@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.firstfragmentactivity.servicesactivity.BXActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_15">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <RelativeLayout
+                android:id="@+id/houseRelative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_50"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_15"
+                    android:text="房屋"
+                    android:textColor="@color/balck"/>
+
+                <ImageView
+                    android:id="@+id/selectimage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_15"
+                    android:src="@drawable/icon_return_little"/>
+
+                <TextView
+                    android:id="@+id/houseAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_toLeftOf="@+id/selectimage"
+                    android:text="成都市双楠大道174号3栋1108室"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/BXDescription"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_180"
+                android:layout_below="@+id/houseRelative"
+                android:layout_marginTop="@dimen/height_1"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/BXTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_15"
+                    android:text="报修描述"
+                    android:textColor="@color/balck"
+                    android:textSize="@dimen/margin_15"/>
+
+                <EditText
+                    android:id="@+id/BXDescriptionET"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/BXTextView"
+                    android:layout_margin="@dimen/margin_15"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="请填写报修描述"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/selectTimeRelative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_50"
+                android:layout_below="@+id/rl_shangpintupian"
+                android:layout_marginTop="@dimen/height_1"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_15"
+                    android:text="预约时间段"
+                    android:textColor="@color/balck"/>
+
+                <ImageView
+                    android:id="@+id/selectTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/margin_15"
+                    android:src="@mipmap/icon_return_little"/>
+
+                <TextView
+                    android:id="@+id/currentTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/selectTime"
+                    android:text="点击选择"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/commit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selectTimeRelative"
+                android:layout_margin="@dimen/margin_25"
+                android:background="@drawable/all_corners_orange"
+                android:text="提交"
+                android:textColor="@color/white"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_shangpintupian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/BXDescription"
+                android:layout_marginTop="15dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_shangpinTuPian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="添加图片"
+                    android:textColor="#000000"
+                    android:textSize="17dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_shangpinTuPian">
+
+                    <GridView
+                        android:id="@+id/iv_goodsPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_shangpinTuPian"
+                        android:layout_marginBottom="@dimen/margin_10"
+                        android:layout_marginLeft="@dimen/margin_15"
+                        android:layout_marginRight="@dimen/margin_15"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:gravity="center"
+                        android:horizontalSpacing="@dimen/margin_top_5"
+                        android:numColumns="4"
+                        android:scrollbars="none"
+                        android:stretchMode="columnWidth"></GridView>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

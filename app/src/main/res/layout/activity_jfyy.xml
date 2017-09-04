@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.firstfragmentactivity.servicesactivity.JFYYActivity">
+    <RelativeLayout
+        android:id="@+id/houserAddressLinearRelative"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_80"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_15"
+            android:text="当前房屋"/>
+
+        <ImageView
+            android:id="@+id/imagevi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin_18"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:src="@drawable/icon_adress"/>
+
+        <TextView
+            android:textColor="@color/balck"
+            android:id="@+id/userAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imagevi"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_toEndOf="@+id/imagevi"
+            android:layout_toRightOf="@+id/imagevi"
+            android:text="成都市龙峪湾"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/userAddress"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_15"
+            android:src="@mipmap/icon_return_little"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/timeRelative"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/houserAddressLinearRelative">
+        <TextView
+            android:textColor="@color/balck"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_centerVertical="true"
+            android:text="选择预约时间"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/Time"
+            android:layout_marginRight="@dimen/margin_30"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="点击选择"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/icon_return_little"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="12dp"/>
+    </RelativeLayout>
+    <Button
+        android:textColor="@color/white"
+        android:text="立即预约"
+        android:background="@drawable/all_corners_orange"
+        android:layout_marginRight="@dimen/margin_15"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="@dimen/margin_30"
+        android:layout_below="@+id/timeRelative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

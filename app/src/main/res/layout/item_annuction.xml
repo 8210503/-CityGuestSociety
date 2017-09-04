@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black_gray"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_3"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_centerVertical="true"
+            android:id="@+id/imageViewGJ"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_15"
+            android:id="@+id/textViewGJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_15"
+            android:layout_toRightOf="@+id/imageViewGJ"
+            android:text="11111111111"
+            android:textColor="@color/balck"
+            android:textSize="@dimen/margin_15"/>
+
+        <TextView
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_alignBaseline="@+id/imageViewGJ"
+            android:id="@+id/textViewGJInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewGJ"
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@+id/imageViewGJ"
+            android:text="2222"/>
+    </RelativeLayout>
+
+</RelativeLayout>

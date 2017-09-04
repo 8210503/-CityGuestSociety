@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.firstfragmentactivity.servicesactivity.PropertyJFActivity">
+    <RelativeLayout
+        android:id="@+id/houserAddressLinearRelative"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_80"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_15"
+            android:text="当前缴费房屋"/>
+
+        <ImageView
+            android:id="@+id/imagevi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin_18"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:src="@mipmap/icon_adress"/>
+
+        <TextView
+            android:id="@+id/userAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imagevi"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_toEndOf="@+id/imagevi"
+            android:layout_toRightOf="@+id/imagevi"
+            android:text="成都市龙峪湾"
+            android:textColor="@color/balck"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/userAddress"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_15"
+            android:src="@mipmap/icon_return_little"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/waiteForJFRelative"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/houserAddressLinearRelative"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/orange">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_30"
+            android:text="待缴费账单合计金额(元)"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_15"
+            android:text="物业预存款余额:  0元"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="55dp"
+            android:text="￥"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="0.00"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_50"
+        android:layout_below="@+id/waiteForJFRelative"
+        android:background="@color/white"
+
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_line"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="待缴费账单"
+            android:textColor="@drawable/radiobuttoncheck_gray"/>
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/radiobutton_line"
+            android:button="@null"
+            android:gravity="center"
+            android:text="历史账单"
+            android:textColor="@drawable/radiobuttoncheck_gray"/>
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/radioGroup"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/white"
+        android:id="@+id/JFContentRelaative"></RelativeLayout>
+</RelativeLayout>

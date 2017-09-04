@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
+    tools:context="www.cityguestsociety.com.firstfragmentactivity.OpenDoorActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/hintLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_25"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/textview1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="#3ECC7A"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textview1"
+                    android:layout_marginLeft="@dimen/margin_top_5"
+                    android:layout_toRightOf="@+id/textview1"
+                    android:text="绑定房屋"
+                    android:textSize="10sp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/textview2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textColor="#3ECC7A"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textview2"
+                    android:layout_marginLeft="@dimen/margin_top_5"
+                    android:layout_toRightOf="@+id/textview2"
+                    android:text="打开蓝牙"
+                    android:textSize="10sp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/textview3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="#3ECC7A"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textview3"
+                    android:layout_marginLeft="@dimen/margin_top_5"
+                    android:layout_toRightOf="@+id/textview3"
+                    android:text="靠近门禁/通闸"
+                    android:textSize="10sp"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/textview4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="#3ECC7A"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/textview4"
+                    android:layout_marginLeft="@dimen/margin_top_5"
+                    android:layout_toRightOf="@+id/textview4"
+                    android:text="摇一摇或点击按钮"
+                    android:textSize="10sp"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/hintLinear"
+            android:layout_marginTop="@dimen/margin_10">
+
+            <TextView
+                android:id="@+id/openDoorHintTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ImageViewRelative"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_25"
+                android:text="正在开门/通闸，请稍候"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/margin_15"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/openDoorHintTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="请在门禁/通闸设备两米内使用，该功能只对门禁/通闸有效"
+                android:textSize="@dimen/margin_10"/>
+
+            <RelativeLayout
+                android:id="@+id/ImageViewRelative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <www.cityguestsociety.com.ui.WhewView
+                    android:id="@+id/openDoorImage"
+                    imagecontrol:border_thickness="1dp"
+                    android:layout_width="400dp"
+                    android:layout_height="400dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/margin_20"/>
+
+                <www.cityguestsociety.com.ui.RoundImageViewr
+                    android:id="@+id/roundImageViewr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/icon_shake"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

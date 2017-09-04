@@ -93,7 +93,7 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
      * 是否添加ToolBar
      */
     protected boolean isShowToolBar = true;
-    protected boolean isshowActionbar = true;
+    protected boolean isShowBackImage = true;
     private ImageView mRightImage;
     private Dialog mLoadingDialog;
     private TextView mRightText;
@@ -178,7 +178,7 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
         mDecorView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
         mDecorView.setOrientation(LinearLayout.VERTICAL);
-        if (isshowActionbar) {
+        if (isShowToolBar) {
             //Title
             addToolBar();
         }
@@ -216,15 +216,10 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
         tvTitle = (TextView) view.findViewById(R.id.tv_title);
         //        //初始化设置 Toolbar
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(isShowToolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(isShowBackImage);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mRightImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 
     /**
@@ -338,6 +333,12 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
             setTopLeftButton(R.mipmap.fanhui);
         else
             setTopLeftButton(leftImage);
+        mRightText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RightOnClick();
+            }
+        });
     }
 
     /**
@@ -596,9 +597,7 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
         }
         if (view != null && ev.getAction() == MotionEvent.ACTION_UP) {//屏幕上有光标，并且点击区域为EditText
             if (ClickEventUtils.isClickEditText(view, ev) || Math.abs(ev.getY() - startY) > 10) {//点击的是EditText或者手指滑动一段距离都不隐藏
-                Log.e(TAG, "屏幕上有光标-点击的是输入框--不隐藏");
             } else {
-                Log.e(TAG, "屏幕上有光标-点击的不是输入框--隐藏输入框");
                 KeyBoardUtils.hideSoftInput(this);
             }
         }

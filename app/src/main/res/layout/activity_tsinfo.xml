@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.firstfragmentactivity.servicesactivity.TSInfoActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/contactLinear"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/noReplyRelative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/wuye"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/hasReplayRelative"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/wuyeReply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="物业回复"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/wuyeReply"
+                android:layout_margin="@dimen/margin_15"
+                android:text="今天见到物业公司关于车辆智能化管理给业委会的回函，令人气愤。物业公司的邢总出尔反尔，为了尽快解决小区停车问题，我受业委会的委托，一个月以来基本都在和物业公司的邢总沟通，因为我知道物业公司对业委会的文件基本都是反对的，为了尽快完成这项改造工程，解决小区业主停车问题，业委会给物业有关智能化车辆管理的文件，我都是 拟完稿征得邢总同意后才正式发文。正值我们业委会要求物业本周公示招标文件时，突然给业务会发了一个强词夺理的回函。个中原因就是物业公司搞了一个瞒天过海根本不是彻底解决小区停车问题，仍采用一车一卡为主的技术支持的招标文件。 为此，业委会请懂得此项业务的业主，重新做了一份招投标文件。这份文件基本杜绝外来车进入下小区，并完全取消小区内收取临时停车费。"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contactLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_50">
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:src="@mipmap/icon_linkman"/>
+
+            <TextView
+                android:id="@+id/textviewContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_top_5"
+                android:layout_toRightOf="@+id/imageview"
+                android:text="联系人:"
+                android:textColor="@color/balck"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_toRightOf="@+id/textviewContact"
+                android:text="央金"
+                android:textColor="@color/balck"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_15"
+                android:text="182****5596"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:background="@color/black_gray"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_50">
+
+            <ImageView
+                android:id="@+id/imageview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:src="@mipmap/icon_adress"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_toRightOf="@+id/imageview2"
+                android:text="四川成都市双流区龙樾湾2-2208"
+                android:textColor="@color/balck"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:background="@color/black_gray"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginTop="13dp"
+                android:text="11111"
+                android:textColor="@color/balck"/>
+
+            <www.cityguestsociety.com.ui.MyGridView
+                android:id="@+id/BXGirdView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_content"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_15"
+                android:numColumns="3"/>
+
+            <TextView
+                android:id="@+id/BXtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/BXGirdView"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_20"
+                android:text="111"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/BXtime"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_15"
+                android:text="1111"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

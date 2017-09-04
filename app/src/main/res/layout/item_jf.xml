@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="wrap_content">
+<TextView
+    android:id="@+id/jfTime"
+    android:textSize="17sp"
+    android:textColor="@color/balck"
+    android:layout_margin="@dimen/margin_10"
+    android:text="2017年1月"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+<TextView
+    android:textColor="@color/balck"
+    android:textSize="15sp"
+    android:text="本期已缴纳金额合计：180.22"
+    android:layout_margin="@dimen/margin_10"
+    android:layout_below="@+id/jfTime"
+    android:id="@+id/JFMoney"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginRight="@dimen/margin_35"
+        android:id="@+id/JFStatue"
+        android:text="已结清"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:layout_marginRight="@dimen/margin_15"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_return_little"/>
+</RelativeLayout>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.firstfragmentactivity.servicesactivity.TSActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_15">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/infoRelative"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/contactsRelative"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_50"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/iv_contacts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_15"
+                        android:src="@mipmap/icon_linkman"/>
+
+                    <TextView
+                        android:id="@+id/tv_contacts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_toRightOf="@+id/iv_contacts"
+                        android:text="联系人:"
+                        android:textColor="@color/balck"/>
+
+                    <TextView
+                        android:id="@+id/contactsName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tv_contacts"
+                        android:text="杨青"
+                        android:textColor="@color/balck"/>
+
+                    <TextView
+                        android:id="@+id/contactsNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_15"
+                        android:text="1864251515"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/hengxian"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_1"
+                    android:layout_below="@+id/contactsRelative"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:background="@color/black_gray"/>
+
+                <RelativeLayout
+                    android:id="@+id/houseRelative"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_50"
+                    android:layout_below="@+id/hengxian"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/margin_15"
+                        android:src="@mipmap/icon_adress"/>
+
+                    <TextView
+                        android:id="@+id/houseAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/imageView7"
+                        android:layout_toEndOf="@+id/imageView7"
+                        android:layout_toRightOf="@+id/imageView7"
+                        android:text="成都市双楠大道174号3栋1108室"
+                        android:textColor="@color/balck"/>
+
+                    <ImageView
+                        android:id="@+id/selectimage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/icon_return_little"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:id="@+id/BXDescription"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_180"
+                android:layout_below="@+id/infoRelative"
+                android:layout_marginTop="@dimen/margin_15"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/BXTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_15"
+                    android:text="建议描述"
+                    android:textColor="@color/balck"/>
+
+                <EditText
+                    android:id="@+id/tsContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/BXTextView"
+                    android:layout_margin="@dimen/margin_15"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="请填写建议内容"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_shangpintupian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/BXDescription"
+                android:layout_marginTop="15dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_shangpinTuPian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="上传图片"
+                    android:textColor="#000000"
+                    android:textSize="17dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/tv_shangpinTuPian">
+
+                    <GridView
+                        android:id="@+id/iv_goodsPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_shangpinTuPian"
+                        android:layout_marginBottom="@dimen/margin_10"
+                        android:layout_marginLeft="@dimen/margin_15"
+                        android:layout_marginRight="@dimen/margin_15"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:gravity="center"
+                        android:horizontalSpacing="@dimen/margin_top_5"
+                        android:numColumns="4"
+                        android:scrollbars="none"
+                        android:stretchMode="columnWidth"></GridView>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/selectTimeRelative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_50"
+                android:layout_below="@+id/rl_shangpintupian"
+                android:layout_marginTop="@dimen/height_1"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_15"
+                    android:text="建议类型"
+                    android:textColor="@color/balck"/>
+
+                <ImageView
+                    android:id="@+id/selectTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_15"
+                    android:src="@drawable/icon_return_little"/>
+
+                <TextView
+                    android:id="@+id/textViewSelectTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/selectTime"
+                    android:text="点击选择"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/commit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selectTimeRelative"
+                android:layout_margin="@dimen/margin_25"
+                android:background="@drawable/all_corners_orange"
+                android:text="提交"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

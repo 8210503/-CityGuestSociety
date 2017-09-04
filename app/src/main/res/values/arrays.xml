@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="TSKind">
+        <item>服务态度</item>
+        <item>维修服务</item>
+        <item>环境</item>
+    </string-array>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                >
+    <RelativeLayout
+
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="@dimen/margin_15"
+            android:textColor="@color/balck"
+            android:id="@+id/BXDescription"
+            android:layout_margin="@dimen/margin_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+       <GridView
+           android:layout_marginLeft="@dimen/margin_15"
+           android:layout_marginRight="@dimen/margin_15"
+           android:gravity="center"
+           android:clickable="false"
+           android:numColumns="3"
+           android:id="@+id/BXRecoderGridView"
+           android:layout_below="@+id/BXDescription"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"></GridView>
+        <TextView
+            android:layout_marginBottom="@dimen/margin_15"
+            android:id="@+id/BXrecoderTime"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:text="2016.12.20"
+            android:layout_below="@+id/BXRecoderGridView"
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/BXRecoderStatue"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_alignParentRight="true"
+            android:text="进行中"
+            android:layout_alignBaseline="@+id/BXrecoderTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:background="@color/black_gray"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_below="@+id/BXRecoderStatue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_10"/>
+    </RelativeLayout>
+
+</RelativeLayout>

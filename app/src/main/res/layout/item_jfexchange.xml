@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_gray">
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/projectShowImage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_180"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/projectName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/projectShowImage"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_15"
+            android:text="1111"
+            android:textColor="@color/balck"
+            android:textSize="@dimen/margin_15"/>
+        <RelativeLayout
+
+            android:layout_below="@+id/projectName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/timeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:src="@mipmap/icon_activity_time"/>
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/projectAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/timeImage"
+            android:layout_marginLeft="@dimen/margin_top_5"
+            android:layout_toRightOf="@+id/timeImage"
+            android:text="2016.12.12"
+            />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/baomingrenshu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/timeImage"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_toRightOf="@+id/projectAddress"
+            android:src="@mipmap/icon_activity_population"
+            android:layout_alignTop="@+id/projectAddress"/>
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/baomingrenshuTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/baomingrenshu"
+            android:layout_marginLeft="@dimen/margin_top_5"
+            android:layout_toEndOf="@+id/baomingrenshu"
+            android:layout_toRightOf="@+id/baomingrenshu"
+            android:text="20人报名"/>
+
+        <TextView
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/CheckStatue"
+            android:layout_width="95dp"
+            android:layout_height="30dp"
+            android:background="@drawable/all_corners_orange"
+            android:gravity="center"
+            android:text="我要报名"
+            android:textColor="@color/white"
+            />
+        </RelativeLayout>
+    </RelativeLayout>
+<TextView
+    android:background="@color/black_gray"
+    android:layout_below="@+id/relative"
+    android:layout_width="match_parent"
+    android:layout_height="5dp"/>
+</RelativeLayout>

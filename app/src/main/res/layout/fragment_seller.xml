@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_gray">
+
+    <RelativeLayout
+        android:id="@+id/titlerelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        >
+
+        <RadioGroup
+
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/fujin"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/radiobutton_line"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="附近商家"
+                android:textColor="@drawable/radiobuttoncheck"/>
+
+            <RadioButton
+                android:id="@+id/youhuiquan"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/radiobutton_line"
+                android:textColor="@drawable/radiobuttoncheck"
+                android:button="@null"
+                android:gravity="center"
+                android:text="优惠卷"/>
+
+        </RadioGroup>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:id="@+id/SellerRelative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlerelativeLayout"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+    </RelativeLayout>
+
+</RelativeLayout>

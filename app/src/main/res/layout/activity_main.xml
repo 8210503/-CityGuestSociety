@@ -6,6 +6,87 @@
     android:layout_height="match_parent"
     android:background="@color/black_gray">
 
+    <RelativeLayout
+        android:background="@color/black_relative"
+        android:layout_below="@+id/content_relative"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <RelativeLayout
+        android:id="@+id/content_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/radioGroup"></RelativeLayout>
+    <TextView
+        android:id="@+id/hengxian"
+        android:layout_above="@+id/radioGroup"
+        android:background="@color/black_gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/radio_button_height"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RadioButton
+            android:background="@android:color/transparent"
+            android:id="@+id/R0"
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:checked="true"
+            android:drawableTop="@drawable/shouye_drawabletop"
+            android:textColor="@drawable/radiobuttoncheck"
+            android:text="@string/shouye"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:background="@android:color/transparent"
+            android:id="@+id/R1"
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:gravity="center"
+            android:drawableTop="@drawable/shangjia_drawabletop"
+            android:textColor="@drawable/radiobuttoncheck"
+            android:text="@string/sellers"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:background="@android:color/transparent"
+            android:id="@+id/R2"
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:gravity="center"
+            android:drawableTop="@drawable/shared_drawabletop"
+            android:textColor="@drawable/radiobuttoncheck"
+            android:text="@string/share"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:background="@android:color/transparent"
+            android:id="@+id/R3"
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:gravity="center"
+            android:drawableTop="@drawable/mine_drawabletop"
+            android:textColor="@drawable/radiobuttoncheck"
+            android:text="@string/mine"
+            android:button="@null"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </RadioGroup>
 
 
 

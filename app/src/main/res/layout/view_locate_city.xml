@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:visibility="gone"
+              android:paddingBottom="8dp"
+              tools:ignore="RtlHardcoded">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="定位城市"
+        android:textColor="@color/balck"/>
+
+
+    <LinearLayout
+        android:id="@+id/layout_locate"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:clickable="true"
+        android:gravity="center"
+        android:minWidth="96dp"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <!--    <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_locate"
+                tools:ignore="ContentDescription" />-->
+
+        <TextView
+            android:id="@+id/tv_located_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:text="定位中"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+</LinearLayout>

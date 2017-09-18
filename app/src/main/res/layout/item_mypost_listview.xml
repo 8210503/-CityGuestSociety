@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/black_gray"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/white">
+
+        <www.cityguestsociety.com.ui.CircleImageView
+            android:id="@+id/userCorn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_15"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/userNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/userCorn"
+            android:layout_marginLeft="@dimen/margin_top_5"
+            android:layout_toRightOf="@id/userCorn"
+            android:text="外后桑"/>
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/userNickName"
+            android:layout_alignStart="@+id/userNickName"
+            android:layout_below="@+id/userNickName"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="111111111111"
+            android:textColor="@color/balck"/>
+
+        <RelativeLayout
+            android:id="@+id/userPhotoGridView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/content"
+            android:layout_marginLeft="@dimen/margin_top_5"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_toRightOf="@+id/userCorn">
+
+            <www.cityguestsociety.com.ui.NineGridTestLayout
+                android:id="@+id/userPhotoGridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_20"
+                app:sapcing="5dp"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/sendTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/content"
+            android:layout_below="@+id/userPhotoGridView1"
+            android:layout_marginTop="@dimen/margin_20"
+            android:paddingBottom="@dimen/margin_10"
+            android:text="2016-11-26 22:22"/>
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/sendTime"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_toRightOf="@+id/sendTime"
+            android:text="删除"
+            android:textColor="@color/orange"/>
+
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/userPhotoGridView1"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="@dimen/margin_20"
+            android:src="@drawable/btn_compassion_pre"/>
+
+        <TextView
+            android:id="@+id/tv_love"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageview"
+            android:layout_alignLeft="@+id/imageview"
+            android:layout_alignStart="@+id/imageview"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:text="11"
+            android:textColor="#FB4545"/>
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="@dimen/margin_15"
+            android:layout_height="@dimen/margin_15"
+            android:layout_alignBottom="@+id/tv_love"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_toEndOf="@+id/tv_love"
+            android:layout_toRightOf="@+id/tv_love"
+            android:src="@drawable/btn_comments"/>
+
+        <TextView
+            android:id="@+id/tv_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView6"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_toEndOf="@+id/imageView6"
+            android:layout_toRightOf="@+id/imageView6"
+            android:text="90"/>
+    </RelativeLayout>
+
+</LinearLayout>

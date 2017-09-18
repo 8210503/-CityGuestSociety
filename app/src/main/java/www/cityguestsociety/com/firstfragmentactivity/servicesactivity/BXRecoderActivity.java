@@ -1,9 +1,7 @@
 package www.cityguestsociety.com.firstfragmentactivity.servicesactivity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -46,9 +44,7 @@ public class BXRecoderActivity extends BaseToolbarActivity {
         mBXRecoderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("TAG",position+"");
-                Intent intent=new Intent(BXRecoderActivity.this, BXInfoActivity.class);
-                startActivity(intent);
+                jumpToActivity(BXInfoActivity.class,false);
             }
         });
     }

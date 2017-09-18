@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.fourthfragmentactivity.MyPostActivity">
+
+    <RelativeLayout
+        android:id="@+id/hasPostRelative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/black_gray"
+        >
+
+        <include
+            android:id="@+id/noPost"
+            layout="@layout/item_nopost"/>
+
+        <com.github.jdsjlzx.recyclerview.LRecyclerView
+            android:id="@+id/myPostListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"></com.github.jdsjlzx.recyclerview.LRecyclerView>
+    </RelativeLayout>
+</RelativeLayout>

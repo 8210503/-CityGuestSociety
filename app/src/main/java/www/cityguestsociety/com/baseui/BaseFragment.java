@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -26,6 +25,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.apkfuns.logutils.LogUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -34,6 +34,10 @@ import org.apache.http.Header;
 
 import butterknife.ButterKnife;
 import www.cityguestsociety.com.R;
+import www.cityguestsociety.com.application.MyApplication;
+import www.cityguestsociety.com.bindhouse.SelectHouseInfoActivity;
+import www.cityguestsociety.com.login.LoginActivity;
+import www.cityguestsociety.com.utils.Constans;
 
 
 /**
@@ -93,8 +97,6 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
-
-
     /**
      * 通用findViewById,减少重复的类型转换
      *
@@ -115,7 +117,7 @@ public abstract class BaseFragment extends Fragment {
             return null;
 
         } catch (ClassCastException ex) {
-            Log.e("FindViewById-----log", "Could not cast View to concrete class.", ex);
+            LogUtils.e(ex);
             throw ex;
         }
     }
@@ -138,10 +140,10 @@ public abstract class BaseFragment extends Fragment {
      *
      * @return
      */
-    public boolean isNetworkAvailable(Activity activity) {
-        Context context = activity.getApplicationContext();
+    public boolean isNetworkAvailable() {
+
         // 获取手机所有连接管理对象（包括对wi-fi,net等连接的管理）
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) MyApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (connectivityManager == null) {
             return false;
@@ -165,7 +167,7 @@ public abstract class BaseFragment extends Fragment {
 
     /***********************************************************************************************************/
     public void showLoadingDialog(String text) {
-        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        LayoutInflater inflater = LayoutInflater.from(MyApplication.getContext());
         View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_loading_view);// 加载布局
         ImageView imageView = (ImageView) v.findViewById(R.id.iv_quan);
@@ -273,8 +275,8 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public void getDataFromInternet(String url, final RequestParams params, final int what) {
-        if (!isNetworkAvailable(getActivity())) {
+    public void getDataFromInternet(final String url, final RequestParams params, final int what) {
+        if (!isNetworkAvailable()) {
             ShowToast(getString(R.string.not_network));
             return;
         }
@@ -286,20 +288,30 @@ public abstract class BaseFragment extends Fragment {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 cancleLoadingDialog();
-                ShowToast("网络连接错误 请稍候再试");
+                LogUtils.e(TAG, url);
+                ShowToast("发生错误了 请稍候再试");
 
             }
 
             @Override
             public void onStart() {
+                LogUtils.e(params.toString());
                 super.onStart();
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-
-                JSONObject jsonObject = JSON.parseObject(responseString);
-                getSuccess(jsonObject, what);
+                JSONObject object = JSON.parseObject(responseString);
+                LogUtils.e(responseString);
+                if (object.getInteger("code") == 1) {
+                    getSuccess(object, what);
+                } else if (object.getInteger("code") == 2) {
+                    NoData(object, what);
+                } else {
+                    ShowToast(object.getString("info"));
+                    LogUtils.e(url, responseString);
+                    cancleLoadingDialog();
+                }
 
 
             }
@@ -311,7 +323,30 @@ public abstract class BaseFragment extends Fragment {
         cancleLoadingDialog();
     }
 
+    public void NoData(JSONObject object, int what) {
+        cancleLoadingDialog();
+    }
 
+    public boolean isBindHouse() {
+        if (!Constans.ID.equals("null")) {
+            if (Constans.isBindHouse == true) {
+                return true;
+            } else {
+                jumpToActivity(SelectHouseInfoActivity.class, false);
+            }
+            return false;
+        } else {
+            jumpToActivity(LoginActivity.class, false);
+        }
+        return false;
+    }
 
+    public boolean isLogined() {
+        if (Constans.ID.equals("null")) {
+            jumpToActivity(LoginActivity.class, false);
+            return false;
+        }
+        return true;
+    }
 }
 

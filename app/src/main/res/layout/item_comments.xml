@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <www.cityguestsociety.com.ui.CircleImageView
+            android:id="@+id/userPhoto"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/conmentsType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_18"
+            android:layout_marginTop="@dimen/margin_18"
+            android:layout_toRightOf="@+id/userPhoto"
+            android:text="111111"/>
+
+        <TextView
+            android:id="@+id/commentContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/conmentsType"
+            android:layout_marginBottom="17dp"
+            android:layout_marginLeft="@dimen/margin_18"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_toRightOf="@+id/userPhoto"
+            android:text="22222222"
+            android:textColor="@color/balck"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_top_5"
+        android:background="@color/black_gray"></RelativeLayout>
+</LinearLayout>

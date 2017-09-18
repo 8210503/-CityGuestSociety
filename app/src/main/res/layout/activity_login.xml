@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.login.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_20"
+                android:layout_marginTop="15dp"
+                android:src="@mipmap/icon_cha"/>
+
+            <RelativeLayout
+                android:id="@+id/companyCorn"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+
+                android:layout_below="@+id/imageview"
+                android:background="@color/white">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/login_bg"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/phoneNumberRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/companyCorn"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_25"
+                    android:text="@string/phoneNumber"
+                    android:textColor="@color/balck"
+                    android:textSize="15sp"/>
+
+                <EditText
+                    android:id="@+id/phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/textView1"
+                    android:background="@null"
+                    android:hint="请输入手机号"
+                    android:paddingLeft="@dimen/margin_25"/>
+
+                <TextView
+                    android:id="@+id/phoneNumberHengxian"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/phoneNumber"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_marginRight="@dimen/margin_15"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@color/orange"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/passworldRelative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phoneNumberRelative"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_25"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:text="@string/passworld"
+                    android:textColor="@color/balck"
+                    android:textSize="15sp"/>
+
+                <EditText
+                    android:id="@+id/pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:layout_toRightOf="@+id/textView2"
+                    android:background="@null"
+                    android:hint="请输入密码"
+                    android:inputType="textPassword"
+                    android:paddingLeft="@dimen/margin_56"/>
+
+                <TextView
+                    android:id="@+id/passworldHengxian"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/pwd"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_marginRight="@dimen/margin_15"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@color/deep_back"/>
+
+                <CheckBox
+                    android:id="@+id/iv_seePassworld"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_25"
+                    android:button="@drawable/passworld_see_nosee"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/bt_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/passworldRelative"
+                android:layout_marginLeft="@dimen/margin_30"
+                android:layout_marginRight="@dimen/margin_30"
+                android:layout_marginTop="@dimen/margin_30"
+                android:background="@drawable/all_corners_orange"
+                android:text="@string/login"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/bt_regiset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bt_login"
+                android:layout_marginLeft="@dimen/margin_30"
+                android:layout_marginRight="@dimen/margin_30"
+                android:layout_marginTop="@dimen/margin_15"
+                android:background="@drawable/solidline_gray"
+                android:text="@string/regisetNewCount"
+                android:textColor="@color/deep_back"/>
+
+            <TextView
+                android:id="@+id/forgetPassworld"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bt_regiset"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_56"
+                android:paddingBottom="@dimen/margin_20"
+                android:text="@string/forgetPassworld"
+                android:textColor="@color/deep_back"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

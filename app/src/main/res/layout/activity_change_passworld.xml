@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="www.cityguestsociety.com.fourthfragmentactivity.ChangePassworldActivity">
+
+    <RelativeLayout
+        android:id="@+id/passworldRelative1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberRelative"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_25"
+            android:layout_marginTop="@dimen/margin_20"
+            android:text="@string/passworld"
+            android:textColor="@color/balck"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/oldPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_toRightOf="@+id/textView1"
+            android:background="@null"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/margin_56"/>
+
+        <TextView
+            android:id="@+id/passworldHengxian1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/oldPwd"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@color/deep_back"/>
+
+        <CheckBox
+            android:id="@+id/iv_seePassworld1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_25"
+            android:button="@drawable/passworld_see_nosee"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/passworldRelative2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberRelative"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_25"
+            android:layout_marginTop="@dimen/margin_20"
+            android:text="@string/passworld"
+            android:textColor="@color/balck"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/newPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_toRightOf="@+id/textView2"
+            android:background="@null"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/margin_56"/>
+
+        <TextView
+            android:id="@+id/passworldHengxian2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/newPwd"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@color/deep_back"/>
+
+        <CheckBox
+            android:id="@+id/iv_seePassworld2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_25"
+            android:button="@drawable/passworld_see_nosee"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/passworldRelative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phoneNumberRelative"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_25"
+            android:layout_marginTop="@dimen/margin_20"
+            android:text="确认密码"
+            android:textColor="@color/balck"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/newPwdAgain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_toRightOf="@+id/textView3"
+            android:background="@null"
+            android:hint="再次填写"
+            android:inputType="textPassword"
+            android:paddingLeft="30dp"/>
+
+        <TextView
+            android:id="@+id/passworldHengxian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/newPwdAgain"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@color/deep_back"/>
+
+        <CheckBox
+            android:id="@+id/iv_seePassworld"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_25"
+            android:button="@drawable/passworld_see_nosee"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/complete"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:layout_marginTop="@dimen/margin_20"
+        android:background="@drawable/all_corners5_orange"
+        android:text="完成"
+        android:textColor="@color/white"/>
+</LinearLayout>

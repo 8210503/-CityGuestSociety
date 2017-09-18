@@ -1,6 +1,6 @@
 package www.cityguestsociety.com.utils;
 
-import android.util.Log;
+import com.apkfuns.logutils.LogUtils;
 
 import www.cityguestsociety.com.application.MyApplication;
 
@@ -11,13 +11,13 @@ import www.cityguestsociety.com.application.MyApplication;
 public class L {
     public static void e(String tag,String msg) {
         if (!MyApplication.isRelase) {
-            Log.e(tag, msg);
+            LogUtils.e(tag,msg);
         }
     }
 
     public static void i(String tag,String msg) {
         if (!MyApplication.isRelase) {
-            Log.e(tag, msg);
+            LogUtils.i(tag,msg);
         }
     }
 }

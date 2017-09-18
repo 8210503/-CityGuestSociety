@@ -6,9 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Collection;
 import java.util.List;
-
-import www.cityguestsociety.com.R;
 
 /**
  * Created by LuoPan on 2017/5/17 12:57.
@@ -96,9 +95,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     @Override
     public void onBindViewHolder(final BaseRecyclerHolder holder, int position) {
 
-        if (listener != null) {
-            holder.itemView.setBackgroundResource(R.mipmap.ic_launcher);//设置背景
-        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,4 +145,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
      * @param isScrolling 是否在滑动
      */
     public abstract void convert(BaseRecyclerHolder holder, T item, int position, boolean isScrolling);
+
+    public void addAll(Collection<T> list) {
+        int lastIndex = this.list.size();
+        if (this.list.addAll(list)) {
+            notifyItemRangeInserted(lastIndex, list.size());
+        }
+    }
 }

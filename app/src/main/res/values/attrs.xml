@@ -13,16 +13,22 @@
     </declare-styleable>
     <!--LinearListView属性-->
     <declare-styleable name="LinearListView">
-        <attr name="android:entries" />
-        <attr name="dividerThickness" format="dimension" />
+        <attr name="android:entries"/>
+        <attr name="dividerThickness" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="MaterialTextView">
-        <attr name="maskColor" format="color" />
+        <attr name="maskColor" format="color"/>
     </declare-styleable>
     <declare-styleable name="roundedimageview">
-        <attr name="border_thickness" format="dimension" />
-        <attr name="border_inside_color" format="color" />
+        <attr name="border_thickness" format="dimension"/>
+        <attr name="border_inside_color" format="color"/>
         <attr name="border_outside_color" format="color"></attr>
     </declare-styleable>
+
+    <declare-styleable name="LazyViewPager">
+        <attr name="init_lazy_item_offset" format="float"/>
+    </declare-styleable>
+
+
 </resources>

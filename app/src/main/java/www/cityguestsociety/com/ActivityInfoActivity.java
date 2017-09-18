@@ -1,16 +1,15 @@
 package www.cityguestsociety.com;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.apkfuns.logutils.LogUtils;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 
 /**
@@ -25,6 +24,7 @@ public class ActivityInfoActivity extends BaseToolbarActivity {
     public static final String URL = "url";
     public static final String STATUE = "statue";
     public static final String isShowing = "isShow";
+    public static final String CAN = "can";
     @BindView(R.id.bt_statue)
     Button mBtStatue;
     @BindView(R.id.forum_context)
@@ -33,6 +33,7 @@ public class ActivityInfoActivity extends BaseToolbarActivity {
     private String mPath;
     private boolean isShow;
     private int mStatue;
+    private int can;
 
 
     @Override
@@ -55,8 +56,14 @@ public class ActivityInfoActivity extends BaseToolbarActivity {
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(TITLE);
         mPath = intent.getStringExtra(URL);
+        LogUtils.e(mPath);
         mStatue = intent.getIntExtra(STATUE, 0);
         isShow = intent.getBooleanExtra(isShowing, false);
+        try {
+            can = intent.getIntExtra(CAN, 0);
+        } catch (Exception e) {
+            // TODO: 2017/9/8
+        }
         initToobar(mTitle);
         init();
     }
@@ -75,15 +82,20 @@ public class ActivityInfoActivity extends BaseToolbarActivity {
         } else {
             mBtStatue.setVisibility(View.VISIBLE);
         }
-        if (mStatue == 1) {
+        if (mStatue == 0) {
+            mBtStatue.setBackgroundColor(getResources().getColor(R.color.gray));
+            mBtStatue.setText("已结束");
+        } else if (mStatue == 1) {
             mBtStatue.setBackgroundColor(getResources().getColor(R.color.orange));
-            mBtStatue.setText("我要报名");
+            if (can == 1) {
+                mBtStatue.setText("已参加");
+            } else if (can == 0) {
+                mBtStatue.setText("未参加");
+            }
+
         } else if (mStatue == 2) {
-            mBtStatue.setBackgroundColor(getResources().getColor(R.color.gray));
-            mBtStatue.setText("我已报名");
-        } else if (mStatue == 3) {
-            mBtStatue.setBackgroundColor(getResources().getColor(R.color.gray));
-            mBtStatue.setText("活动进行中");
+            mBtStatue.setBackgroundColor(getResources().getColor(R.color.orange));
+            mBtStatue.setText("未开始");
         }
 
         mForumContext.loadUrl(mPath);
@@ -105,10 +117,5 @@ public class ActivityInfoActivity extends BaseToolbarActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 }

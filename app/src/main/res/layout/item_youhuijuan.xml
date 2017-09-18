@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              >
+
+    <RelativeLayout
+        android:background="@drawable/icon_coupons_bg"
+        android:layout_margin="@dimen/margin_10"
+        android:id="@+id/moreitem_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/sellerImageRelative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/sellerImage"
+            android:layout_centerVertical="true"
+            android:layout_width="120dp"
+            android:layout_height="100dp"/>
+        <TextView
+            android:id="@+id/sellerCount"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@+id/textViewSellerName"
+            android:id="@+id/sellerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="洛可可蛋糕店"
+            android:textColor="#666666"
+            android:textSize="10sp"/>
+        <ImageView
+            android:layout_marginLeft="@dimen/margin_10"
+            android:id="@+id/imageView1"
+            android:layout_toRightOf="@+id/sellerImageRelative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_coupons_merchant"
+            android:layout_alignTop="@+id/sellerName"
+            />
+        <TextView
+            android:textColor="@color/balck"
+            android:id="@+id/textViewSellerName"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_toRightOf="@+id/imageView1"
+            android:layout_marginTop="23dp"
+            android:text="商家名"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageView
+            android:layout_marginLeft="@dimen/margin_10"
+            android:id="@+id/imageView2"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_below="@+id/textViewSellerName"
+            android:layout_toRightOf="@+id/sellerImageRelative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_coupons_adress"
+            />
+
+        <TextView
+            android:textColor="@color/balck"
+            android:text="地址"
+            android:id="@+id/textviewSelleAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_alignLeft="@+id/textViewSellerName"
+            android:layout_alignStart="@+id/textViewSellerName"/>
+
+        <TextView
+            android:textSize="10sp"
+            android:id="@+id/sellerAddress"
+            android:text="商家地址"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textviewSelleAddress"
+            android:layout_alignBottom="@+id/textviewSelleAddress"
+            android:layout_alignLeft="@+id/sellerName"
+            android:layout_alignStart="@+id/sellerName"/>
+    </RelativeLayout>
+
+</LinearLayout>

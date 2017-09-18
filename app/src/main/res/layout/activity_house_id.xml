@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.bindhouse.HouseIDActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/SerchRelative"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@+id/headerview"
+        android:layout_marginTop="3dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginRight="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@drawable/all_corners_deep_gray">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@android:drawable/presence_online"/>
+
+            <EditText
+                android:id="@+id/etCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView4"
+                android:background="@null"
+                android:hint="请输入房号查询，如102、103"
+                android:textColorHint="#999999"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_below="@+id/SerchRelative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:background="@color/black_gray"
+            android:scrollbars="none"
+            android:id="@+id/mainListView"
+            android:layout_width="95dp"
+            android:layout_height="match_parent"></ListView>
+        <ListView
+
+            android:background="@color/white"
+            android:scrollbars="none"
+            android:id="@+id/moreListVie"
+            android:layout_toRightOf="@+id/mainListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.bindhouse.HouseManagerActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/PresentHouseRelative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_gray"
+        >
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:gravity="center_vertical"
+            android:text="当前房屋"/>
+
+
+        <com.github.jdsjlzx.recyclerview.LRecyclerView
+            android:id="@+id/presentHouseListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/addHouseBottom"
+            android:layout_below="@+id/title"
+            ></com.github.jdsjlzx.recyclerview.LRecyclerView>
+
+        <Button
+            android:id="@+id/addHouseBottom"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/orange"
+            android:text="+添加房屋"
+            android:textColor="@color/white"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/noHouseRelative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            >
+
+            <ImageView
+                android:id="@+id/noHouseImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/icon_house_none"/>
+
+            <TextView
+                android:id="@+id/tv_noHouse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/noHouseImage"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="暂无房源"/>
+
+            <TextView
+                android:id="@+id/addHouse"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tv_noHouse"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/all_corners_orange"
+                android:gravity="center"
+                android:text="添加房屋"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+

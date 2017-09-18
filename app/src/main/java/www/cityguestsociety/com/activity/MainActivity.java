@@ -1,11 +1,18 @@
 package www.cityguestsociety.com.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +42,8 @@ public class MainActivity extends BaseToolbarActivity {
     private Fragment mFragment;
     private FragmentManager mMamager;
     private List<Fragment> mFragments;
+    public static boolean isLogined = false;
+
 
     @Override
     protected int getContentView() {
@@ -44,11 +53,28 @@ public class MainActivity extends BaseToolbarActivity {
     @Override
     protected void initData() {
 
+
+        /**自动登录使用广播更新ＵＩ*/
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("autoLogined");
+        BroadcastReceiver br = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String key = intent.getStringExtra("name");
+//                fourthFragemnt.initData();
+            }
+
+        };
+        localBroadcastManager.registerReceiver(br, intentFilter);
+
+
         mMamager = getSupportFragmentManager();
         FragmentTransaction transaction = mMamager.beginTransaction();
 
         mFragments = new ArrayList<>();
-        mFragments.add(new FirstFragment());
+        mFragments.add(FirstFragment.getInstance());
         mFragments.add(new SecondFragment());
         mFragments.add(new ThridFragment());
         mFragments.add(new FourthFragemnt());
@@ -63,6 +89,41 @@ public class MainActivity extends BaseToolbarActivity {
     protected void setListener() {
 
     }
+
+    @Override
+    protected void initView() {
+       /* RequestParams params = new RequestParams();
+        params.put("username", SPUtils.getCount());
+        params.put("password", SPUtils.getPWD());
+                getDataFromInternet(UrlFactory.logins, params, 0);*/
+    }
+
+    @Override
+    public void getSuccess(JSONObject object, int what) {
+        super.getSuccess(object, what);
+        switch (what) {
+            case 0:
+             /*   MyApplication.UserInfo user = MyApplication.getUser();
+                user.setNickname(object.getJSONArray("data").getJSONObject(0).getString("nickname"));
+                user.setUsername(object.getJSONArray("data").getJSONObject(0).getString("username"));
+                user.setGender(object.getJSONArray("data").getJSONObject(0).getString("gender"));
+                user.setIntegral(object.getJSONArray("data").getJSONObject(0).getString("integral"));
+                user.setImg(object.getJSONArray("data").getJSONObject(0).getString("img"));
+                user.setId(object.getJSONArray("data").getJSONObject(0).getString("id"));
+
+
+                Constans.ID = object.getJSONArray("data").getJSONObject(0).getString("id");
+
+                isLogined = true;
+                Message msg = new Message();
+                msg.what = 1;
+                msg.obj = isLogined;
+                LogUtils.e("自动登录成功");
+                FirstFragment.getInstance().handler.sendMessage(msg);*/
+                break;
+        }
+    }
+
 
     @Override
     protected void initBase() {
@@ -100,7 +161,7 @@ public class MainActivity extends BaseToolbarActivity {
             FragmentTransaction transaction = mMamager.beginTransaction();
             if (!to.isAdded()) {
                 // 隐藏当前的fragment，add下一个到Activity中
-                transaction.hide(from).add(R.id.content_relative,to).commitAllowingStateLoss();
+                transaction.hide(from).add(R.id.content_relative, to).commitAllowingStateLoss();
             } else {
                 // 隐藏当前的fragment，显示下一个
                 transaction.hide(from).show(to).commitAllowingStateLoss();

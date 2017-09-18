@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.firstfragmentactivity.TenderShowWebViewActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/titleRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:id="@+id/newsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_15"
+                android:text="11111111111"
+                android:textColor="@color/balck"
+               />
+
+            <TextView
+                android:id="@+id/newsTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/newsTitle"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:text="北京城建.2016/12/04"/>
+
+            <ImageView
+                android:id="@+id/newsImage"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_below="@+id/newsTime"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginTop="@dimen/dp_10"/>
+        </RelativeLayout>
+
+        <www.cityguestsociety.com.baseui.ProgressWebview
+            android:id="@+id/progressWebview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></www.cityguestsociety.com.baseui.ProgressWebview>
+    </LinearLayout>
+
+</ScrollView>

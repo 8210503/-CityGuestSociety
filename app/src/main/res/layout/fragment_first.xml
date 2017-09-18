@@ -10,12 +10,12 @@
         android:background="@color/white">
 
         <TextView
-            android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/shouye"
-            android:textColor="@color/balck"/>
+            android:textColor="@color/balck"
+            android:textSize="17sp"/>
     </RelativeLayout>
 
     <ScrollView
@@ -52,22 +52,22 @@
                     android:layout_weight="1">
 
                     <TextView
-                        android:layout_marginTop="@dimen/margin_top_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_below="@+id/image1"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_top_5"
                         android:text="@string/opendoors"/>
 
                     <ImageView
                         android:id="@+id/image1"
                         android:layout_width="@dimen/image_size"
                         android:layout_height="@dimen/image_size"
-                        android:layout_weight="1"
-                        android:src="@mipmap/index_door"
                         android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true"
+                        android:layout_weight="1"
+                        android:src="@mipmap/index_door"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -86,12 +86,12 @@
                         android:src="@mipmap/index_service"/>
 
                     <TextView
-                        android:layout_marginTop="@dimen/margin_top_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_below="@+id/image2"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_top_5"
                         android:text="@string/services"/>
                 </RelativeLayout>
 
@@ -111,143 +111,153 @@
                         android:src="@mipmap/index_integral"/>
 
                     <TextView
-                        android:layout_marginTop="@dimen/margin_top_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_below="@+id/image3"
                         android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_top_5"
                         android:text="@string/VIP"/>
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/linearlayout2"
-                android:layout_marginTop="@dimen/margin_20"
-                android:layout_below="@+id/linearlayout1"
-                android:layout_marginRight="@dimen/image_size"
-                android:layout_marginLeft="@dimen/image_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/linearlayout1"
+                android:layout_marginLeft="@dimen/image_size"
+                android:layout_marginRight="@dimen/image_size"
+                android:layout_marginTop="@dimen/margin_20"
                 android:orientation="horizontal">
+
                 <RelativeLayout
                     android:id="@+id/guojiangfengcai"
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/image4"
-                    android:layout_centerHorizontal="true"
-                    android:src="@mipmap/index_mien"
-                    android:layout_width="@dimen/image_size"
-                    android:layout_height="@dimen/image_size"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/margin_top_5"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/image4"
-                        android:text="@string/guojiangfengcai"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/projectShow"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
                     <ImageView
-                        android:id="@+id/image5"
-                        android:layout_centerHorizontal="true"
-                        android:src="@mipmap/index_project"
+                        android:id="@+id/image4"
                         android:layout_width="@dimen/image_size"
-                        android:layout_height="@dimen/image_size"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/margin_top_5"
+                        android:layout_height="@dimen/image_size"
                         android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/image5"
-                        android:text="@string/projectShow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/tenderShow"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                        android:src="@mipmap/index_mien"/>
 
                     <TextView
-                        android:layout_marginTop="@dimen/margin_top_5"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@+id/image6"
-                        android:text="@string/TenderShow"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/image4"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_top_5"
+                        android:text="@string/guojiangfengcai"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/projectShow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/image5"
+                        android:layout_width="@dimen/image_size"
+                        android:layout_height="@dimen/image_size"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/index_project"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/image5"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_top_5"
+                        android:text="@string/projectShow"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tenderShow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/image6"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/margin_top_5"
+                        android:text="@string/TenderShow"/>
 
                     <ImageView
                         android:id="@+id/image6"
-                        android:src="@mipmap/index_attract_investment"
                         android:layout_width="@dimen/image_size"
                         android:layout_height="@dimen/image_size"
                         android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"/>
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/index_attract_investment"/>
                 </RelativeLayout>
             </LinearLayout>
 
             <RelativeLayout
-                android:background="@color/white"
+                android:id="@+id/newsRelative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_80"
+                android:layout_below="@+id/webViewImage"
                 android:layout_marginBottom="@dimen/margin_25"
                 android:layout_marginTop="@dimen/margin_10"
-                android:layout_below="@+id/webViewImage"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_80">
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/newActivityText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_10"
-                    android:textColor="@color/balck"
-                    android:textSize="@dimen/margin_15"
-                    android:text="最新活动"
                     android:layout_marginTop="@dimen/margin_20"
                     android:layout_toRightOf="@+id/webViewText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:text="最新活动"
+                    android:textColor="@color/balck"
+                    android:textSize="@dimen/margin_15"/>
+
                 <TextView
-                    android:layout_alignBaseline="@+id/newActivityText"
                     android:id="@+id/newActivityTime"
-                    android:layout_marginLeft="@dimen/margin_15"
-                    android:text="5月22号"
-                    android:layout_toRightOf="@+id/newActivityText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/newActivityText"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_toRightOf="@+id/newActivityText"
+                    android:text="5月22号"/>
+
                 <TextView
                     android:id="@+id/newActivityTextInfo"
-                    android:layout_marginTop="@dimen/margin_10"
-                    android:layout_marginLeft="@dimen/margin_10"
-                    android:layout_below="@+id/newActivityText"
-                    android:text="5月24号到28号"
-                    android:layout_toRightOf="@+id/webViewText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/newActivityText"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_toRightOf="@+id/webViewText"
+                    android:text="5月24号到28号"/>
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/margin_15"
-                    android:src="@mipmap/index_activity"
                     android:id="@+id/webViewText"
                     android:layout_width="@dimen/margin_35"
                     android:layout_height="@dimen/margin_35"
-                    android:layout_alignTop="@+id/newActivityTime"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"></ImageView>
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/newActivityTime"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:src="@mipmap/index_activity"></ImageView>
             </RelativeLayout>
 
             <ImageView
-                android:scaleType="centerCrop"
                 android:id="@+id/webViewImage"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_100"
-                android:layout_below="@+id/linearlayout2"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"></ImageView>
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/linearlayout2"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"></ImageView>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

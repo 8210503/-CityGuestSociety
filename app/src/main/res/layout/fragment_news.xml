@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/smartRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F8F8">
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/newsFragments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_10"
+        />
+
+    <include
+        android:id="@+id/empty_view"
+        layout="@layout/no_content"
+        android:visibility="gone"/>
+
+</RelativeLayout>

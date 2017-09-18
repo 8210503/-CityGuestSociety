@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="5dp"
+                >
+
+                <ImageView
+                    android:id="@+id/projectShowImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_180"
+                    android:scaleType="centerCrop"/>
+
+                <TextView
+                    android:id="@+id/projectName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/projectShowImage"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:text="1111"
+                    android:textColor="@color/balck"
+                    android:textSize="@dimen/margin_15"/>
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/projectName"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/timeImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="@dimen/margin_10"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:text="开始时间:"
+                            android:textColor="@color/balck"/>
+
+                        <TextView
+                            android:id="@+id/projectAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/timeImage"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/margin_top_5"
+                            android:layout_toRightOf="@+id/timeImage"
+                            android:text="2016.12.12"
+                            android:textColor="@color/balck"
+                            />
+
+                        <TextView
+                            android:id="@+id/baomingrenshu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/timeImage"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_marginTop="10dp"
+                            android:text="结束时间:"
+                            android:textColor="@color/balck"/>
+
+                        <TextView
+                            android:id="@+id/baomingrenshuTextview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/baomingrenshu"
+                            android:layout_marginLeft="@dimen/margin_top_5"
+                            android:layout_toRightOf="@+id/baomingrenshu"
+                            android:text="2017.12,14"
+                            android:textColor="@color/balck"/>
+
+                        <TextView
+                            android:id="@+id/count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/baomingrenshuTextview"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/baomingrenshuTextview"
+                            android:text="报名人数：20/50"
+                            android:textColor="@color/balck"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="bottom|right"
+                        android:visibility="invisible">
+
+                        <TextView
+                            android:id="@+id/CheckStatue"
+                            android:layout_width="95dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/all_corners_orange"
+                            android:gravity="center"
+                            android:text="我要报名"
+                            android:textColor="@color/white"
+                            />
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <Button
+                android:id="@+id/bt_statue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/webView"
+                android:background="@color/gray"
+                android:textColor="@color/white"
+                />
+            <com.tencent.smtt.sdk.WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/relative"
+                />
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -6,12 +6,23 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
+        android:name=".application.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/login_bg"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
@@ -53,6 +64,54 @@
         <activity android:name=".firstfragmentactivity.VIPActivity">
         </activity>
         <activity android:name=".firstfragmentactivity.VIPfragment.JiFenExchangeActivity">
+        </activity>
+        <activity android:name=".firstfragmentactivity.GuoJiangActivity">
+        </activity>
+        <activity android:name=".firstfragmentactivity.ProjectShowActivity">
+        </activity>
+        <activity android:name=".firstfragmentactivity.TenderShowActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.MineDataActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.SettingActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.MyColoctionActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.MyQRCodeSctivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.MyNewsActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.MyPostActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.MyJoinActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.AdvicesFeedBackActivity">
+        </activity>
+        <activity android:name=".login.LoginActivity">
+        </activity>
+        <activity android:name=".login.RegiestActivity">
+        </activity>
+        <activity android:name=".bindhouse.HouseManagerActivity">
+        </activity>
+        <activity android:name=".bindhouse.SelectHouseInfoActivity">
+        </activity>
+        <activity android:name=".bindhouse.SelectContryActivity">
+        </activity>
+        <activity android:name=".ActivityInfo"/>
+        <activity android:name=".activity.SpanishActivity">
+        </activity>
+        <activity android:name=".firstfragmentactivity.GuoJiangWebViewActivity">
+        </activity>
+        <activity android:name=".firstfragmentactivity.ProjectShowWebViewActivity">
+        </activity>
+        <activity android:name=".firstfragmentactivity.TenderShowWebViewActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.ChangePassworldActivity">
+        </activity>
+        <activity android:name=".bindhouse.SelectCommunityActivity"/>
+        <activity android:name=".bindhouse.SlectLouDongActivity">
+        </activity>
+        <activity android:name=".bindhouse.HouseIDActivity">
         </activity>
     </application>
 

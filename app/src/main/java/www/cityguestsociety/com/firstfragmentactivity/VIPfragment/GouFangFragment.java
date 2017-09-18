@@ -1,9 +1,10 @@
 package www.cityguestsociety.com.firstfragmentactivity.VIPfragment;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
+import com.apkfuns.logutils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class GouFangFragment extends BaseFragment {
     }
 
     private void setAdapter() {
-        Log.i("TAG", mLists.size() + "");
+       LogUtils.e("集合大小",mLists.size());
         mJifenInfolistView.setAdapter(new CommonAdaper<Bean>(getActivity(), mLists, R.layout.item_joinactivty_fragment) {
 
             @Override

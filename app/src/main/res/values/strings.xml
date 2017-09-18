@@ -2,4 +2,5 @@
 <resources>
     <string name="not_network">没有网络连接</string>
     <string name="title_activity_bx">BXActivity</string>
+    <string name="located_failed">定位失败</string>
 </resources>

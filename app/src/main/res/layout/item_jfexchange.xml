@@ -2,15 +2,15 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/black_gray">
 
     <RelativeLayout
         android:id="@+id/relative"
-        android:paddingBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingBottom="5dp">
 
         <ImageView
             android:id="@+id/projectShowImage"
@@ -28,71 +28,90 @@
             android:text="1111"
             android:textColor="@color/balck"
             android:textSize="@dimen/margin_15"/>
-        <RelativeLayout
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/projectName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_centerVertical="true"
-            android:id="@+id/timeImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:layout_marginLeft="@dimen/margin_10"
-            android:src="@mipmap/icon_activity_time"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
 
-        <TextView
-            android:layout_centerVertical="true"
-            android:id="@+id/projectAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/timeImage"
-            android:layout_marginLeft="@dimen/margin_top_5"
-            android:layout_toRightOf="@+id/timeImage"
-            android:text="2016.12.12"
-            />
+                <TextView
+                    android:id="@+id/timeImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:text="开始时间："/>
 
-        <ImageView
-            android:layout_centerVertical="true"
-            android:id="@+id/baomingrenshu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/timeImage"
-            android:layout_marginLeft="@dimen/margin_10"
-            android:layout_toRightOf="@+id/projectAddress"
-            android:src="@mipmap/icon_activity_population"
-            android:layout_alignTop="@+id/projectAddress"/>
+                <TextView
+                    android:id="@+id/projectAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/timeImage"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_top_5"
+                    android:layout_toRightOf="@+id/timeImage"
+                    android:text="2016.12.12"
+                    />
 
-        <TextView
-            android:layout_centerVertical="true"
-            android:id="@+id/baomingrenshuTextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/baomingrenshu"
-            android:layout_marginLeft="@dimen/margin_top_5"
-            android:layout_toEndOf="@+id/baomingrenshu"
-            android:layout_toRightOf="@+id/baomingrenshu"
-            android:text="20人报名"/>
+                <TextView
+                    android:id="@+id/baomingrenshu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/timeImage"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginTop="10dp"
+                    android:text="结束时间："/>
 
-        <TextView
-            android:layout_marginRight="@dimen/margin_15"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/CheckStatue"
-            android:layout_width="95dp"
-            android:layout_height="30dp"
-            android:background="@drawable/all_corners_orange"
-            android:gravity="center"
-            android:text="我要报名"
-            android:textColor="@color/white"
-            />
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/baomingrenshuTextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/baomingrenshu"
+                    android:layout_marginLeft="@dimen/margin_top_5"
+                    android:layout_toRightOf="@+id/baomingrenshu"
+                    android:text="2017.12,14"/>
+
+                <TextView
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/baomingrenshuTextview"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/baomingrenshuTextview"
+                    android:text="报名人数：20/50"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right|">
+
+                <TextView
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/CheckStatue"
+                    android:layout_width="95dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/all_corners_orange"
+                    android:text="我要报名"
+                    android:textColor="@color/white"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
-<TextView
-    android:background="@color/black_gray"
-    android:layout_below="@+id/relative"
-    android:layout_width="match_parent"
-    android:layout_height="5dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@+id/relative"
+        android:background="@color/black_gray"/>
 </RelativeLayout>

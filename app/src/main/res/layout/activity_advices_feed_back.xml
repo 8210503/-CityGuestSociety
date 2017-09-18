@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.fourthfragmentactivity.AdvicesFeedBackActivity">
+    <RelativeLayout
+        android:id="@+id/edte_area"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:paddingRight="@dimen/margin_10"
+            android:paddingLeft="@dimen/margin_10"
+            android:id="@+id/feedbackContent"
+            android:gravity="top"
+            android:hint="写下对我们平台的意见或反馈吧~"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"/>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/send"
+        android:textColor="@color/white"
+        android:text="发送"
+        android:layout_marginTop="@dimen/margin_25"
+        android:layout_marginRight="@dimen/margin_25"
+        android:layout_marginLeft="@dimen/margin_25"
+        android:background="@drawable/all_corners_orange"
+        android:layout_below="@+id/edte_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

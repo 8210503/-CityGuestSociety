@@ -95,4 +95,21 @@
         <item name="android:windowEnterAnimation">@anim/push_right</item>
         <item name="android:windowExitAnimation">@anim/push_right_out</item>
     </style>
+
+    <style name="SwitchButtonMY">
+        <!--设置SwtichButton的背景颜色 分选中按下时 选中为按下时 为选中按下时 为选择未按下时 还有正常显示-->
+        <item name="kswThumbDrawable">@drawable/switchbackground</item>
+        <!--设置 switchButton的背景颜色 分别有三种 选中  为选中 可用-->
+        <item name="kswBackColor">@color/color_switch_button</item>
+        <!--设置switchButton的长度 -->
+        <item name="kswBackMeasureRatio">1.50</item>
+        <!--设置Thumb的相对距离-->
+        <item name="kswThumbMarginLeft">-16dp</item>
+        <item name="kswThumbMarginTop">-14dp</item>
+        <item name="kswThumbMarginRight">-16dp</item>
+        <item name="kswThumbMarginBottom">-14dp</item>
+        <item name="kswThumbWidth">@dimen/ksw_md_thumb_ripple_size</item>
+        <item name="kswThumbHeight">@dimen/ksw_md_thumb_ripple_size</item>
+    </style>
+
 </resources>

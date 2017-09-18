@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.fourthfragmentactivity.MyNewsActivity">
+
+    <LinearLayout
+        android:id="@+id/titleLinear"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_marginLeft="@dimen/margin_15"
+            android:id="@+id/backRelative"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:src="@mipmap/fanhui"/>
+        </RelativeLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/announcement"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radiobutton_line"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="系统公告"
+                android:textColor="@drawable/radiobuttoncheck"/>
+
+            <RadioButton
+                android:id="@+id/notice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radiobutton_line"
+                android:button="@null"
+                android:gravity="center"
+                android:text="通知"
+                android:textColor="@drawable/radiobuttoncheck"/>
+
+            <RadioButton
+                android:id="@+id/comments"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/radiobutton_line"
+                android:button="@null"
+                android:gravity="center"
+                android:text="赞与评论"
+                android:textColor="@drawable/radiobuttoncheck"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/contentRealative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titleLinear"
+        android:layout_marginTop="@dimen/margin_top_5"
+        android:background="@color/white"/>
+</RelativeLayout>

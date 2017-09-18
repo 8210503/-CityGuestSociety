@@ -94,9 +94,9 @@ public class ViewHolder {
      */
     public ViewHolder setImageByUrl(int viewId, String url) {
         if(url==null){
-            setImageResource(viewId, R.mipmap.ic_launcher);
+            setImageResource(viewId,R.mipmap.zhuanquan);
         }else {
-            Glide.with(context).load(url).error(R.mipmap.ic_launcher).into((ImageView) getView(viewId));
+            Glide.with(context).load(url).error(R.mipmap.zhuanquan).into((ImageView) getView(viewId));
         }
         return this;
     }

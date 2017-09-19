@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/black_gray"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:background="@color/white">
+
+        <www.cityguestsociety.com.ui.CircleImageView
+            android:id="@+id/userImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/margin_10"
+            android:src="@mipmap/switch_ball"/>
+
+        <TextView
+            android:id="@+id/userNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_toRightOf="@+id/userImage"
+            android:text="西西里"/>
+
+        <TextView
+            android:id="@+id/sharedContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userImage"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_toEndOf="@+id/userImage"
+            android:layout_toRightOf="@+id/userImage"
+            android:text="11111111111111111111"
+            android:textColor="@color/balck"
+            android:textSize="17sp"/>
+
+        <RelativeLayout
+            android:id="@+id/ImageViewRelative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imageView8"
+            android:layout_alignStart="@+id/imageView8"
+            android:layout_below="@+id/sharedContent"
+            android:layout_marginRight="@dimen/margin_15">
+
+            <www.cityguestsociety.com.ui.NineGridTestLayout
+                android:id="@+id/sharedGiridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_10"
+                app:sapcing="2dp"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/sharedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/sharedContent"
+            android:layout_alignStart="@+id/sharedContent"
+            android:layout_below="@+id/ImageViewRelative"
+            android:layout_marginTop="@dimen/margin_15"
+            android:text="12-05  22:10"
+            />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/sharedTime"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_toEndOf="@+id/sharedTime"
+            android:layout_toRightOf="@+id/sharedTime"
+            android:text="删除"
+            android:textColor="@color/orange"/>
+
+        <ImageView
+            android:id="@+id/compassion"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_marginEnd="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_toLeftOf="@+id/comments"
+            android:layout_toStartOf="@+id/comments"
+            android:src="@mipmap/btn_compassion_pre"/>
+
+        <ImageView
+            android:id="@+id/comments"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignBottom="@+id/compassion"
+            android:layout_alignEnd="@+id/commentsListView"
+            android:layout_alignRight="@+id/commentsListView"
+            android:src="@mipmap/btn_comments"/>
+
+        <TextView
+            android:id="@+id/hengxian"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/comments"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="@dimen/margin_15"
+            android:background="@color/black_gray"/>
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/sharedTime"
+            android:layout_alignStart="@+id/sharedTime"
+            android:layout_below="@+id/hengxian"
+            android:layout_marginTop="7dp"
+            android:src="@mipmap/btn_compassion_bule"/>
+
+        <www.cityguestsociety.com.shared.PraiseTextView
+            android:id="@+id/LovePeople"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/hengxian"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/imageView8"
+            android:layout_toRightOf="@+id/imageView8"
+            android:text="2222222"
+            android:textColor="#7F8DAF"
+            android:textSize="13sp"/>
+
+        <www.cityguestsociety.com.shared.CommentListTextView
+            android:id="@+id/commentsListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LovePeople"
+            android:layout_marginBottom="@dimen/margin_15"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="@dimen/margin_15"
+            android:scrollbars="none"
+            android:textSize="15sp"></www.cityguestsociety.com.shared.CommentListTextView>
+        <!-- <EditText
+             android:id="@+id/commentEditText"
+             android:layout_below="@+id/commentsListView"
+             android:layout_width="match_parent"
+             android:layout_height="35dp"/>-->
+    </RelativeLayout>
+</LinearLayout>

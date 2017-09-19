@@ -9,14 +9,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.apkfuns.logutils.LogUtils;
+import com.loopj.android.http.RequestParams;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import www.cityguestsociety.com.R;
+import www.cityguestsociety.com.UrlFactory;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 import www.cityguestsociety.com.entity.Ban;
 import www.cityguestsociety.com.entity.Community;
+import www.cityguestsociety.com.entity.Room;
+import www.cityguestsociety.com.utils.Constans;
 
 public class SelectHouseInfoActivity extends BaseToolbarActivity {
 
@@ -63,6 +68,8 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
     private String mId = "";
     private Community mCommunity;
     private Ban.DataBean mBan;
+    private Room.DataBean Room;
+    private String mPhone;
 
     @Override
     protected int getContentView() {
@@ -138,6 +145,19 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
                 break;
 
             case R.id.beginCheck:
+                if (mSellerPhoneLast4.getText().toString().trim().isEmpty()) {
+                    ShowToast("请输入手机号");
+                } else {
+                    String phoneNumber = mPhone.replace("-", "");
+                    RequestParams params = new RequestParams();
+                    params.put("city", mCity.getId());
+                    params.put("communtiy", mCommunity.getId());
+                    params.put("ban", mBan.getId());
+                    params.put("room", Room.getId());
+                    params.put("member_id", Constans.ID);
+                    params.put("phone", phoneNumber + mSellerPhoneLast4.getText().toString().trim());
+                    getDataFromInternet(UrlFactory.authentication, params, 1);
+                }
                 break;
         }
     }
@@ -161,10 +181,48 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
                     mLoudongTextView.setText(mBan.getBan());
                     break;
                 case HOUSE:
+                    Room = (Room.DataBean) data.getSerializableExtra(HouseIDActivity.RESULT);
+                    mHouseIDTextview.setText(Room.getRoom());
+                    getUserPhone();
+
                     break;
             }
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
+    private void getUserPhone() {
+        RequestParams params = new RequestParams();
+        params.put("city", mCity.getId());
+        params.put("communtiy", mCommunity.getId());
+        params.put("ban", mBan.getId());
+        params.put("room", Room.getId());
+        getDataFromInternet(UrlFactory.member_phone, params, 0);
+    }
+
+    @Override
+    public void getSuccess(JSONObject object, int what) {
+        switch (what) {
+            case 0:
+                mPhone = object.getJSONArray("data").getJSONObject(0).getString("phone");
+                LogUtils.e(mPhone);
+                mUserNumber7.setText(mPhone + "-");
+                break;
+            case 1:
+                /**验证成功*/
+                jumpToActivity(CheckSuccessActivity.class, false);
+                break;
+        }
+    }
+
+    @Override
+    public void getFailed(JSONObject jsonObject, int what) {
+        super.getFailed(jsonObject, what);
+        switch (what) {
+            case 1:
+                jumpToActivity(CheckFailedActivity.class, false);
+                LogUtils.e("getFailed");
+                break;
+        }
+    }
 }

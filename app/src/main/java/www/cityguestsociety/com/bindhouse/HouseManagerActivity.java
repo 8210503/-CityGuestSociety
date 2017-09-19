@@ -112,7 +112,12 @@ public class HouseManagerActivity extends BaseToolbarActivity {
                             progressBar.setMax(100);
                             progressBar.setProgress(Integer.valueOf(item.getTextInfo()));
                         }*/
-
+                holder.getView(R.id.rightImageView).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShowToast("确认删除？");
+                    }
+                });
 
             }
         };

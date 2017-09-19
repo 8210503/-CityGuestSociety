@@ -45,6 +45,13 @@ public class UrlFactory {
     public static String house = baseurl + "House/house";
     public static String community = baseurl + "House/community";
     public static String ban = baseurl + "House/ban";
+    public static String unit = baseurl + "House/unit";
     public static String Room = baseurl + "House/room";
+    public static String merchant_label = baseurl + "Business/merchant_label";
+    public static String business = baseurl + "Business/business";
+    public static String member_phone = baseurl + "House/member_phone";
+    public static String authentication = baseurl + "House/authentication";
+    public static String business_content = baseurl + "Business/business_content";
+    public static String share = baseurl + "Share/share";
 
 }

@@ -4,7 +4,7 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26'
     defaultConfig {
         applicationId "www.cityguestsociety.com"
         minSdkVersion 15
@@ -26,7 +26,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
-    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/'] } }
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets', 'src/main/assets/']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -39,6 +44,7 @@ dependencies {
     compile files('libs/tencentX5WebView.jar')
     compile files('libs/universal-image-loader-1.9.4-with-sources.jar')
     compile files('libs/pinyin4j-2.5.0.jar')
+    compile files('libs/BaiduLBS_Android.jar')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton:butterknife:8.4.0'

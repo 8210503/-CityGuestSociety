@@ -682,7 +682,7 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
 
             @Override
             public void onStart() {
-                LogUtils.wtf(url, params.toString());
+                LogUtils.wtf(params.toString());
                 LogUtils.e(url, params.toString());
                 super.onStart();
             }
@@ -695,8 +695,8 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
                     getSuccess(jsonObject, what);
                 } else if (jsonObject.getInteger("code") == 2) {
                     noData(jsonObject, what);
-                    cancleLoadingDialog();
                 } else {
+                    getFailed(jsonObject,what);
                     cancleLoadingDialog();
                     ShowToast(jsonObject.getString("info"));
                 }
@@ -706,8 +706,12 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
 
     }
 
-    protected void noData(JSONObject jsonObject, int what) {
+    public void getFailed(JSONObject jsonObject, int what) {
 
+    }
+
+    protected void noData(JSONObject jsonObject, int what) {
+        cancleLoadingDialog();
     }
 
 

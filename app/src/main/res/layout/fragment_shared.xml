@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:background="@color/black_gray"
-              android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black_gray"
+                android:orientation="vertical">
+
     <RelativeLayout
-        android:background="@color/white"
         android:id="@+id/titleRelative"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
+
         <TextView
-            android:textColor="@color/balck"
-            android:text="分享"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="17sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:text="分享"
+            android:textColor="@color/balck"
+            android:textSize="17sp"/>
+
         <ImageView
-            android:src="@mipmap/icon_photograph"
-            android:layout_marginRight="@dimen/margin_15"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:id="@+id/sendShared"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_15"
+            android:src="@mipmap/icon_photograph"/>
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:scrollbars="none"
-        android:layout_marginTop="@dimen/height_1"
-        android:layout_below="@+id/titleRelative"
-        android:divider="@null"
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/sharedListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ></android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/titleRelative"
+        android:layout_marginTop="@dimen/height_1"
+        android:divider="@null"
+        android:scrollbars="none"
+        ></com.github.jdsjlzx.recyclerview.LRecyclerView>
 
 </RelativeLayout>

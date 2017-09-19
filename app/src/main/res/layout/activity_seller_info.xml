@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.secondFragmentActivity.SellerInfoActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/headerview"
+        android:background="@color/black_gray">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/sellerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_130"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:background="@mipmap/icon_merchant_background">
+
+                <ImageView
+                    android:id="@+id/sellerPhoto"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_marginTop="55dp"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:id="@+id/sellerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginTop="75dp"
+                    android:layout_toRightOf="@+id/sellerPhoto"
+                    android:text="洛可可蛋糕店"
+                    android:textColor="@color/balck"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/selleAddressRelative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_50"
+                android:layout_below="@+id/sellerTitle"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/imageViewDZ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:src="@mipmap/icon_merchant_location"/>
+
+                <TextView
+                    android:id="@+id/sellerAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_toRightOf="@+id/imageViewDZ"
+                    android:text="科华北路22号"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sellerYHJRelative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_50"
+                android:layout_below="@+id/selleAddressRelative"
+                android:layout_marginTop="@dimen/height_1"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:text="本店优惠卷"
+                    android:textColor="@color/balck"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_15"
+                    android:src="@mipmap/icon_return_little"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/sellerPhoneRelative"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_50"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/sellerYHJRelative"
+                android:layout_marginTop="14dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/sellerPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:text="联系电话"/>
+
+                <TextView
+                    android:id="@+id/sellerNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_15"
+                    android:layout_toRightOf="@+id/sellerPhone"
+                    android:text="18640225815"
+                    android:textColor="@color/balck"/>
+            </RelativeLayout>
+
+            <www.cityguestsociety.com.baseui.ProgressWebview
+                android:id="@id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/sellerPhoneRelative"></www.cityguestsociety.com.baseui.ProgressWebview>
+
+        </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

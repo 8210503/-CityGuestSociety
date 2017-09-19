@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.apkfuns.logutils.LogUtils;
+import com.hitomi.tilibrary.transfer.Transferee;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -53,7 +54,7 @@ public abstract class BaseFragment extends Fragment {
     private Object fragment;
     private Dialog mLoadingDialog;
     private SparseArray<View> mViews;
-
+    public static Transferee transferee;
     //初始化控件
     protected abstract void initView();
 
@@ -90,7 +91,7 @@ public abstract class BaseFragment extends Fragment {
 
 
         initView();
-
+        transferee = Transferee.getDefault(getActivity());
         initData();
         setListener();
         return rootView;
@@ -235,6 +236,11 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        transferee.dismiss();
+    }
 
     /**
      * 封装跳转方式

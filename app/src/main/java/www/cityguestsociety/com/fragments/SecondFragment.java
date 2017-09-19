@@ -62,7 +62,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
                 switchContent(mFragment, Fragments.get(0));
                 break;
             case R.id.youhuiquan:
-                switchContent(mFragment, new SellerFragment());
+                switchContent(mFragment, new YouHuiJuanFragment());
                 break;
         }
     }

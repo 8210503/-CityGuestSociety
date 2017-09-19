@@ -183,7 +183,7 @@
                 android:textColor="@color/balck"
                 android:textSize="20sp"
                 android:layout_centerVertical="true"
-                android:text="185—1512—"
+                android:text="请补全房屋信息"
                 android:layout_marginLeft="@dimen/margin_25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

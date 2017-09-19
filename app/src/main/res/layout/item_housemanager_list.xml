@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+<www.cityguestsociety.com.ui.SwipeMenuView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:clickable="true">
 
 
     <RelativeLayout
@@ -78,6 +79,28 @@
             android:text="已完成60"
             android:textColor="@color/balck"
             android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/houseID"
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:background="@color/black_gray"></RelativeLayout>
     </RelativeLayout>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rightImageView"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/margin_top_5"
+        android:background="@drawable/red_color_right_corn5"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+</www.cityguestsociety.com.ui.SwipeMenuView>

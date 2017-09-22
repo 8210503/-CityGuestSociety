@@ -768,6 +768,14 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
         return ((text.getText().toString().trim().length() < 6) || (text.getText().toString().trim().length() > 18));
     }
 
+    /**两种情况 1：
+     *              没有登录 ：跳转到登录界面
+     *              登录了-没有绑定房屋： 跳转到绑定房屋界面*/
+
+
+
+
+
     public boolean isBindHouse() {
         if (Constans.isBindHouse == true) {
             return true;

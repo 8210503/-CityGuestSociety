@@ -17,11 +17,16 @@
             android:textColor="@color/balck"
             android:textSize="17sp"/>
     </RelativeLayout>
+    <com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout
+        android:id="@id/refreshLayout"
+        android:layout_below="@+id/title_shouye"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_shouye">
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -39,8 +44,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/CarouselImage"
-                android:layout_marginLeft="@dimen/image_size"
-                android:layout_marginRight="@dimen/image_size"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -126,8 +129,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linearlayout1"
-                android:layout_marginLeft="@dimen/image_size"
-                android:layout_marginRight="@dimen/image_size"
                 android:layout_marginTop="@dimen/margin_20"
                 android:orientation="horizontal">
 
@@ -260,4 +261,5 @@
                 android:scaleType="centerCrop"></ImageView>
         </RelativeLayout>
     </ScrollView>
+    </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 </RelativeLayout>

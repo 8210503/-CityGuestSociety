@@ -24,6 +24,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
     private FragmentManager mMamager;
     private ArrayList<Fragment> Fragments;
 
+
     @Override
     protected void initView() {
         fujin = getView(R.id.fujin);
@@ -54,6 +55,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
     protected int setLayoutResID() {
         return R.layout.fragment_seller;
     }
+
 
     @Override
     public void onClick(View v) {

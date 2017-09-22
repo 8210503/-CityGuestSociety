@@ -44,7 +44,7 @@ public class SelectCommunityActivity extends BaseToolbarActivity {
     @BindView(R.id.listview_search_result)
     ListView mListviewSearchResult;
     private String mId;
-    List<Community> mAllCities=new ArrayList<>();
+    List<Community> mAllCities = new ArrayList<>();
     private CommunityAdapter mCityAdapter;
     private List<NetworkCityBean> networkHotCityBeen = new ArrayList<>();
     private List<Community> MSortList;
@@ -111,31 +111,38 @@ public class SelectCommunityActivity extends BaseToolbarActivity {
     private List<Community> filledData(List<Community> allCity) {
         List<Community> mSortList = new ArrayList<>();
         ArrayList<String> indexString = new ArrayList<>();
+        if (allCity.size() != 0) {
+            for (int i = 0; i < allCity.size(); i++) {
 
-        for (int i = 0; i < allCity.size(); i++) {
+                Community sortModel = new Community();
+                sortModel.setId(allCity.get(i).getId());
+                sortModel.setCommunity(allCity.get(i).getCommunity());
+                if (!allCity.get(i).getCommunity().isEmpty()) {
 
-            Community sortModel = new Community();
-            sortModel.setId(allCity.get(i).getId());
-            sortModel.setCommunity(allCity.get(i).getCommunity());
-            String pinyin = PinyinUtils.getPingYin(allCity.get(i).getCommunity());
-            String sortString = pinyin.substring(0, 1).toUpperCase();
-            if (sortString.matches("[A-Z]")) {
-                sortModel.setSortLetters(sortString.toUpperCase());
-                if (!indexString.contains(sortString)) {
-                    indexString.add(sortString);
+                    String pinyin = PinyinUtils.getPingYin(allCity.get(i).getCommunity());
+
+                    String sortString = pinyin.substring(0, 1).toUpperCase();
+                    if (sortString.matches("[A-Z]")) {
+                        sortModel.setSortLetters(sortString.toUpperCase());
+                        if (!indexString.contains(sortString)) {
+                            indexString.add(sortString);
+                        }
+                    }
+                    mSortList.add(sortModel);
                 }
+
             }
-            mSortList.add(sortModel);
+            Collections.sort(indexString);
+            mSideLetterBar.setOnLetterChangedListener(new SideLetterBar.OnLetterChangedListener() {
+                @Override
+                public void onLetterChanged(String letter) {
+                    int position = mCityAdapter.getLetterPosition(letter);
+                    mListviewAllCity.setSelection(position);
+                }
+            });
+            Collections.sort(mSortList, new CommuntiyComparator());
+            return mSortList;
         }
-        Collections.sort(indexString);
-        mSideLetterBar.setOnLetterChangedListener(new SideLetterBar.OnLetterChangedListener() {
-            @Override
-            public void onLetterChanged(String letter) {
-                int position = mCityAdapter.getLetterPosition(letter);
-                mListviewAllCity.setSelection(position);
-            }
-        });
-        Collections.sort(mSortList, new CommuntiyComparator());
         return mSortList;
     }
 

@@ -155,10 +155,12 @@ public class RegiestActivity extends BaseToolbarActivity {
                         RequestParams params = new RequestParams();
                         params.put("username", mPhoneNumber.getText().toString().trim());
                         getDataFromInternet(UrlFactory.yzm, params, 0);
+                        showLoadingDialog();
                     } else if (mExtra.equals(LoginActivity.FORGETPASSWORLD)) {
                         RequestParams params = new RequestParams();
                         params.put("username", mPhoneNumber.getText().toString().trim());
                         getDataFromInternet(UrlFactory.forgot_yzm, params, 0);
+                        showLoadingDialog();
                     }
 
                 } else {

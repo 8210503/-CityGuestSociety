@@ -46,6 +46,7 @@ public class SellerFragment extends BaseFragment {
     private ClassifyMainAdapter mMainAdapter;
     public LocationClient mLocationClient = null;
     List<SellerInfo.DataBean> dataInfo = new ArrayList<>();
+    List<SellerInfo.DataBean> dataInfolists = new ArrayList<>();
 
 
     /**
@@ -66,6 +67,7 @@ public class SellerFragment extends BaseFragment {
     private int mCurrentPage = 1;
     private LRecyclerViewAdapter mRecyclerViewAdapter;
     RequestParams params = new RequestParams();
+    public boolean isRefresh = false;
 
     @Override
     protected void initView() {
@@ -152,12 +154,16 @@ public class SellerFragment extends BaseFragment {
             case 1:
                 gson = new Gson();
                 dataInfo.clear();
+                if (isRefresh) {
+                    dataInfolists.clear();
+                }
+
                 SellerInfo info = gson.fromJson(object.toString(), SellerInfo.class);
                 dataInfo.addAll(info.getData());
-
+                dataInfolists.addAll(dataInfo);
 
                 TOTAL_COUNTER = Integer.parseInt(info.getPagecount());
-                mCurrentCounter++;
+                mCurrentPage++;
                 mCurrentCounter += dataInfo.size();
                 mRecyclerViewAdapter.notifyDataSetChanged();
                 mClassifyMorelist.refreshComplete(REQUEST_COUNT);
@@ -182,7 +188,7 @@ public class SellerFragment extends BaseFragment {
     }
 
     public void setMoreAdapter() {
-        MoreRecylerAdapter adapter = new MoreRecylerAdapter<SellerInfo.DataBean>(getActivity(), dataInfo, R.layout.item_classify_morelist) {
+        MoreRecylerAdapter adapter = new MoreRecylerAdapter<SellerInfo.DataBean>(getActivity(), dataInfolists, R.layout.item_classify_morelist) {
 
             @Override
             public void convert(BaseRecyclerHolder holder, SellerInfo.DataBean item, int position, boolean isScrolling) {
@@ -204,6 +210,7 @@ public class SellerFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mMainAdapter.setSelectItem(position);
                 mMainAdapter.notifyDataSetChanged();
+                mCurrentPage = 1;
                 params.put("label", mSellseLists.get(position).getId());
                 getData();
             }
@@ -215,6 +222,7 @@ public class SellerFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 mCurrentCounter = 0;
+                isRefresh=true;
                 mCurrentPage = 1;
                 getData();
             }
@@ -223,6 +231,7 @@ public class SellerFragment extends BaseFragment {
         mClassifyMorelist.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh=false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();
@@ -237,7 +246,7 @@ public class SellerFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, int position) {
                 Bundle bundle = new Bundle();
-                bundle.putString("id", mSellseLists.get(position).getId());
+                bundle.putString("id", dataInfolists.get(position).getId());
                 jumpToActivity(SellerInfoActivity.class, bundle, false);
             }
         });

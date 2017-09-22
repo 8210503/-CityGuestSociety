@@ -31,8 +31,8 @@ import www.cityguestsociety.com.utils.Constans;
 
 public class MyNotifyFragment extends BaseFragment {
     LRecyclerView notifyListView;
-    private List<Notification.DataBean> mLists;
-    private BaseRecyclerAdapter mAdapter;
+    private List<Notification.DataBean> mLists = new ArrayList<>();
+    private List<Notification.DataBean> mdataLists = new ArrayList<>();
     /**
      * 服务器端一共多少条数据
      */
@@ -49,6 +49,8 @@ public class MyNotifyFragment extends BaseFragment {
     private int mCurrentCounter = 0;
 
     private int mCurrentPage = 1;
+    private LRecyclerViewAdapter mLRecyclerViewAdapter;
+    public boolean isRefresh = false;
 
     @Override
     protected void initView() {
@@ -63,7 +65,6 @@ public class MyNotifyFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        mLists = new ArrayList<>();
         setAdapter();
     }
 
@@ -78,17 +79,22 @@ public class MyNotifyFragment extends BaseFragment {
 
     @Override
     public void getSuccess(JSONObject object, int what) {
-        super.getSuccess(object, what);
-        mLists.clear();
-        LogUtils.e(object.toString());
         Gson gson = new Gson();
+
+        if (isRefresh) {
+            LogUtils.e("isRefresh");
+            mdataLists.clear();
+        }
+        mLists.clear();
         Notification notification = gson.fromJson(object.toString(), Notification.class);
+        mLists = notification.getData();
+        mdataLists.addAll(mLists);
+
 
         TOTAL_COUNTER = Integer.parseInt(notification.getPagecount());
-        mCurrentCounter++;
+        mCurrentPage++;
         mCurrentCounter += mLists.size();
-        mLists.addAll(notification.getData());
-        mAdapter.notifyDataSetChanged();
+        mLRecyclerViewAdapter.notifyDataSetChanged();
         notifyListView.refreshComplete(REQUEST_COUNT);
     }
 
@@ -99,7 +105,7 @@ public class MyNotifyFragment extends BaseFragment {
     }
 
     private void setAdapter() {
-        mAdapter = new BaseRecyclerAdapter<Notification.DataBean>(getActivity(), mLists, R.layout.item_notify) {
+        BaseRecyclerAdapter mAdapter = new BaseRecyclerAdapter<Notification.DataBean>(getActivity(), mdataLists, R.layout.item_notify) {
             @Override
             public void convert(BaseRecyclerHolder holder, Notification.DataBean item, int position, boolean isScrolling) {
                 if (item.getNotice_type().equals("1")) {
@@ -124,24 +130,17 @@ public class MyNotifyFragment extends BaseFragment {
         };
 
 
-        LRecyclerViewAdapter adapter = new LRecyclerViewAdapter(mAdapter);
-        notifyListView.setAdapter(adapter);
+        mLRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter);
+        notifyListView.setAdapter(mLRecyclerViewAdapter);
     }
 
     @Override
     protected void setListener() {
-        notifyListView.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mCurrentCounter = 0;
-                mCurrentPage = 1;
-                getData();
-            }
-        });
-        notifyListView.refresh();
+
         notifyListView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh=false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();
@@ -151,6 +150,18 @@ public class MyNotifyFragment extends BaseFragment {
                 }
             }
         });
+
+        notifyListView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mCurrentCounter = 0;
+                mCurrentPage = 1;
+                isRefresh = true;
+                getData();
+            }
+        });
+
+        notifyListView.refresh();
 
     }
 

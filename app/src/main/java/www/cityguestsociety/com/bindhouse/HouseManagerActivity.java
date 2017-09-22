@@ -2,6 +2,7 @@ package www.cityguestsociety.com.bindhouse;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -65,25 +66,34 @@ public class HouseManagerActivity extends BaseToolbarActivity {
     @Override
     public void getSuccess(JSONObject object, int what) {
         super.getSuccess(object, what);
-        mLists.clear();
-        Gson gson = new Gson();
-        House house = gson.fromJson(object.toString(), House.class);
-        mLists.addAll(house.getData());
-        mPresentHouseListView.refreshComplete(50);
+        switch (what) {
+            case 0:
+                mLists.clear();
+                Gson gson = new Gson();
+                House house = gson.fromJson(object.toString(), House.class);
+                mLists.addAll(house.getData());
+                mPresentHouseListView.refreshComplete(50);
 
-        if (mLists.size() == 0) {
-            LogUtils.e("mLists.size()==0");
-            mPresentHouseRelative.setVisibility(View.INVISIBLE);
-            noHouseRelative.setVisibility(View.VISIBLE);
-        } else {
-            LogUtils.e("mLists.size()!=0");
-            mPresentHouseRelative.setVisibility(View.VISIBLE);
-            noHouseRelative.setVisibility(View.INVISIBLE);
+                if (mLists.size() == 0) {
+                    LogUtils.e("mLists.size()==0");
+                    mPresentHouseRelative.setVisibility(View.INVISIBLE);
+                    noHouseRelative.setVisibility(View.VISIBLE);
+                } else {
+                    LogUtils.e("mLists.size()!=0");
+                    mPresentHouseRelative.setVisibility(View.VISIBLE);
+                    noHouseRelative.setVisibility(View.INVISIBLE);
+                }
+
+
+                LogUtils.e(mLists.toString());
+                mAdapter.notifyDataSetChanged();
+                break;
+            case 1:
+                ShowToast(object.getString("info"));
+                mPresentHouseListView.refresh();
+                break;
         }
 
-
-        LogUtils.e(mLists.toString());
-        mAdapter.notifyDataSetChanged();
 
     }
 
@@ -95,12 +105,22 @@ public class HouseManagerActivity extends BaseToolbarActivity {
         mPresentHouseListView.refreshComplete(50);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (SelectHouseInfoActivity.isCheckSuccess) {
+            mPresentHouseListView.refresh();
+        }
+        SelectHouseInfoActivity.isCheckSuccess = false;
+    }
+
+
     private void setAdapter() {
 
         mAdapter1 = new BaseRecyclerAdapter<House.DataBean>(this, mLists, R.layout.item_housemanager_list) {
 
             @Override
-            public void convert(BaseRecyclerHolder holder, House.DataBean item, int position, boolean isScrolling) {
+            public void convert(BaseRecyclerHolder holder, House.DataBean item, final int position, boolean isScrolling) {
                 holder.setText(R.id.houseAddress, item.getCity() + item.getCommunity() + item.getBan() + item.getRoom());
                 holder.setText(R.id.houseID, item.getBan() + item.getRoom());
                       /* if (item.getTextInfo().equals("100")) {
@@ -115,7 +135,11 @@ public class HouseManagerActivity extends BaseToolbarActivity {
                 holder.getView(R.id.rightImageView).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ShowToast("确认删除？");
+                        RequestParams params = new RequestParams();
+                        params.put("member_id", Constans.ID);
+                        params.put("id", mLists.get(position).getId());
+                        getDataFromInternet(UrlFactory.delHouse, params, 1);
+                        showLoadingDialog();
                     }
                 });
 

@@ -7,7 +7,6 @@ import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 
 public class CheckSuccessActivity extends BaseToolbarActivity {
 
-
     @Override
     protected int getContentView() {
         return R.layout.activity_check_success;

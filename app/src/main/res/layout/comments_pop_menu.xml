@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/white_color_grayline">
+
+
+    <EditText
+        android:id="@+id/edit_comment"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/button"
+        android:background="@drawable/white_color_grayline"
+        />
+
+    <Button
+        android:layout_marginLeft="@dimen/margin_15"
+        android:id="@+id/button"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@color/orange"
+        android:text="发送"
+        android:textColor="@color/white"/>
+</RelativeLayout>

@@ -30,6 +30,8 @@ import www.cityguestsociety.com.utils.Constans;
 public class MyCommentsFragment extends BaseFragment {
     private LRecyclerView mMyCommentsListView;
     private List<Comments.DataBean> mLists;
+    private List<Comments.DataBean> mdataLists = new ArrayList<>();
+    public boolean isRefresh;
     private BaseRecyclerAdapter mAdapter;
 
     @Override
@@ -79,11 +81,17 @@ public class MyCommentsFragment extends BaseFragment {
         super.getSuccess(object, what);
         LogUtils.e(object.toString());
         mLists.clear();
+        if (isRefresh) {
+            mdataLists.clear();
+        }
         Gson gson = new Gson();
         Comments comments = gson.fromJson(object.toString(), Comments.class);
         mLists.addAll(comments.getData());
+        mdataLists.addAll(mLists);
+
+
         TOTAL_COUNTER = Integer.parseInt(comments.getPagecount());
-        mCurrentCounter++;
+        mCurrentPage++;
         mCurrentCounter += mLists.size();
         mAdapter.notifyDataSetChanged();
         mMyCommentsListView.refreshComplete(REQUEST_COUNT);
@@ -96,7 +104,7 @@ public class MyCommentsFragment extends BaseFragment {
     }
 
     private void setAdapter() {
-        mAdapter = new BaseRecyclerAdapter<Comments.DataBean>(getActivity(), mLists, R.layout.item_comments) {
+        mAdapter = new BaseRecyclerAdapter<Comments.DataBean>(getActivity(), mdataLists, R.layout.item_comments) {
 
             @Override
             public void convert(BaseRecyclerHolder holder, Comments.DataBean item, int position, boolean isScrolling) {
@@ -116,7 +124,7 @@ public class MyCommentsFragment extends BaseFragment {
                 }
                 if (item.getType().equals("3")) {
                     /**评论*/
-                    holder.setText(R.id.conmentsType, item.getMember().getNickname() + "  回评论了你的分享");
+                    holder.setText(R.id.conmentsType, item.getMember().getNickname() + "  评论了你的分享");
                     holder.setText(R.id.commentContent, item.getShare().getTitle());
                 }
                 holder.setImageByUrl(R.id.userPhoto, item.getMember().getImg());
@@ -135,6 +143,7 @@ public class MyCommentsFragment extends BaseFragment {
             public void onRefresh() {
                 mCurrentCounter = 0;
                 mCurrentPage = 1;
+                isRefresh = true;
                 getData();
             }
         });
@@ -143,6 +152,7 @@ public class MyCommentsFragment extends BaseFragment {
         mMyCommentsListView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh=false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();

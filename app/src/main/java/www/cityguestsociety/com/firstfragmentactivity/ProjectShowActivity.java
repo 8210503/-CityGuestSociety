@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.alibaba.fastjson.JSONObject;
-import com.apkfuns.logutils.LogUtils;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
@@ -25,6 +24,8 @@ import www.cityguestsociety.com.adapter.BaseRecyclerHolder;
 import www.cityguestsociety.com.application.MyApplication;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 import www.cityguestsociety.com.entity.Project;
+
+import static www.cityguestsociety.com.UrlFactory.project;
 
 public class ProjectShowActivity extends BaseToolbarActivity {
 
@@ -50,6 +51,7 @@ public class ProjectShowActivity extends BaseToolbarActivity {
 
     private int mCurrentPage = 1;
     private BaseRecyclerAdapter mAdapter;
+    public static boolean isRefresh = false;
 
     @Override
     protected int getContentView() {
@@ -68,7 +70,7 @@ public class ProjectShowActivity extends BaseToolbarActivity {
         RequestParams params = new RequestParams();
         params.put("next", mCurrentPage);
         params.put("page", REQUEST_COUNT);
-        getDataFromInternet(UrlFactory.project, params, 0);
+        getDataFromInternet(project, params, 0);
     }
 
 
@@ -76,19 +78,17 @@ public class ProjectShowActivity extends BaseToolbarActivity {
     public void getSuccess(JSONObject object, int what) {
         super.getSuccess(object, what);
         Gson gson = new Gson();
+        if (isRefresh) {
+            dataLists.clear();
+        }
         Project project = gson.fromJson(object.toString(), Project.class);
         mLists = project.getData();
         dataLists.addAll(mLists);
 
         TOTAL_COUNTER = Integer.parseInt(project.getPagecount());
         mCurrentPage++;
-        LogUtils.e(dataLists.toString());
         mCurrentCounter += mLists.size();
-
-        LogUtils.e(mCurrentCounter + "____" + TOTAL_COUNTER);
-
         mAdapter.notifyDataSetChanged();
-
         mProjectShowListView.refreshComplete(REQUEST_COUNT);
 
     }
@@ -112,7 +112,7 @@ public class ProjectShowActivity extends BaseToolbarActivity {
                 holder.setText(R.id.projectName, item.getTitle());
                 holder.setText(R.id.projectAddress, item.getAddress());
                 if (item.getImg() != null) {
-                    holder.setImageByUrl(R.id.projectShowImage, UrlFactory.imaPath+item.getImg());
+                    holder.setImageByUrl(R.id.projectShowImage, UrlFactory.imaPath + item.getImg());
                 } else {
                     holder.setImageResource(R.id.projectShowImage, R.drawable.sysyhui11);
                 }
@@ -130,7 +130,7 @@ public class ProjectShowActivity extends BaseToolbarActivity {
             @Override
             public void onItemClick(RecyclerView parent, View view, int position) {
                 Bundle bundle = new Bundle();
-                bundle.putString(ProjectShowWebViewActivity.ID,dataLists.get(position-1).getId());
+                bundle.putString(ProjectShowWebViewActivity.ID, dataLists.get(position - 1).getId());
                 jumpToActivity(ProjectShowWebViewActivity.class, bundle, false);
             }
         });
@@ -138,6 +138,7 @@ public class ProjectShowActivity extends BaseToolbarActivity {
         mProjectShowListView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh = false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();
@@ -153,7 +154,7 @@ public class ProjectShowActivity extends BaseToolbarActivity {
             public void onRefresh() {
                 mCurrentCounter = 0;
                 mCurrentPage = 1;
-                dataLists.clear();
+                isRefresh = true;
                 getData();
             }
         });

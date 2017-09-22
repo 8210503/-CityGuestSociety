@@ -11,6 +11,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.google.gson.Gson;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
 import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
 import www.cityguestsociety.com.adapter.CommonAdaper;
 import www.cityguestsociety.com.adapter.ViewHolder;
-import www.cityguestsociety.com.application.MyApplication;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 import www.cityguestsociety.com.entity.NewActivity;
 import www.cityguestsociety.com.login.LoginActivity;
@@ -38,6 +38,8 @@ public class JiFenExchangeActivity extends BaseToolbarActivity {
     public static final String TITLE = "title";
     private String mTitle;
     private List<NewActivity.DataBean> mList = new ArrayList<>();
+
+
     private CommonAdaper<NewActivity.DataBean> mAdapter;
 
     @Override
@@ -54,7 +56,6 @@ public class JiFenExchangeActivity extends BaseToolbarActivity {
         RequestParams params = new RequestParams();
         params.put("member_id", Constans.ID);
         getDataFromInternet(UrlFactory.activity, params, 0);
-        showLoadingDialog();
     }
 
     @Override
@@ -94,10 +95,12 @@ public class JiFenExchangeActivity extends BaseToolbarActivity {
                     bt_statue.setEnabled(false);
                     bt_statue.setBackgroundDrawable(getResources().getDrawable(R.drawable.all_corners_gray));
                 } else if (item.getState().equals("1")) {
+
+
                     if (item.getCan() == 0) {
-                        bt_statue.setText("我要报名");
+                        bt_statue.setText("活动进行中");
                         bt_statue.setBackgroundDrawable(getResources().getDrawable(R.drawable.all_corners_orange));
-                        bt_statue.setEnabled(true);
+                        bt_statue.setEnabled(false);
                     } else if (item.getCan() == 1) {
                         bt_statue.setText("已报名");
                         bt_statue.setEnabled(false);
@@ -146,6 +149,7 @@ public class JiFenExchangeActivity extends BaseToolbarActivity {
                 bundle.putInt(ActivityInfo.CAN, mList.get(position).getCan());
                 bundle.putString(ActivityInfo.URL, UrlFactory.miactivity_cont + "/member_id/" + Constans.ID + "/id/" + mList.get(position).getId());
                 bundle.putBoolean(ActivityInfo.isShowing, true);
+                bundle.putBoolean(ActivityInfo.isCheck, false);
                 jumpToActivity(ActivityInfo.class, bundle, false);
             }
         });
@@ -161,6 +165,7 @@ public class JiFenExchangeActivity extends BaseToolbarActivity {
             @Override
             public void onFinishRefresh() {
                 super.onFinishRefresh();
+
             }
         });
         refreshLayout.setEnableLoadmore(false);
@@ -176,6 +181,15 @@ public class JiFenExchangeActivity extends BaseToolbarActivity {
     protected void initView() {
         mTitle = getIntent().getStringExtra(TITLE);
         initToobar(mTitle);
+
+        //设置刷新头
+        SinaRefreshView headerView = new SinaRefreshView(mContext);
+        headerView.setArrowResource(R.mipmap.zhuanquan);
+        headerView.setTextColor(0xff745D5C);
+        refreshLayout.setHeaderView(headerView);
+        refreshLayout.setEnableRefresh(true);
+        refreshLayout.startRefresh();
+
     }
 
     @Override

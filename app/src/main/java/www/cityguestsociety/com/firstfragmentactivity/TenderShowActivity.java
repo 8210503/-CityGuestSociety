@@ -49,6 +49,7 @@ public class TenderShowActivity extends BaseToolbarActivity {
     private int mCurrentPage = 1;
     private List<Tender.DataBean> mDataList;
     private BaseRecyclerAdapter mAdapter;
+    public boolean isRefresh = false;
 
     @Override
     protected int getContentView() {
@@ -83,12 +84,15 @@ public class TenderShowActivity extends BaseToolbarActivity {
     public void getSuccess(JSONObject object, int what) {
         super.getSuccess(object, what);
         Gson gson = new Gson();
+        mLists.clear();
+        if (isRefresh) {
+            mDataList.clear();
+        }
         Tender tender = gson.fromJson(object.toString(), Tender.class);
         mLists = tender.getData();
         mDataList.addAll(mLists);
         TOTAL_COUNTER = Integer.parseInt(tender.getPagecount());
         mCurrentPage++;
-        LogUtils.e(mDataList.toString());
         mCurrentCounter += mLists.size();
 
         LogUtils.e(mCurrentCounter + "____" + TOTAL_COUNTER);
@@ -123,7 +127,7 @@ public class TenderShowActivity extends BaseToolbarActivity {
             public void onItemClick(RecyclerView parent, View view, int position) {
                 Bundle bundle = new Bundle();
 
-                bundle.putString(TenderShowWebViewActivity.ID,mDataList.get(position - 1).getId());
+                bundle.putString(TenderShowWebViewActivity.ID, mDataList.get(position - 1).getId());
                 jumpToActivity(TenderShowWebViewActivity.class, bundle, false);
             }
         });
@@ -131,6 +135,7 @@ public class TenderShowActivity extends BaseToolbarActivity {
         mTenderShowListView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh = false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();
@@ -146,7 +151,7 @@ public class TenderShowActivity extends BaseToolbarActivity {
             public void onRefresh() {
                 mCurrentCounter = 0;
                 mCurrentPage = 1;
-                mDataList.clear();
+                isRefresh = true;
                 getData();
             }
         });

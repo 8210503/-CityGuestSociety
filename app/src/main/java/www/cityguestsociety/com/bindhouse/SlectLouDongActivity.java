@@ -62,6 +62,12 @@ public class SlectLouDongActivity extends BaseToolbarActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected void noData(JSONObject jsonObject, int what) {
+        super.noData(jsonObject, what);
+        mLoudongRecyclerview.refreshComplete(10);
+    }
+
     public void setAdapter() {
         mAdapter = new BaseRecyclerAdapter<Ban.DataBean>(this, mList, R.layout.item_loudong) {
 

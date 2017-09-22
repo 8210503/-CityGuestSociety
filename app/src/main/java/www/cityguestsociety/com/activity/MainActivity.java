@@ -63,7 +63,7 @@ public class MainActivity extends BaseToolbarActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String key = intent.getStringExtra("name");
-//                fourthFragemnt.initData();
+                //                fourthFragemnt.initData();
             }
 
         };
@@ -137,6 +137,8 @@ public class MainActivity extends BaseToolbarActivity {
         switch (view.getId()) {
             case R.id.R0:
                 switchContent(mFragment, mFragments.get(0));
+                FirstFragment fragment = (FirstFragment) mFragments.get(0);
+                fragment.refresh();
                 break;
             case R.id.R1:
                 switchContent(mFragment, mFragments.get(1));

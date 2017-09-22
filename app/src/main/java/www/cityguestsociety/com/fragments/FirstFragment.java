@@ -10,11 +10,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.apkfuns.logutils.LogUtils;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
 import com.loopj.android.http.RequestParams;
 
 import java.util.Arrays;
@@ -65,6 +69,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     private static FirstFragment fistFragment;
     private String mBannerId;
     private Banner mBanner;
+    private TwinklingRefreshLayout refreshLayout;
 
 
     public FirstFragment() {
@@ -90,6 +95,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     protected void initView() {
         openDoorRelative = getView(R.id.openDoor);
         mServices = getView(R.id.services);
+        refreshLayout = getView(R.id.refreshLayout);
         vip = getView(R.id.VIP);
         guojiangfengcai = getView(R.id.guojiangfengcai);
         projectShow = getView(R.id.projectShow);
@@ -110,6 +116,16 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         }
 
 
+        //设置刷新头
+        SinaRefreshView headerView = new SinaRefreshView(mContext);
+        headerView.setArrowResource(R.mipmap.zhuanquan);
+        headerView.setTextColor(0xff745D5C);
+        refreshLayout.setHeaderView(headerView);
+        refreshLayout.setEnableRefresh(true);
+        refreshLayout.startRefresh();
+        refreshLayout.setEnableLoadmore(false);
+
+
     }
 
     @Override
@@ -118,8 +134,27 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
         RequestParams params = new RequestParams();
         params.put("number", 5);
         getDataFromInternet(UrlFactory.topbanner, params, 0);
+    }
 
+    public void refresh() {
+        refreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.startRefresh();
+            }
+        }, 200);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        LogUtils.e("onResume");
+        refreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.startRefresh();
+            }
+        }, 200);
     }
 
     @Override
@@ -152,10 +187,10 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 params.put("member_id", Constans.ID);
                 params.put("num", 1);
                 getDataFromInternet(UrlFactory.activity, params, 2);
-                showLoadingDialog("");
                 break;
             case 2:
                 /**最新活动*/
+                refreshLayout.finishRefreshing();
                 String title = object.getJSONArray("data").getJSONObject(0).getString("title");
                 String sendTime = object.getJSONArray("data").getJSONObject(0).getString("release_time");
                 String endTime = object.getJSONArray("data").getJSONObject(0).getString("end_time");
@@ -260,6 +295,18 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 bundle.putBoolean(ActivityInfoActivity.isShowing, false);
                 jumpToActivity(ActivityInfoActivity.class, bundle, false);
 
+            }
+        });
+
+        refreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
+            @Override
+            public void onRefresh(TwinklingRefreshLayout refreshLayout) {
+                /**第一个请求*/
+                initData();
+            }
+
+            @Override
+            public void onFinishRefresh() {
             }
         });
     }

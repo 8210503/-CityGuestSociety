@@ -49,64 +49,83 @@
             android:layout_marginRight="@dimen/margin_15">
 
             <www.cityguestsociety.com.ui.NineGridTestLayout
-                android:id="@+id/sharedGiridView"
+                android:id="@+id/userPhotoGridView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/margin_10"
-                app:sapcing="2dp"
-                />
+                android:layout_marginTop="@dimen/margin_20"
+                app:sapcing="5dp"/>
         </RelativeLayout>
 
         <TextView
             android:id="@+id/sharedTime"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_alignLeft="@+id/sharedContent"
-            android:layout_alignStart="@+id/sharedContent"
             android:layout_below="@+id/ImageViewRelative"
             android:layout_marginTop="@dimen/margin_15"
+            android:gravity="bottom|center_horizontal"
             android:text="12-05  22:10"
             />
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
             android:layout_alignTop="@+id/sharedTime"
             android:layout_marginLeft="19dp"
             android:layout_marginStart="19dp"
             android:layout_toEndOf="@+id/sharedTime"
             android:layout_toRightOf="@+id/sharedTime"
+            android:gravity="bottom|center_horizontal"
             android:text="删除"
             android:textColor="@color/orange"/>
 
-        <ImageView
-            android:id="@+id/compassion"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+        <RelativeLayout
+            android:id="@+id/loveRelative"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignBottom="@+id/textView4"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
-            android:layout_toLeftOf="@+id/comments"
-            android:layout_toStartOf="@+id/comments"
-            android:src="@mipmap/btn_compassion_pre"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_45"
+            >
 
-        <ImageView
-            android:id="@+id/comments"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_alignBottom="@+id/compassion"
-            android:layout_alignEnd="@+id/commentsListView"
-            android:layout_alignRight="@+id/commentsListView"
-            android:src="@mipmap/btn_comments"/>
+            <ImageView
+                android:id="@+id/compassion"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="9dp"
+                android:layout_marginRight="9dp"
+                android:src="@mipmap/btn_compassion_pre"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/commentsRelative"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/ImageViewRelative"
+            android:layout_alignRight="@+id/ImageViewRelative"
+            android:layout_alignTop="@+id/loveRelative">
+
+            <ImageView
+                android:id="@+id/comments"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/btn_comments"/>
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/hengxian"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/comments"
+            android:layout_below="@+id/commentsRelative"
             android:layout_marginLeft="55dp"
-            android:layout_marginTop="@dimen/margin_15"
+            android:layout_marginTop="5dp"
             android:background="@color/black_gray"/>
 
         <ImageView
@@ -117,7 +136,8 @@
             android:layout_alignStart="@+id/sharedTime"
             android:layout_below="@+id/hengxian"
             android:layout_marginTop="7dp"
-            android:src="@mipmap/btn_compassion_bule"/>
+            android:src="@mipmap/btn_compassion_bule"
+            />
 
         <www.cityguestsociety.com.shared.PraiseTextView
             android:id="@+id/LovePeople"

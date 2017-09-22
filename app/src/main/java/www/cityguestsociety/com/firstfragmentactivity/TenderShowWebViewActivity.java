@@ -1,7 +1,6 @@
 package www.cityguestsociety.com.firstfragmentactivity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,7 +10,6 @@ import com.bumptech.glide.Glide;
 import com.loopj.android.http.RequestParams;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
@@ -42,6 +40,7 @@ public class TenderShowWebViewActivity extends BaseToolbarActivity {
         getDataFromInternet(UrlFactory.attract_content, params, 0);
         showLoadingDialog();
     }
+
     @Override
     public void getSuccess(JSONObject object, int what) {
         super.getSuccess(object, what);
@@ -53,11 +52,12 @@ public class TenderShowWebViewActivity extends BaseToolbarActivity {
 
         mNewsTitle.setText(title);
         mNewsTime.setText("北京城建·" + time);
-        Glide.with(this).load(UrlFactory.imaPath+img).asBitmap().into(mNewsImage);
+        Glide.with(this).load(UrlFactory.imaPath + img).asBitmap().into(mNewsImage);
 
 
         mProgressWebview.loadUrl(content);
     }
+
     @Override
     protected void setListener() {
 
@@ -71,7 +71,7 @@ public class TenderShowWebViewActivity extends BaseToolbarActivity {
 
     @Override
     protected void initView() {
-        initToobar("项目详情");
+        initToobar("招商详情");
         Intent intent = getIntent();
         id = intent.getStringExtra(ID);
     }
@@ -81,10 +81,4 @@ public class TenderShowWebViewActivity extends BaseToolbarActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

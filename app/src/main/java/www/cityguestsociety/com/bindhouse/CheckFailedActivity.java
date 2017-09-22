@@ -1,14 +1,11 @@
 package www.cityguestsociety.com.bindhouse;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 
 public class CheckFailedActivity extends BaseToolbarActivity {
-
 
 
     @Override
@@ -28,8 +25,8 @@ public class CheckFailedActivity extends BaseToolbarActivity {
 
     @Override
     protected void initBase() {
-        isShowBackImage=true;
-        isShowToolBar=true;
+        isShowBackImage = true;
+        isShowToolBar = true;
     }
 
     @Override

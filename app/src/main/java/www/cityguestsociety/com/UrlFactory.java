@@ -53,5 +53,7 @@ public class UrlFactory {
     public static String authentication = baseurl + "House/authentication";
     public static String business_content = baseurl + "Business/business_content";
     public static String share = baseurl + "Share/share";
-
+    public static String delHouse = baseurl + "House/delhouse";
+    public static String onShare = baseurl + "Share/onShare";
+    public static String subShare = baseurl + "Share/subshare";
 }

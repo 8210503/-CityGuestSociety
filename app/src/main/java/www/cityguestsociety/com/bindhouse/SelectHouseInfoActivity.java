@@ -70,6 +70,7 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
     private Ban.DataBean mBan;
     private Room.DataBean Room;
     private String mPhone;
+    public static boolean isCheckSuccess = false;
 
     @Override
     protected int getContentView() {
@@ -210,6 +211,7 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
                 break;
             case 1:
                 /**验证成功*/
+                isCheckSuccess = true;
                 jumpToActivity(CheckSuccessActivity.class, false);
                 break;
         }
@@ -220,6 +222,7 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
         super.getFailed(jsonObject, what);
         switch (what) {
             case 1:
+                isCheckSuccess = false;
                 jumpToActivity(CheckFailedActivity.class, false);
                 LogUtils.e("getFailed");
                 break;

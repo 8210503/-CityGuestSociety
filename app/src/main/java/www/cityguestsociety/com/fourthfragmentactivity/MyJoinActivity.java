@@ -36,6 +36,8 @@ public class MyJoinActivity extends BaseToolbarActivity {
     @BindView(R.id.empty_view)
     View View;
     private List<JoinActivities.DataBean> mList;
+    private List<JoinActivities.DataBean> mDataLists = new ArrayList<>();
+    public boolean isRefresh = false;
     private BaseRecyclerAdapter mAdapter;
     private LRecyclerViewAdapter mAdapter1;
 
@@ -48,6 +50,8 @@ public class MyJoinActivity extends BaseToolbarActivity {
      * 服务器端一共多少条数据
      */
     private static int TOTAL_COUNTER = 0;
+
+
 
     /**
      * 每一页展示多少条数据
@@ -81,10 +85,12 @@ public class MyJoinActivity extends BaseToolbarActivity {
         super.getSuccess(object, what);
         Gson gson = new Gson();
         mList.clear();
-
+        if (isRefresh) {
+            mDataLists.clear();
+        }
         JoinActivities joinActivities = gson.fromJson(object.toString(), JoinActivities.class);
         mList.addAll(joinActivities.getData());
-
+        mDataLists.addAll(mList);
         TOTAL_COUNTER = Integer.parseInt(joinActivities.getPagecount());
         mCurrentCounter++;
         mCurrentCounter += mList.size();
@@ -95,7 +101,7 @@ public class MyJoinActivity extends BaseToolbarActivity {
 
     private void setAdapter() {
 
-        mAdapter = new BaseRecyclerAdapter<JoinActivities.DataBean>(this, mList, R.layout.item_jfexchange) {
+        mAdapter = new BaseRecyclerAdapter<JoinActivities.DataBean>(this, mDataLists, R.layout.item_jfexchange) {
             @Override
             public void convert(BaseRecyclerHolder holder, JoinActivities.DataBean item, int position, boolean isScrolling) {
                 holder.setImageByUrl(R.id.projectShowImage, UrlFactory.imaPath + item.getImg());
@@ -139,8 +145,9 @@ public class MyJoinActivity extends BaseToolbarActivity {
                 bundle.putString(ActivityInfo.TITLE, "活动详情");
                 bundle.putInt(ActivityInfo.STATUE, 3);
                 bundle.putInt(ActivityInfo.CAN, 3);
-                bundle.putString(ActivityInfo.URL, UrlFactory.miactivity_cont + "/member_id/" + Constans.ID + "/id/" + mList.get(position).getId());
+                bundle.putString(ActivityInfo.URL, UrlFactory.miactivity_cont + "/member_id/" + Constans.ID + "/id/" + mDataLists.get(position).getId());
                 bundle.putBoolean(ActivityInfo.isShowing, true);
+                bundle.putBoolean(ActivityInfo.isCheck,true);
                 jumpToActivity(ActivityInfo.class, bundle, false);
             }
         });
@@ -150,6 +157,7 @@ public class MyJoinActivity extends BaseToolbarActivity {
             public void onRefresh() {
                 mCurrentCounter = 0;
                 mCurrentPage = 1;
+                isRefresh = true;
                 getData();
             }
         });
@@ -157,6 +165,7 @@ public class MyJoinActivity extends BaseToolbarActivity {
         mJoinedActivityListView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh = false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();
@@ -178,7 +187,7 @@ public class MyJoinActivity extends BaseToolbarActivity {
 
     @Override
     protected void initView() {
-        initToobar("参加的活动");
+        initToobar( "参加的活动");
         mJoinedActivityListView.setLayoutManager(new LinearLayoutManager(this));
         //设置底部加载颜色
         mJoinedActivityListView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
@@ -193,4 +202,8 @@ public class MyJoinActivity extends BaseToolbarActivity {
 
     }
 
+    @Override
+    public void RightOnClick() {
+
+    }
 }

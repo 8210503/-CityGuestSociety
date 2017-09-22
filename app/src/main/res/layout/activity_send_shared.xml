@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_gray"
+    tools:context="www.cityguestsociety.com.thirdfragemntActivity.SendSharedActivity">
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_below="@+id/headerview"
+        android:background="@color/black_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <RelativeLayout
+            android:paddingTop="@dimen/margin_10"
+            android:paddingRight="@dimen/margin_15"
+            android:paddingLeft="@dimen/margin_15"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:paddingTop="@dimen/margin_10"
+                android:hint="写出你想说的话吧~"
+                android:gravity="top"
+                android:id="@+id/sendContent"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"/>
+
+            <GridView
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_below="@+id/sendContent"
+                android:stretchMode="columnWidth"
+                android:scrollbars="none"
+                android:numColumns="4"
+                android:id="@+id/sendImages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ></GridView>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

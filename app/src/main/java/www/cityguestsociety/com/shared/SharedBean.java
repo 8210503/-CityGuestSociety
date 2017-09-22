@@ -73,6 +73,24 @@ public class SharedBean {
         private List<ImgBean> img;
         private List<GiveBean> give;
         private List<InformationBean> information;
+        private String release_time;
+        private int givemi;
+
+        public String getRelease_time() {
+            return release_time;
+        }
+
+        public void setRelease_time(String release_time) {
+            this.release_time = release_time;
+        }
+
+        public int getGivemi() {
+            return givemi;
+        }
+
+        public void setGivemi(int givemi) {
+            this.givemi = givemi;
+        }
 
         public String getId() {
             return id;
@@ -181,10 +199,18 @@ public class SharedBean {
         }
 
         public static class GiveBean {
+
+
+            public GiveBean(String reply_id, String nickname) {
+                this.reply_id = reply_id;
+                this.nickname = nickname;
+            }
+
             /**
              * reply_id : 26
              * nickname : i被拒绝
              */
+
 
             private String reply_id;
             private String nickname;
@@ -222,6 +248,15 @@ public class SharedBean {
             private String type;
             private String reply_name;
             private String cover_reply_name;
+
+            public InformationBean(String reply_id, String content, String cover_reply_id, String type, String reply_name, String cover_reply_name) {
+                this.reply_id = reply_id;
+                this.content = content;
+                this.cover_reply_id = cover_reply_id;
+                this.type = type;
+                this.reply_name = reply_name;
+                this.cover_reply_name = cover_reply_name;
+            }
 
             public String getReply_id() {
                 return reply_id;

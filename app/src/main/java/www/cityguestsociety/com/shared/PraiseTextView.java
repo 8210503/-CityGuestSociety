@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import www.cityguestsociety.com.R;
+
 /**
  * Created by LuoPan on 2017/5/29 20:45.
  */
@@ -149,9 +151,13 @@ public class PraiseTextView extends TextView {
                 }, mBuilder.length () - mPraiseInfos.get (mI).getNickname ().length () - mMiddleStr.length (), mBuilder.length () - mMiddleStr.length (), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
-        mBuilder = new SpannableStringBuilder (mBuilder, 0, mBuilder.length () - 1);
-        mBuilder.append (" ");
-        return mBuilder;
+        if(mPraiseInfos.size()==0){
+            return mBuilder;
+        }else {
+            mBuilder = new SpannableStringBuilder(mBuilder, 0, mBuilder.length() - 1);
+            mBuilder.append(" ");
+            return mBuilder;
+        }
     }
 
     public interface onPraiseClickListener {

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.apkfuns.logutils.LogUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
@@ -34,7 +36,7 @@ public abstract class NineGridLayout extends ViewGroup {
     private int mRows;
     private int mTotalWidth;
     private int mSingleWidth;
-    List<ImageView> mImageViewList=new ArrayList<>();
+    List<ImageView> mImageViewList = new ArrayList<>();
 
     private boolean mIsShowAll = false;
     private boolean mIsFirst = true;
@@ -122,6 +124,7 @@ public abstract class NineGridLayout extends ViewGroup {
         mImageViewList.clear();
         removeAllViews();
         int size = getListSize(mUrlList);
+        LogUtils.e(size);
         if (size > 0) {
             setVisibility(VISIBLE);
         } else {
@@ -129,6 +132,7 @@ public abstract class NineGridLayout extends ViewGroup {
         }
 
         if (size == 1) {
+
             String url = mUrlList.get(0);
             RatioImageView imageView = createImageView(0, url);
 
@@ -137,7 +141,7 @@ public abstract class NineGridLayout extends ViewGroup {
             params.height = mSingleWidth;
             setLayoutParams(params);
             imageView.layout(0, 0, mSingleWidth, mSingleWidth);
-
+            mImageViewList.add(imageView);
             boolean isShowDefualt = displayOneImage(imageView, url, mTotalWidth);
             if (isShowDefualt) {
                 layoutImageView(imageView, 0, url, false);
@@ -177,9 +181,11 @@ public abstract class NineGridLayout extends ViewGroup {
             }
         }
     }
-public  List<ImageView> getImageViewList(){
-    return mImageViewList;
-}
+
+    public List<ImageView> getImageViewList() {
+        return mImageViewList;
+    }
+
     private void layoutParams() {
         int singleHeight = mSingleWidth;
 
@@ -288,7 +294,7 @@ public  List<ImageView> getImageViewList(){
         imageView.layout(0, 0, width, height);
 
         LayoutParams params = getLayoutParams();
-//        params.width = width;
+        //        params.width = width;
         params.height = height;
         setLayoutParams(params);
     }

@@ -1,5 +1,8 @@
 package www.cityguestsociety.com;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +15,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.loopj.android.http.RequestParams;
+import com.netease.scan.IScanModuleCallBack;
+import com.netease.scan.QrScan;
+import com.netease.scan.ui.CaptureActivity;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -35,6 +41,7 @@ public class ActivityInfo extends BaseToolbarActivity {
     public static final String STATUE = "statue";
     public static final String isShowing = "isShow";
     public static final String CAN = "can";
+    public static final String isCheck = "isHaveCheck";
     @BindView(R.id.bt_statue)
     Button mBtStatue;
     @BindView(R.id.webView)
@@ -65,6 +72,8 @@ public class ActivityInfo extends BaseToolbarActivity {
     private int mStatue;
     private int can;
     private String mId;
+    private boolean isHaveCheck;
+    private CaptureActivity mCaptureContext;
 
 
     @Override
@@ -129,10 +138,16 @@ public class ActivityInfo extends BaseToolbarActivity {
         LogUtils.e(mStatue);
         isShow = intent.getBooleanExtra(isShowing, false);
         can = intent.getIntExtra(CAN, 3);
+        isHaveCheck = intent.getBooleanExtra(isCheck, false);
 
 
         mPath = intent.getStringExtra(URL);
-        initToobar(mTitle);
+        if (isHaveCheck) {
+            initToobar(R.mipmap.fanhui, mTitle, "签到");
+        } else {
+            initToobar(mTitle);
+
+        }
     }
 
     @Override
@@ -150,17 +165,23 @@ public class ActivityInfo extends BaseToolbarActivity {
             mBtStatue.setVisibility(View.VISIBLE);
         }
         if (mStatue == 0) {
+
             mBtStatue.setBackgroundColor(getResources().getColor(R.color.gray));
             mBtStatue.setText("已结束");
             mBtStatue.setEnabled(false);
+            initToobar(mTitle);
+
         } else if (mStatue == 1) {
-            mBtStatue.setBackgroundColor(getResources().getColor(R.color.orange));
+
+            initToobar(R.mipmap.fanhui, mTitle, "签到");
+
             if (can == 1) {
+
                 mBtStatue.setText("已参加");
                 mBtStatue.setBackgroundColor(getResources().getColor(R.color.orange));
                 mBtStatue.setEnabled(false);
             } else if (can == 0) {
-                mBtStatue.setText("我要报名");
+                mBtStatue.setText("活动进行中");
                 mBtStatue.setBackgroundColor(getResources().getColor(R.color.orange));
                 mBtStatue.setEnabled(true);
             }
@@ -168,6 +189,7 @@ public class ActivityInfo extends BaseToolbarActivity {
         } else if (mStatue == 2) {
             mBtStatue.setBackgroundColor(getResources().getColor(R.color.orange));
             mBtStatue.setText("未开始");
+            initToobar(mTitle);
             if (can == 1) {
                 mBtStatue.setText("已参加");
                 mBtStatue.setBackgroundColor(getResources().getColor(R.color.orange));
@@ -212,5 +234,33 @@ public class ActivityInfo extends BaseToolbarActivity {
 
     }
 
+    @Override
+    public void RightOnClick() {
+        QrScan.getInstance().launchScan(this, new IScanModuleCallBack() {
+            @Override
+            public void OnReceiveDecodeResult(final Context context, String result) {
+                mCaptureContext = (CaptureActivity) context;
 
+                AlertDialog dialog = new AlertDialog.Builder(mCaptureContext)
+                        .setMessage(result)
+                        .setCancelable(false)
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                QrScan.getInstance().restartScan(mCaptureContext);
+                            }
+                        })
+                        .setPositiveButton("关闭", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                QrScan.getInstance().finishScan(mCaptureContext);
+                            }
+                        })
+                        .create();
+                dialog.show();
+            }
+        });
+    }
 }

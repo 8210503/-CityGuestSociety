@@ -50,7 +50,8 @@ public class MyPostActivity extends BaseToolbarActivity {
     LRecyclerView mMyPostListView;
     @BindView(R.id.hasPostRelative)
     RelativeLayout mHasPostRelative;
-    private List<PostBean.DataBean> mLists;
+    private List<PostBean.DataBean> mLists = new ArrayList<>();
+    private List<PostBean.DataBean> mDataLists = new ArrayList<>();
     PopupWindow mPopWindow;
     private BaseRecyclerAdapter mAdapter;
 
@@ -75,6 +76,7 @@ public class MyPostActivity extends BaseToolbarActivity {
     private int mCurrentCounter = 0;
 
     private int mCurrentPage = 1;
+    public boolean isRefresh = false;
 
 
     @Override
@@ -84,7 +86,6 @@ public class MyPostActivity extends BaseToolbarActivity {
 
     @Override
     protected void initData() {
-        mLists = new ArrayList<>();
         setAdapter();
     }
 
@@ -104,19 +105,23 @@ public class MyPostActivity extends BaseToolbarActivity {
             case 0:
                 Gson gson = new Gson();
                 mLists.clear();
-
+                if (isRefresh) {
+                    mDataLists.clear();
+                }
                 PostBean joinActivities = gson.fromJson(object.toString(), PostBean.class);
-                mLists.addAll(joinActivities.getData());
+                mLists = joinActivities.getData();
+
+                mDataLists.addAll(mLists);
 
                 TOTAL_COUNTER = Integer.parseInt(joinActivities.getPagecount());
-                mCurrentCounter++;
+                mCurrentPage++;
                 mCurrentCounter += mLists.size();
                 mAdapter.notifyDataSetChanged();
                 mMyPostListView.refreshComplete(REQUEST_COUNT);
                 break;
 
             case 1:
-                mLists.remove(delPosition);
+                mDataLists.remove(delPosition);
                 mAdapter.notifyDataSetChanged();
                 mPopWindow.dismiss();
                 ShowToast(object.getString("info"));
@@ -148,7 +153,7 @@ public class MyPostActivity extends BaseToolbarActivity {
 
     private void setAdapter() {
 
-        mAdapter = new BaseRecyclerAdapter<PostBean.DataBean>(this, mLists, R.layout.item_mypost_listview) {
+        mAdapter = new BaseRecyclerAdapter<PostBean.DataBean>(this, mDataLists, R.layout.item_mypost_listview) {
             @Override
             public void convert(BaseRecyclerHolder holder, final PostBean.DataBean item, final int position, boolean isScrolling) {
 
@@ -263,6 +268,7 @@ public class MyPostActivity extends BaseToolbarActivity {
             public void onRefresh() {
                 mCurrentCounter = 0;
                 mCurrentPage = 1;
+                isRefresh = true;
                 getData();
             }
         });
@@ -270,6 +276,7 @@ public class MyPostActivity extends BaseToolbarActivity {
         mMyPostListView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh=false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();

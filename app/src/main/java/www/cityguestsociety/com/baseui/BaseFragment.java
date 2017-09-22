@@ -294,7 +294,7 @@ public abstract class BaseFragment extends Fragment {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 cancleLoadingDialog();
-                LogUtils.e(TAG, url);
+                LogUtils.e(url);
                 ShowToast("发生错误了 请稍候再试");
 
             }

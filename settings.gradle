@@ -1,3 +1,4 @@
-include ':app', ':GlideLoaderl', ':Transfereel'
+include ':app', ':GlideLoaderl', ':Transfereel', ':NOtifylibraryl'
 project(':GlideLoaderl').projectDir = new File('GlideLoader')
 project(':Transfereel').projectDir = new File('Transferee')
+project(':NOtifylibraryl').projectDir = new File('NOtifylibrary')

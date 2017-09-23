@@ -732,7 +732,6 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 cancleLoadingDialog();
                 ShowToast("出错了  请稍候再试");
-                LogUtils.e("onFailure", responseString.toString() + "onFailure");
 
             }
 

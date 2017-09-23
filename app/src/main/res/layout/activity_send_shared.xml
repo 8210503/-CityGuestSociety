@@ -9,7 +9,6 @@
 
     <RelativeLayout
         android:layout_marginTop="@dimen/margin_10"
-        android:layout_below="@+id/headerview"
         android:background="@color/black_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

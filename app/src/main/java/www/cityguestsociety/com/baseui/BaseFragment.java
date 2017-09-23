@@ -313,6 +313,7 @@ public abstract class BaseFragment extends Fragment {
                     getSuccess(object, what);
                 } else if (object.getInteger("code") == 2) {
                     NoData(object, what);
+                    cancleLoadingDialog();
                 } else {
                     ShowToast(object.getString("info"));
                     LogUtils.e(url, responseString);

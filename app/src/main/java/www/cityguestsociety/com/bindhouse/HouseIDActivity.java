@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.apkfuns.logutils.LogUtils;
 import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
 
@@ -27,10 +26,8 @@ import www.cityguestsociety.com.UrlFactory;
 import www.cityguestsociety.com.adapter.HouseMainAdapter;
 import www.cityguestsociety.com.adapter.HouseMoreAdapter;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
-import www.cityguestsociety.com.entity.Community;
 import www.cityguestsociety.com.entity.Room;
 import www.cityguestsociety.com.entity.Unite;
-import www.cityguestsociety.com.ui.SideLetterBar;
 import www.cityguestsociety.com.utils.PinyinUtils;
 
 public class HouseIDActivity extends BaseToolbarActivity {
@@ -100,7 +97,7 @@ public class HouseIDActivity extends BaseToolbarActivity {
     protected void noData(JSONObject jsonObject, int what) {
 
         roomLists.clear();
-        roomLists.add(new Room.DataBean("0","暂无相关数据"));
+        roomLists.add(new Room.DataBean("0", "暂无相关数据"));
         mMoreAdapter.notifyDataSetChanged();
         cancleLoadingDialog();
     }
@@ -187,7 +184,11 @@ public class HouseIDActivity extends BaseToolbarActivity {
             }
         }
         // 根据a-z进行排序
-        Collections.sort(MSortList, new RoomComparator());
+        try {
+            Collections.sort(MSortList, new RoomComparator());
+        } catch (Exception e) {
+
+        }
         mMoreAdapter.updateListView(MSortList);
     }
 
@@ -200,20 +201,29 @@ public class HouseIDActivity extends BaseToolbarActivity {
             Room.DataBean sortModel = new Room.DataBean();
             sortModel.setId(allCity.get(i).getId());
             sortModel.setRoom(allCity.get(i).getRoom());
-            String pinyin = PinyinUtils.getPingYin(allCity.get(i).getRoom());
-            String sortString = pinyin.substring(0, 1).toUpperCase();
-            if (sortString.matches("[A-Z]")) {
-                sortModel.setSortLetters(sortString.toUpperCase());
-                if (!indexString.contains(sortString)) {
-                    indexString.add(sortString);
+            if (!allCity.get(i).getRoom().isEmpty()) {
+
+                String pinyin = PinyinUtils.getPingYin(allCity.get(i).getRoom());
+                String sortString = pinyin.substring(0, 1).toUpperCase();
+                if (sortString.matches("[A-Z]")) {
+                    sortModel.setSortLetters(sortString.toUpperCase());
+                    if (!indexString.contains(sortString)) {
+                        indexString.add(sortString);
+                    }
                 }
+                mSortList.add(sortModel);
             }
-            mSortList.add(sortModel);
         }
+
         Collections.sort(indexString);
-        Collections.sort(mSortList, new RoomComparator());
+        try {
+            Collections.sort(mSortList, new RoomComparator());
+        } catch (Exception e) {
+
+        }
         return mSortList;
     }
+
     @Override
     protected void initBase() {
         isShowBackImage = true;

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="www.cityguestsociety.com.bindhouse.ScheduleConstractionActivity">
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/recylerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_40"
+                android:paddingLeft="@dimen/margin_15"
+                android:paddingTop="@dimen/margin_15"
+                android:text="房屋信息"/>
+
+            <LinearLayout
+                android:id="@+id/contactLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_50">
+
+                    <ImageView
+                        android:id="@+id/imageview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_15"
+                        android:src="@mipmap/icon_linkman"/>
+
+                    <TextView
+                        android:id="@+id/textviewContact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_top_5"
+                        android:layout_toRightOf="@+id/imageview"
+                        android:text="联系人:"
+                        android:textColor="@color/balck"/>
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_toRightOf="@+id/textviewContact"
+                        android:text="央金"
+                        android:textColor="@color/balck"/>
+
+                    <TextView
+                        android:id="@+id/contactsNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/margin_15"
+                        android:text="182****5596"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black_gray"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_50">
+
+                    <ImageView
+
+                        android:id="@+id/imageview2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_15"
+                        android:src="@mipmap/icon_adress"/>
+
+                    <TextView
+                        android:id="@+id/textviewContact2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_top_5"
+                        android:layout_toRightOf="@+id/imageview2"
+                        android:text="地址:"
+                        android:textColor="@color/balck"/>
+
+                    <TextView
+                        android:id="@+id/houseAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_toRightOf="@+id/textviewContact2"
+                        android:text="四川成都市双流区龙樾湾2-2208"
+                        android:textColor="@color/balck"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/textview5"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/margin_15"
+                android:text="进度详情"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_below="@+id/textview5"
+            android:background="@color/white">
+
+            <ProgressBar
+                android:id="@+id/ScheduleProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_20"
+                android:progress="60"
+                android:progressDrawable="@drawable/hoorinznalprogressbar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ScheduleProgressBar"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_20"
+                android:text="完成进度"
+                android:textColor="@color/balck"/>
+
+            <TextView
+                android:id="@+id/completInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/ScheduleProgressBar"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_20"
+                android:text="已经完成60%"
+                android:textColor="@color/balck"/>
+        </RelativeLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+</android.support.design.widget.CoordinatorLayout>

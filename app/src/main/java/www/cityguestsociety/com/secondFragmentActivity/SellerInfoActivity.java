@@ -6,6 +6,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +30,12 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
+import www.cityguestsociety.com.adapter.BaseRecyclerAdapter;
+import www.cityguestsociety.com.adapter.BaseRecyclerHolder;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 import www.cityguestsociety.com.baseui.ProgressWebview;
+import www.cityguestsociety.com.entity.Bean;
+import www.cityguestsociety.com.utils.Constans;
 
 public class SellerInfoActivity extends BaseToolbarActivity {
 
@@ -58,6 +64,10 @@ public class SellerInfoActivity extends BaseToolbarActivity {
     ProgressWebview mWebView;
     private String mId;
     PopupWindow mPopWindow;
+    public String countdes;
+    String descriptation;
+
+    public boolean isHavaYHJ = false;
 
     @Override
     protected int getContentView() {
@@ -74,12 +84,31 @@ public class SellerInfoActivity extends BaseToolbarActivity {
 
     @Override
     public void getSuccess(JSONObject object, int what) {
+
         super.getSuccess(object, what);
-        Glide.with(this).load(UrlFactory.imaPath + object.getJSONArray("data").getJSONObject(0).getString("img")).into(mSellerPhoto);
-        mSellerNumber.setText(object.getJSONArray("data").getJSONObject(0).getString("telephone"));
-        mSellerName.setText(object.getJSONArray("data").getJSONObject(0).getString("title"));
-        mSellerAddress.setText(object.getJSONArray("data").getJSONObject(0).getString("address"));
-        mWebView.loadUrl(object.getJSONArray("data").getJSONObject(0).getString("content"));
+        switch (what) {
+            case 0:
+                Glide.with(this).load(UrlFactory.imaPath + object.getJSONArray("data").getJSONObject(0).getString("img")).into(mSellerPhoto);
+                mSellerNumber.setText(object.getJSONArray("data").getJSONObject(0).getString("telephone"));
+                mSellerName.setText(object.getJSONArray("data").getJSONObject(0).getString("title"));
+                mSellerAddress.setText(object.getJSONArray("data").getJSONObject(0).getString("address"));
+                if (!object.getJSONArray("data").getJSONObject(0).getString("coupon").isEmpty() && (Double.parseDouble(object.getJSONArray("data").getJSONObject(0).getString("coupon")) != 0)) {
+                    isHavaYHJ = true;
+                } else {
+                    isHavaYHJ = false;
+                }
+                countdes = object.getJSONArray("data").getJSONObject(0).getString("coupon");
+                descriptation = object.getJSONArray("data").getJSONObject(0).getString("coupontitle");
+
+                mWebView.loadUrl(object.getJSONArray("data").getJSONObject(0).getString("content"));
+                break;
+            case 1:
+                ShowToast("已经领取了" + countdes + "的优惠卷");
+                mPopWindow.dismiss();
+                break;
+        }
+
+
     }
 
     @Override
@@ -100,14 +129,75 @@ public class SellerInfoActivity extends BaseToolbarActivity {
         mId = intent.getStringExtra("id");
     }
 
-    @OnClick({R.id.selleAddressRelative})
+    @OnClick({R.id.selleAddressRelative, R.id.sellerYHJRelative})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.selleAddressRelative:
                 showMapPopWindow();
 
                 break;
+            case R.id.sellerYHJRelative:
+                if (isHavaYHJ) {
+                    showPopWindows();
+
+                } else {
+                    ShowToast("本店现在没有优惠卷");
+                }
+                break;
         }
+    }
+
+
+    private void showPopWindows() {
+
+        View parent = ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+        View popView = null;
+        popView = View.inflate(this, R.layout.item_youhuijuan_pop, null);
+        RecyclerView listView = (RecyclerView) popView.findViewById(R.id.YHJlistView);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        listView.setLayoutManager(manager);
+        TextView tv_confirm = (TextView) popView.findViewById(R.id.tv_confirm);
+        tv_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopWindow.dismiss();
+            }
+        });
+        List<Bean> YHJlists = new ArrayList<>();
+        YHJlists.add(new Bean(countdes + "折", descriptation, ""));
+
+        listView.setAdapter(new BaseRecyclerAdapter<Bean>(this, YHJlists, R.layout.item_yhj_listview) {
+            private RelativeLayout mTv_receive;
+
+            @Override
+            public void convert(BaseRecyclerHolder holder, final Bean item, int position, boolean isScrolling) {
+                holder.setText(R.id.Count, item.getText());
+                holder.setText(R.id.useKind, item.getTextInfo());
+                mTv_receive = holder.getView(R.id.reciveRelative);
+                mTv_receive.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RequestParams params = new RequestParams();
+                        params.put("member_id", Constans.ID);
+                        params.put("id", mId);
+                        getDataFromInternet(UrlFactory.addCoupon, params, 1);
+                        showLoadingDialog();
+
+                    }
+                });
+            }
+        });
+
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        mPopWindow = new PopupWindow(popView, width, height);
+        mPopWindow.setAnimationStyle(R.style.AnimBottom);
+        mPopWindow.setFocusable(true);
+        mPopWindow.update();
+        mPopWindow.setOutsideTouchable(true);// 设置允许在外点击消失
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        mPopWindow.setBackgroundDrawable(dw);
+        mPopWindow.showAtLocation(parent, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
 

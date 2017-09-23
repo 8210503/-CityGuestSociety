@@ -1,8 +1,8 @@
 package www.cityguestsociety.com.firstfragmentactivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -60,11 +60,12 @@ public class NewsFragment extends BaseFragment implements LazyFragmentPagerAdapt
     private View mEmptyView;
     private LRecyclerViewAdapter mRecyclerViewAdapter;
 
+    @SuppressLint({"NewApi", "ValidFragment"})
     public NewsFragment() {
 
-        super();
     }
 
+    @SuppressLint({"NewApi", "ValidFragment"})
     public NewsFragment(String i) {
         lists = new ArrayList<>();
         mDataList = new ArrayList<>();

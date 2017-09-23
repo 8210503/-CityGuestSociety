@@ -1,10 +1,11 @@
 package www.cityguestsociety.com.bindhouse;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class HouseManagerActivity extends BaseToolbarActivity {
     RelativeLayout noHouseRelative;
     @BindView(R.id.title)
     TextView title;
+    public int pos;
 
     @Override
     protected int getContentView() {
@@ -89,6 +91,10 @@ public class HouseManagerActivity extends BaseToolbarActivity {
                 mAdapter.notifyDataSetChanged();
                 break;
             case 1:
+                mLists.remove(pos);
+                if (mLists.size() == 0) {
+                    Constans.isBindHouse = false;
+                }
                 ShowToast(object.getString("info"));
                 mPresentHouseListView.refresh();
                 break;
@@ -123,23 +129,36 @@ public class HouseManagerActivity extends BaseToolbarActivity {
             public void convert(BaseRecyclerHolder holder, House.DataBean item, final int position, boolean isScrolling) {
                 holder.setText(R.id.houseAddress, item.getCity() + item.getCommunity() + item.getBan() + item.getRoom());
                 holder.setText(R.id.houseID, item.getBan() + item.getRoom());
-                      /* if (item.getTextInfo().equals("100")) {
-                            holder.getView(R.id.completInfo).setVisibility(View.GONE);
-                            holder.getView(R.id.areadyCompleteInfo).setVisibility(View.GONE);
-                            holder.getView(R.id.progressBar).setVisibility(View.GONE);
-                        } else {
-                            ProgressBar progressBar = holder.getView(R.id.progressBar);
-                            progressBar.setMax(100);
-                            progressBar.setProgress(Integer.valueOf(item.getTextInfo()));
-                        }*/
+                if (item.getSpeed() == 100) {
+                    holder.getView(R.id.completInfo).setVisibility(View.GONE);
+                    holder.getView(R.id.areadyCompleteInfo).setVisibility(View.GONE);
+                    holder.getView(R.id.progressBar).setVisibility(View.GONE);
+                } else {
+                    ProgressBar progressBar = holder.getView(R.id.progressBar);
+                    progressBar.setMax(100);
+                    progressBar.setProgress(Integer.valueOf(item.getSpeed()));
+                    holder.setText(R.id.areadyCompleteInfo, "已完成" + item.getSpeed() + "%");
+
+                }
                 holder.getView(R.id.rightImageView).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        pos = position;
                         RequestParams params = new RequestParams();
                         params.put("member_id", Constans.ID);
                         params.put("id", mLists.get(position).getId());
                         getDataFromInternet(UrlFactory.delHouse, params, 1);
                         showLoadingDialog();
+                    }
+                });
+
+                holder.getView(R.id.relative).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("id", mLists.get(position).getId());
+                        bundle.putInt("progress", mLists.get(position).getSpeed());
+                        jumpToActivity(ScheduleConstractionActivity.class, bundle, false);
                     }
                 });
 
@@ -164,6 +183,10 @@ public class HouseManagerActivity extends BaseToolbarActivity {
         });
         mPresentHouseListView.refresh();
         mPresentHouseListView.setLoadMoreEnabled(false);
+
+
+
+
     }
 
     @Override

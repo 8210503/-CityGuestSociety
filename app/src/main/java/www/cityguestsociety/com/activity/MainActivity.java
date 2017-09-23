@@ -42,7 +42,6 @@ public class MainActivity extends BaseToolbarActivity {
     private Fragment mFragment;
     private FragmentManager mMamager;
     private List<Fragment> mFragments;
-    public static boolean isLogined = false;
 
 
     @Override
@@ -141,12 +140,15 @@ public class MainActivity extends BaseToolbarActivity {
                 fragment.refresh();
                 break;
             case R.id.R1:
+                if(isLogined())
                 switchContent(mFragment, mFragments.get(1));
                 break;
             case R.id.R2:
+                if(isLogined()&&isBindHouse())
                 switchContent(mFragment, mFragments.get(2));
                 break;
             case R.id.R3:
+                if(isLogined()&&isBindHouse())
                 switchContent(mFragment, mFragments.get(3));
                 break;
         }

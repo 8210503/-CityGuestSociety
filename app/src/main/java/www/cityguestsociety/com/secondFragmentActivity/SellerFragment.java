@@ -68,6 +68,8 @@ public class SellerFragment extends BaseFragment {
     private LRecyclerViewAdapter mRecyclerViewAdapter;
     RequestParams params = new RequestParams();
     public boolean isRefresh = false;
+    private String mLabel = "0";
+    public boolean  isClick=false;
 
     @Override
     protected void initView() {
@@ -136,7 +138,6 @@ public class SellerFragment extends BaseFragment {
         mLocationClient.start();
         RequestParams params = new RequestParams();
         getDataFromInternet(UrlFactory.merchant_label, params, 0);
-
         getData();
     }
 
@@ -156,6 +157,10 @@ public class SellerFragment extends BaseFragment {
                 dataInfo.clear();
                 if (isRefresh) {
                     dataInfolists.clear();
+                }
+                if (isClick){
+                    dataInfolists.clear();
+
                 }
 
                 SellerInfo info = gson.fromJson(object.toString(), SellerInfo.class);
@@ -177,6 +182,7 @@ public class SellerFragment extends BaseFragment {
         params.put("point_lat", "");
         params.put("point_lng", "");
         params.put("next", mCurrentPage);
+        params.put("label", mLabel);
         getDataFromInternet(UrlFactory.business, params, 1);
     }
 
@@ -210,9 +216,19 @@ public class SellerFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mMainAdapter.setSelectItem(position);
                 mMainAdapter.notifyDataSetChanged();
+                isClick=true;
+                mLabel = mSellseLists.get(position).getId();
+
                 mCurrentPage = 1;
-                params.put("label", mSellseLists.get(position).getId());
-                getData();
+                RequestParams params = new RequestParams();
+                params.put("point_lat", "");
+                params.put("point_lng", "");
+                params.put("next", mCurrentPage);
+                params.put("label", mLabel);
+                getDataFromInternet(UrlFactory.business, params, 1);
+                showLoadingDialog("");
+
+
             }
         });
         mClassifyMainlist.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -222,7 +238,7 @@ public class SellerFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 mCurrentCounter = 0;
-                isRefresh=true;
+                isRefresh = true;
                 mCurrentPage = 1;
                 getData();
             }
@@ -231,7 +247,7 @@ public class SellerFragment extends BaseFragment {
         mClassifyMorelist.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                isRefresh=false;
+                isRefresh = false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();

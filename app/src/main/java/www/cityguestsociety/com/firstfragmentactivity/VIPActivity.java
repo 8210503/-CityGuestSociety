@@ -44,7 +44,7 @@ public class VIPActivity extends BaseToolbarActivity {
 
     @Override
     protected void initView() {
-        initToobar(R.mipmap.fanhui, "会员积分", "兑换活动");
+        initToobar( "会员积分");
 
         {
             mManager = getSupportFragmentManager();

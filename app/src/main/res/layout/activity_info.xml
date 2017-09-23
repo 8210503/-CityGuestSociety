@@ -79,7 +79,7 @@
                             android:layout_below="@+id/timeImage"
                             android:layout_marginLeft="@dimen/margin_10"
                             android:layout_marginTop="10dp"
-                            android:text="结束时间:"
+                            android:text="截止时间:"
                             android:textColor="@color/balck"/>
 
                         <TextView

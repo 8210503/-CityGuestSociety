@@ -57,14 +57,6 @@ public class SelectContryActivity extends BaseToolbarActivity {
     @Override
     protected void initData() {
 
-
-       /* networkHotCityBeen.add(new NetworkCityBean("成都", "1", "2"));
-        networkHotCityBeen.add(new NetworkCityBean("上海", "1", "2"));
-        networkHotCityBeen.add(new NetworkCityBean("北京", "1", "2"));
-        networkHotCityBeen.add(new NetworkCityBean("武汉", "1", "2"));
-        networkHotCityBeen.add(new NetworkCityBean("重庆", "1", "2"));*/
-
-
         RequestParams params = new RequestParams();
         getDataFromInternet(UrlFactory.city, params, 0);
 
@@ -131,15 +123,17 @@ public class SelectContryActivity extends BaseToolbarActivity {
             City sortModel = new City();
             sortModel.setId(allCity.get(i).getId());
             sortModel.setCity(allCity.get(i).getCity());
-            String pinyin = PinyinUtils.getPingYin(allCity.get(i).getCity());
-            String sortString = pinyin.substring(0, 1).toUpperCase();
-            if (sortString.matches("[A-Z]")) {
-                sortModel.setSortLetters(sortString.toUpperCase());
-                if (!indexString.contains(sortString)) {
-                    indexString.add(sortString);
+            if (!allCity.get(i).getCity().equals("")) {
+                String pinyin = PinyinUtils.getPingYin(allCity.get(i).getCity());
+                String sortString = pinyin.substring(0, 1).toUpperCase();
+                if (sortString.matches("[A-Z]")) {
+                    sortModel.setSortLetters(sortString.toUpperCase());
+                    if (!indexString.contains(sortString)) {
+                        indexString.add(sortString);
+                    }
                 }
+                mSortList.add(sortModel);
             }
-            mSortList.add(sortModel);
         }
         Collections.sort(indexString);
         mSideLetterBar.setOnLetterChangedListener(new SideLetterBar.OnLetterChangedListener() {

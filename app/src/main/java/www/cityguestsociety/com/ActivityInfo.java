@@ -142,12 +142,9 @@ public class ActivityInfo extends BaseToolbarActivity {
 
 
         mPath = intent.getStringExtra(URL);
-        if (isHaveCheck) {
-            initToobar(R.mipmap.fanhui, mTitle, "签到");
-        } else {
-            initToobar(mTitle);
 
-        }
+
+
     }
 
     @Override
@@ -172,8 +169,10 @@ public class ActivityInfo extends BaseToolbarActivity {
             initToobar(mTitle);
 
         } else if (mStatue == 1) {
-
-            initToobar(R.mipmap.fanhui, mTitle, "签到");
+            if (isHaveCheck)
+                initToobar(R.mipmap.fanhui, mTitle, "签到");
+            else
+                initToobar(mTitle);
 
             if (can == 1) {
 

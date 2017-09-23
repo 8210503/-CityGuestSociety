@@ -212,6 +212,7 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
             case 1:
                 /**验证成功*/
                 isCheckSuccess = true;
+                Constans.isBindHouse=true;
                 jumpToActivity(CheckSuccessActivity.class, false);
                 break;
         }

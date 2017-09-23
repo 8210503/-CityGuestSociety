@@ -144,10 +144,6 @@ public class MyPostActivity extends BaseToolbarActivity {
     protected List<ImageView> wrapOriginImageViewList(NineGridTestLayout nineGridTestLayout) {
         List<ImageView> originImgList = new ArrayList<>();
         originImgList = nineGridTestLayout.getImageViewList();
-       /* for (int i = 0; i < size; i++) {
-            ImageView thumImg = (ImageView) ((LinearLayout) gvImages.getChildAt(i)).getChildAt(0);
-            originImgList.add(thumImg);
-        }*/
         return originImgList;
     }
 
@@ -156,7 +152,13 @@ public class MyPostActivity extends BaseToolbarActivity {
         mAdapter = new BaseRecyclerAdapter<PostBean.DataBean>(this, mDataLists, R.layout.item_mypost_listview) {
             @Override
             public void convert(BaseRecyclerHolder holder, final PostBean.DataBean item, final int position, boolean isScrolling) {
+                ImageView love_image=holder.getView(R.id.imageview);
+                    if(Integer.parseInt(item.getCollection_num())>0){
+                      Glide.with(getApplicationContext()).load(R.mipmap.btn_compassion_pre).asBitmap().into(love_image) ;
+                    }else {
+                        Glide.with(getApplicationContext()).load(R.mipmap.btn_compassion_bule).asBitmap().into(love_image) ;
 
+                    }
 
                 holder.setText(R.id.userNickName, item.getMember().getNickname());
                 holder.setText(R.id.content, item.getTitle());

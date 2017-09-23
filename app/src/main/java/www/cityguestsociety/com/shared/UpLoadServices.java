@@ -76,8 +76,14 @@ public class UpLoadServices extends IntentService {
                             Toast.makeText(getApplicationContext(), "上传成功", Toast.LENGTH_SHORT).show();
                             sendNotification("发送成功", "", false);
 
-                            Intent intent = new Intent(ThridFragment.mAction);
+                            Intent intent = new Intent();
+                            intent.setAction(ThridFragment.mAction);
                             LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+
+                            intent = new Intent();
+                            intent.setAction(SendSharedActivity.mAction);
+                            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+
                         }
 
                         @Override
@@ -89,6 +95,7 @@ public class UpLoadServices extends IntentService {
                         @Override
                         public void onStart(Request<String, ? extends Request> request) {
                             super.onStart(request);
+                            Toast.makeText(getApplicationContext(), "上传中", Toast.LENGTH_SHORT).show();
                             LogUtils.e(request.getParams().toString());
                         }
 

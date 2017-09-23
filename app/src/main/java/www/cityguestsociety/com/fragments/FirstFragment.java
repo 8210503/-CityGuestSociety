@@ -320,13 +320,16 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.openDoor:
-                jumpToActivity(OpenDoorActivity.class, false);
+                if (isLogined() && isBindHouse())
+                    jumpToActivity(OpenDoorActivity.class, false);
                 break;
             case R.id.services:
-                jumpToActivity(PropertyServicesActivity.class, false);
+                if (isLogined() && isBindHouse())
+                    jumpToActivity(PropertyServicesActivity.class, false);
                 break;
             case R.id.VIP:
-                jumpToActivity(VIPActivity.class, false);
+                if (isLogined() && isBindHouse())
+                    jumpToActivity(VIPActivity.class, false);
                 break;
             case R.id.guojiangfengcai:
                 jumpToActivity(GuoJiangActivity.class, false);

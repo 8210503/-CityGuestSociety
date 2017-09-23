@@ -1,12 +1,16 @@
 package www.cityguestsociety.com.thirdfragemntActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 
-import com.alibaba.fastjson.JSONObject;
+import com.apkfuns.logutils.LogUtils;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
@@ -35,6 +39,8 @@ public class SendSharedActivity extends BaseToolbarActivity {
     public static String IMAGELISTS = "imageLists";
     public static String CONTENT = "content";
     public String message;
+    public static final String mAction = "com.cityGuestsociety.com.sendSuccess";
+
 
     @Override
     protected int getContentView() {
@@ -57,16 +63,11 @@ public class SendSharedActivity extends BaseToolbarActivity {
             intent.putExtra(IMAGELISTS, imageList);
             intent.putExtra(CONTENT, mSendContent.getText().toString());
             startService(intent);
-            finish();
+            showLoadingDialog();
         }
+
     }
 
-
-    @Override
-    public void getSuccess(JSONObject object, int what) {
-        super.getSuccess(object, what);
-        ShowToast(object.getString("info"));
-    }
 
     @Override
     protected void setListener() {
@@ -76,6 +77,7 @@ public class SendSharedActivity extends BaseToolbarActivity {
 
                 if (position == imageList.size()) {
                     Intent intent = new Intent(SendSharedActivity.this, ImageGridActivity.class);
+                    intent.putExtra(ImageGridActivity.EXTRAS_IMAGES, imageList);
                     startActivityForResult(intent, IMAGE_PICKER);
                 }
             }
@@ -102,14 +104,31 @@ public class SendSharedActivity extends BaseToolbarActivity {
             mSendContent.setText(message);
         }
 
-        if(imageList==null){
-            imageList=new ArrayList<>();
+        if (imageList == null) {
+            imageList = new ArrayList<>();
         }
-
 
 
         initToobar(R.mipmap.fanhui, "发动态", "发送");
         initImagePicker();
+
+
+        LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(mAction);
+        BroadcastReceiver br = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                LogUtils.e("onReceive");
+                cancleLoadingDialog();
+                finish();
+
+            }
+
+        };
+        localBroadcastManager.registerReceiver(br, intentFilter);
+
     }
 
     public void onClick(View v) {
@@ -121,6 +140,7 @@ public class SendSharedActivity extends BaseToolbarActivity {
      */
     private void initImagePicker() {
         ImagePicker imagePicker = ImagePicker.getInstance();
+
         imagePicker.setImageLoader(new GlideLoader());   //设置图片加载器
         imagePicker.setShowCamera(true);  //显示拍照按钮
         imagePicker.setCrop(true);        //允许裁剪（单选才有效）
@@ -131,6 +151,7 @@ public class SendSharedActivity extends BaseToolbarActivity {
         imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
         imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
         imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
+
     }
 
     /*
@@ -140,13 +161,13 @@ public class SendSharedActivity extends BaseToolbarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+
             if (data != null && requestCode == IMAGE_PICKER) {
-                if (imageList == null) {
-                    imageList = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                } else {
-                    imageList.addAll((ArrayList<ImageItem>) data.getSerializableExtra(imagePicker.EXTRA_RESULT_ITEMS));
-                    mAdapter.notifyDataSetChanged();
-                }
+
+                imageList = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+
+                mAdapter.notifyDataChanged(imageList);
+
 
             } else {
                 //                Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();

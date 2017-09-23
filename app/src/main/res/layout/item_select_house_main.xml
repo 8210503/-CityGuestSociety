@@ -5,10 +5,12 @@
               android:layout_height="match_parent">
    <RelativeLayout
        android:id="@+id/relative"
-       android:gravity="center"
+       android:gravity="center_horizontal"
        android:background="@color/white"
        android:layout_width="match_parent"
-       android:layout_height="45dp">
+       android:layout_height="wrap_content"
+       android:minHeight="@dimen/margin_45"
+       >
        <TextView
            android:textSize="17sp"
            android:textColor="@drawable/selector_listview_oringe"

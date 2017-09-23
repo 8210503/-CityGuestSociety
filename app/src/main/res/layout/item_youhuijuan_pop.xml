@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_20">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <TextView
+
+                android:id="@+id/textviewYHJ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="本店优惠卷"
+                android:layout_gravity="center_horizontal"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/YHJlistView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/tv_confirm"
+                android:layout_below="@+id/textviewYHJ"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_20"
+                android:scrollbars="none"/>
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/margin_25"
+                android:background="@color/orange"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

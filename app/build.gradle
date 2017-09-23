@@ -45,6 +45,10 @@ dependencies {
     compile files('libs/universal-image-loader-1.9.4-with-sources.jar')
     compile files('libs/pinyin4j-2.5.0.jar')
     compile files('libs/BaiduLBS_Android.jar')
+    compile project(':NOtifylibraryl')
+    //版本号使用 + 可以自动引用最新版
+    //版本号使用 + 可以自动引用最新版
+    //版本号使用 + 可以自动引用最新版
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton:butterknife:8.4.0'
@@ -61,15 +65,11 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
     compile 'com.github.jdsjlzx:LRecyclerView:1.4.3'
     compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    compile 'com.lzy.widget:imagepicker:0.5.5'
+    compile 'com.lzy.net:okgo:3.0.2'
+    compile 'com.lzy.net:okrx:+'
+    compile 'com.lzy.net:okserver:+'
+    compile 'com.netease.scan:lib-qr-scan:1.0.0'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'com.lzy.widget:imagepicker:0.5.5'
-    compile project(':NOtifylibraryl')
-    compile 'com.lzy.net:okgo:3.0.2'
-    //版本号使用 + 可以自动引用最新版
-    compile 'com.lzy.net:okrx:+'
-    //版本号使用 + 可以自动引用最新版
-    compile 'com.lzy.net:okserver:+'
-    //版本号使用 + 可以自动引用最新版
-    compile 'com.netease.scan:lib-qr-scan:1.0.0'
 }

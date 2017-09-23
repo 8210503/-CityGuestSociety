@@ -42,6 +42,7 @@ public class FourthFragemnt extends BaseFragment implements View.OnClickListener
     private TextView mUserStatue;
     private TextView mUserAddress;
     private ImageView setting;
+    private TextView textView7;
 
 
     public FourthFragemnt() {
@@ -71,6 +72,8 @@ public class FourthFragemnt extends BaseFragment implements View.OnClickListener
         mMyHouseManager = getView(R.id.myHouse);
         mMyAdvices = getView(R.id.MyAddress);
         mAboutApp = getView(R.id.aboutApp);
+
+        textView7 = getView(R.id.textView7);
     }
 
     @Override
@@ -139,6 +142,10 @@ public class FourthFragemnt extends BaseFragment implements View.OnClickListener
             mUserAddress.setText("请绑定房屋");
         } else {
             mUserAddress.setText(Constans.city + Constans.community + Constans.ban);
+        }
+
+        if (Constans.isBindHouse) {
+            textView7.setText("已认证");
         }
 
     }

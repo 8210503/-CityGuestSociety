@@ -28,10 +28,15 @@ public class SendSharedGirdAdapter extends BaseAdapter {
 
     }
 
+    public void notifyDataChanged(List<ImageItem> bankInfoList) {
+        this.mLists = bankInfoList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         //这里判断数据如果有9张就size等于9,否则就+1，+1是为按钮留的位置
-            return mLists.size() < 9 ? mLists.size() + 1 : 9;
+        return mLists.size() < 9 ? mLists.size() + 1 : 9;
 
     }
 

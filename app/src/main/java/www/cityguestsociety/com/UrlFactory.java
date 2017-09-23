@@ -56,4 +56,7 @@ public class UrlFactory {
     public static String delHouse = baseurl + "House/delhouse";
     public static String onShare = baseurl + "Share/onShare";
     public static String subShare = baseurl + "Share/subshare";
+    public static String houseinfo = baseurl + "house/speed";
+    public static String addCoupon = baseurl + "business/addcoupon";
+    public static String coupon = baseurl + "business/coupon";
 }

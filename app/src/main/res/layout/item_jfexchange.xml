@@ -67,7 +67,7 @@
                     android:layout_below="@+id/timeImage"
                     android:layout_marginLeft="@dimen/margin_10"
                     android:layout_marginTop="10dp"
-                    android:text="结束时间："/>
+                    android:text="截止时间："/>
 
                 <TextView
                     android:id="@+id/baomingrenshuTextview"
@@ -95,13 +95,13 @@
                 android:layout_gravity="bottom|right|">
 
                 <TextView
-                    android:layout_marginRight="@dimen/margin_10"
-                    android:layout_alignParentRight="true"
                     android:id="@+id/CheckStatue"
                     android:layout_width="95dp"
                     android:layout_height="30dp"
-                    android:gravity="center"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/margin_10"
                     android:background="@drawable/all_corners_orange"
+                    android:gravity="center"
                     android:text="我要报名"
                     android:textColor="@color/white"
                     />

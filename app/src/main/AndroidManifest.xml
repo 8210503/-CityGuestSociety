@@ -113,9 +113,13 @@
         </activity>
         <activity android:name=".fourthfragmentactivity.AdvicesFeedBackActivity">
         </activity>
-        <activity android:name=".login.LoginActivity">
+        <activity
+            android:name=".login.LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan">
         </activity>
-        <activity android:name=".login.RegiestActivity">
+        <activity
+            android:name=".login.RegiestActivity"
+            android:windowSoftInputMode="stateVisible|adjustPan">
         </activity>
         <activity android:name=".bindhouse.HouseManagerActivity">
         </activity>
@@ -166,6 +170,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".bindhouse.ScheduleConstractionActivity">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.newsfragments.SystemAnnuncationWebView">
+        </activity>
+        <activity android:name=".fourthfragmentactivity.BlackListsActivity">
         </activity>
     </application>
 

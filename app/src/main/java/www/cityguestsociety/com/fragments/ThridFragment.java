@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -109,6 +111,8 @@ public class ThridFragment extends BaseFragment {
     private String mReplayName;
     public final String DELETE = "delete";
     public static boolean isShouldRefresh = false;
+    private ImageView mColocation;
+    private RelativeLayout mColocationRelative;
 
 
     public ThridFragment() {
@@ -162,6 +166,65 @@ public class ThridFragment extends BaseFragment {
                 holder.setText(R.id.sharedTime, item.getRelease_time());
                 //                holder.setText(R.id.sharedTime, item.getTime());
 
+                mColocationRelative = holder.getView(R.id.colocationRelative);
+                mColocation = holder.getView(R.id.colocation);
+
+                ImageView imageView = holder.getView(R.id.userImage);
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (item.getWo() == 1) {
+                            return;
+                        } else {
+
+                            // TODO: 2017/9/23  弹出对话框
+                            new AlertDialog.Builder(getActivity()).setTitle("提示")//设置对话框标题
+                                    .setMessage("是否不看此人动态")//设置显示的内容
+                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
+                                            dialog.dismiss();
+                                            pos = position;
+                                            RequestParams params = new RequestParams();
+                                            params.put("member_id", Constans.ID);
+                                            params.put("black_member_id", item.getMember_id());
+                                            getDataFromInternet(UrlFactory.addblacklist, params, 6);
+
+                                        }
+
+                                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).show();//在按键响应事件中显示此对话框、
+
+                        }
+                    }
+                });
+
+
+                if (item.getCollection() == 0) {
+                    Glide.with(getActivity()).load(R.mipmap.btn_compassion_bule).into(mColocation);
+                    mColocationRelative.setEnabled(true);
+                } else if (item.getCollection() == 1) {
+                    Glide.with(getActivity()).load(R.mipmap.btn_compassion_pre).into(mColocation);
+                    mColocationRelative.setEnabled(false);
+                }
+
+                mColocationRelative.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        pos = position;
+                        RequestParams params = new RequestParams();
+                        params.put("member_id", Constans.ID);
+                        params.put("share_id", mdataLists1.get(position).getId());
+                        getDataFromInternet(UrlFactory.subshare, params, 5);
+                    }
+                });
+
+
                 /**点赞的人为空 就隐藏掉这个图片*/
                 ImageView img = holder.getView(R.id.imageView8);
                 if (mdataLists1.get(position).getGive().size() == 0) {
@@ -192,10 +255,10 @@ public class ThridFragment extends BaseFragment {
                 /**未点赞*/
                 if (item.getGivemi() == 0) {
                     mIv_love.setEnabled(true);
-                    Glide.with(getActivity()).load(R.mipmap.btn_compassion).into(mIvLove);
+                    Glide.with(getActivity()).load(R.mipmap.zanwuse).into(mIvLove);
                 } else {
                     mIv_love.setEnabled(false);
-                    Glide.with(getActivity()).load(R.mipmap.btn_compassion_pre).into(mIvLove);
+                    Glide.with(getActivity()).load(R.mipmap.youse).into(mIvLove);
                 }
 
                 mIv_love.setOnClickListener(new View.OnClickListener() {
@@ -495,7 +558,6 @@ public class ThridFragment extends BaseFragment {
                 break;
             case 1:
                 /**点赞*/
-                ShowToast(object.getString("info"));
                 mIvLove.clearAnimation();
 
                 mdataLists1.get(pos).setGivemi(1);
@@ -506,7 +568,6 @@ public class ThridFragment extends BaseFragment {
             case 2:
                 /**评论*/
                 mPopWindow.dismiss();
-                ShowToast(object.getString("info"));
                 mdataLists1.get(pos).getInformation().add(new SharedBean.DataBean.InformationBean(Constans.ID, mEt_commments.getText().toString().trim()
                         , mdataLists1.get(pos).getId(), "2", Constans.nickName, mdataLists1.get(pos).getPub().getNickname()));
                 mRecylerAdapter.notifyDataSetChanged();
@@ -514,7 +575,6 @@ public class ThridFragment extends BaseFragment {
             case 3:
                 /**回复别人*/
                 mPopWindow.dismiss();
-                ShowToast(object.getString("info"));
                 mdataLists1.get(pos).getInformation().add(new SharedBean.DataBean.InformationBean(Constans.ID, mEt_commments.getText().toString().trim()
                         , mReplayId, "3", Constans.nickName, mReplayName));
                 mRecylerAdapter.notifyDataSetChanged();
@@ -524,6 +584,17 @@ public class ThridFragment extends BaseFragment {
                 mPopWindow.dismiss();
                 ShowToast(object.getString("info"));
                 mdataLists1.remove(data);
+                mRecylerAdapter.notifyDataSetChanged();
+                break;
+            case 5:
+                ShowToast(object.getString("info"));
+                mColocationRelative.setEnabled(false);
+                mdataLists1.get(pos).setCollection(1);
+                mRecylerAdapter.notifyDataSetChanged();
+                break;
+            case 6:
+                ShowToast(object.getString("info"));
+                mdataLists1.remove(pos);
                 mRecylerAdapter.notifyDataSetChanged();
                 break;
         }

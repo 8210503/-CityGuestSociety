@@ -59,4 +59,10 @@ public class UrlFactory {
     public static String houseinfo = baseurl + "house/speed";
     public static String addCoupon = baseurl + "business/addcoupon";
     public static String coupon = baseurl + "business/coupon";
+    public static String integral = baseurl + "integral/integral";
+    public static String system_content = baseurl + "news/system_content";
+    public static String subshare = baseurl + "Collection/add_collection";
+
+    public static String addblacklist = baseurl + "Share/add_blacklist";
+    public static String blacklist = baseurl + "Share/blacklist";
 }

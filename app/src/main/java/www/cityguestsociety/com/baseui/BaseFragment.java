@@ -315,7 +315,6 @@ public abstract class BaseFragment extends Fragment {
                     NoData(object, what);
                     cancleLoadingDialog();
                 } else {
-                    ShowToast(object.getString("info"));
                     LogUtils.e(url, responseString);
                     cancleLoadingDialog();
                 }

@@ -1,6 +1,10 @@
 package www.cityguestsociety.com.login;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -15,10 +19,14 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.loopj.android.http.RequestParams;
+import com.netease.scan.IScanModuleCallBack;
+import com.netease.scan.QrScan;
+import com.netease.scan.ui.CaptureActivity;
 
 import java.util.TimerTask;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
@@ -64,9 +72,20 @@ public class RegiestActivity extends BaseToolbarActivity {
     @BindView(R.id.regiset_complete)
     Button mRegisetComplete;
     int i = 60;
+    @BindView(R.id.textView4)
+    TextView mTextView4;
+    @BindView(R.id.pwd4)
+    EditText mPwd4;
+    @BindView(R.id.passworldHengxian4)
+    TextView mPassworldHengxian4;
+    @BindView(R.id.iv_seePassworld4)
+    ImageView mIvSeePassworld4;
+    @BindView(R.id.passworldRelative1)
+    RelativeLayout mPassworldRelative1;
     private TimerTask mTimerTask;
     private String mExtra;
     private String mCode;
+    private CaptureActivity mCaptureContext;
 
 
     @Override
@@ -109,7 +128,47 @@ public class RegiestActivity extends BaseToolbarActivity {
                 return false;
             }
         });
-
+        mPwd4.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mPassworldHengxian.setBackgroundColor(RegiestActivity.this.getResources().getColor(R.color.deep_back));
+                mPhoneNumberHengxian.setBackgroundColor(RegiestActivity.this.getResources().getColor(R.color.deep_back));
+                mCheckCodeHengxian.setBackgroundColor(RegiestActivity.this.getResources().getColor(R.color.deep_back));
+                mPassworldHengxian4.setBackgroundColor(RegiestActivity.this.getResources().getColor(R.color.orange));
+                return false;
+            }
+        });
+        mIvSeePassworld4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                QrScan.getInstance().launchScan(RegiestActivity.this, new IScanModuleCallBack() {
+                    @Override
+                    public void OnReceiveDecodeResult(final Context context, String result) {
+                        mCaptureContext = (CaptureActivity) context;
+                        mCaptureContext.setTitle("推荐码");
+                        AlertDialog dialog = new AlertDialog.Builder(mCaptureContext)
+                                .setMessage(result)
+                                .setCancelable(false)
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        QrScan.getInstance().restartScan(mCaptureContext);
+                                    }
+                                })
+                                .setPositiveButton("关闭", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        QrScan.getInstance().finishScan(mCaptureContext);
+                                    }
+                                })
+                                .create();
+                        dialog.show();
+                    }
+                });
+            }
+        });
 
     }
 
@@ -171,6 +230,7 @@ public class RegiestActivity extends BaseToolbarActivity {
                 break;
             case R.id.iv_seePassworld:
                 if (mIvSeePassworld.isChecked()) {
+                    mPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                     content = mPwd.getText().toString().trim();
                     if (!content.isEmpty()) {
                         mPwd.setText(content);
@@ -246,5 +306,12 @@ public class RegiestActivity extends BaseToolbarActivity {
                 break;
         }
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

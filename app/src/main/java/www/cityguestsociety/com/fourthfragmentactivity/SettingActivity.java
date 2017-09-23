@@ -19,6 +19,7 @@ import com.kyleduo.switchbutton.SwitchButton;
 import butterknife.BindView;
 import butterknife.OnClick;
 import www.cityguestsociety.com.R;
+import www.cityguestsociety.com.activity.MainActivity;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 import www.cityguestsociety.com.login.LoginActivity;
 import www.cityguestsociety.com.utils.Constans;
@@ -45,6 +46,8 @@ public class SettingActivity extends BaseToolbarActivity {
     TextView mTvLoginOut;
     PopupWindow mPopWindow;
     public final String LOGINOUT = "loginOut";
+    @BindView(R.id.blackListrRelative)
+    RelativeLayout mBlackListrRelative;
 
     @Override
     protected int getContentView() {
@@ -93,7 +96,7 @@ public class SettingActivity extends BaseToolbarActivity {
     }
 
 
-    @OnClick({R.id.changePassworldRelative, R.id.ClearCacheRelative, R.id.switchButton, R.id.tv_loginOut})
+    @OnClick({R.id.changePassworldRelative, R.id.ClearCacheRelative, R.id.switchButton, R.id.tv_loginOut,R.id.blackListrRelative})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.changePassworldRelative:
@@ -119,6 +122,9 @@ public class SettingActivity extends BaseToolbarActivity {
                 break;
             case R.id.tv_loginOut:
                 showPopWindows(this, LOGINOUT);
+                break;
+            case R.id.blackListrRelative:
+
                 break;
         }
     }
@@ -150,7 +156,8 @@ public class SettingActivity extends BaseToolbarActivity {
                     Constans.birthday = "";
                     Constans.isLogined = false;
                     Constans.isBindHouse = false;
-                    SPUtils.saveUserInfo("","");
+                    SPUtils.saveUserInfo("", "");
+                    MainActivity.position = 5;
 
 
                     jumpToActivity(LoginActivity.class, bundle, flags, true);
@@ -176,5 +183,6 @@ public class SettingActivity extends BaseToolbarActivity {
         mPopWindow.showAtLocation(parent, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
 
     }
+
 
 }

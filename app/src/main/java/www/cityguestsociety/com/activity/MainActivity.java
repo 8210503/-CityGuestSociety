@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.alibaba.fastjson.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +19,13 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
+import www.cityguestsociety.com.bindhouse.SelectHouseInfoActivity;
 import www.cityguestsociety.com.fragments.FirstFragment;
 import www.cityguestsociety.com.fragments.FourthFragemnt;
 import www.cityguestsociety.com.fragments.SecondFragment;
 import www.cityguestsociety.com.fragments.ThridFragment;
+import www.cityguestsociety.com.login.LoginActivity;
+import www.cityguestsociety.com.utils.Constans;
 
 public class MainActivity extends BaseToolbarActivity {
 
@@ -42,7 +43,8 @@ public class MainActivity extends BaseToolbarActivity {
     private Fragment mFragment;
     private FragmentManager mMamager;
     private List<Fragment> mFragments;
-
+    private int clickPosition = 0;
+    public static int position = 0;
 
     @Override
     protected int getContentView() {
@@ -91,36 +93,7 @@ public class MainActivity extends BaseToolbarActivity {
 
     @Override
     protected void initView() {
-       /* RequestParams params = new RequestParams();
-        params.put("username", SPUtils.getCount());
-        params.put("password", SPUtils.getPWD());
-                getDataFromInternet(UrlFactory.logins, params, 0);*/
-    }
 
-    @Override
-    public void getSuccess(JSONObject object, int what) {
-        super.getSuccess(object, what);
-        switch (what) {
-            case 0:
-             /*   MyApplication.UserInfo user = MyApplication.getUser();
-                user.setNickname(object.getJSONArray("data").getJSONObject(0).getString("nickname"));
-                user.setUsername(object.getJSONArray("data").getJSONObject(0).getString("username"));
-                user.setGender(object.getJSONArray("data").getJSONObject(0).getString("gender"));
-                user.setIntegral(object.getJSONArray("data").getJSONObject(0).getString("integral"));
-                user.setImg(object.getJSONArray("data").getJSONObject(0).getString("img"));
-                user.setId(object.getJSONArray("data").getJSONObject(0).getString("id"));
-
-
-                Constans.ID = object.getJSONArray("data").getJSONObject(0).getString("id");
-
-                isLogined = true;
-                Message msg = new Message();
-                msg.what = 1;
-                msg.obj = isLogined;
-                LogUtils.e("自动登录成功");
-                FirstFragment.getInstance().handler.sendMessage(msg);*/
-                break;
-        }
     }
 
 
@@ -131,25 +104,94 @@ public class MainActivity extends BaseToolbarActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mFragment != null) {
+            switchContent(mFragment, mFragments.get(clickPosition));
+            if (clickPosition == 0) {
+                mR0.setChecked(true);
+            } else if (clickPosition == 1) {
+                mR1.setChecked(true);
+            } else if (clickPosition == 2) {
+                mR2.setChecked(true);
+            } else if (clickPosition == 3) {
+                mR3.setChecked(true);
+            }
+        }
+
+        if (position != 0 && mFragment != null) {
+
+            if (position == 2) {
+                switchContent(mFragment, mFragments.get(1));
+                mR1.setChecked(true);
+            } else if (position == 3) {
+                switchContent(mFragment, mFragments.get(2));
+                mR2.setChecked(true);
+            } else if (position == 4) {
+                switchContent(mFragment, mFragments.get(3));
+                mR3.setChecked(true);
+            } else {
+                switchContent(mFragment, mFragments.get(0));
+                mR0.setChecked(true);
+            }
+        } else if (Constans.ID.equals("null")) {
+            switchContent(mFragment, mFragments.get(0));
+            mR0.setChecked(true);
+        }
+
+
+    }
+
     @OnClick({R.id.R0, R.id.R1, R.id.R2, R.id.R3})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.R0:
+                clickPosition = 2;
+                position = 5;
                 switchContent(mFragment, mFragments.get(0));
                 FirstFragment fragment = (FirstFragment) mFragments.get(0);
                 fragment.refresh();
                 break;
             case R.id.R1:
-                if(isLogined())
-                switchContent(mFragment, mFragments.get(1));
+                if (Constans.ID.equals("null")) {
+                    mR0.setChecked(true);
+                    clickPosition = 0;
+                    jumpToActivity(LoginActivity.class, false);
+                } else {
+                    switchContent(mFragment, mFragments.get(1));
+                    clickPosition = 1;
+                    position = 2;
+                }
                 break;
             case R.id.R2:
-                if(isLogined()&&isBindHouse())
-                switchContent(mFragment, mFragments.get(2));
+                if (Constans.ID.equals("null")) {
+                    mR0.setChecked(true);
+                    clickPosition = 0;
+                    jumpToActivity(LoginActivity.class, false);
+                } else if (!(Constans.ID.equals("null")) && Constans.isBindHouse) {
+
+                    switchContent(mFragment, mFragments.get(2));
+                    clickPosition = 2;
+                    position = 3;
+                } else if (!(Constans.ID.equals("null")) && !Constans.isBindHouse) {
+                    jumpToActivity(SelectHouseInfoActivity.class, false);
+                }
+
                 break;
             case R.id.R3:
-                if(isLogined()&&isBindHouse())
-                switchContent(mFragment, mFragments.get(3));
+                if (Constans.ID.equals("null")) {
+                    mR0.setChecked(true);
+                    clickPosition = 0;
+                    jumpToActivity(LoginActivity.class, false);
+                } else if (!(Constans.ID.equals("null")) && Constans.isBindHouse) {
+                    switchContent(mFragment, mFragments.get(3));
+                    clickPosition = 3;
+                    position = 4;
+                } else if (!(Constans.ID.equals("null")) && !Constans.isBindHouse) {
+                    jumpToActivity(SelectHouseInfoActivity.class, false);
+                }
                 break;
         }
     }

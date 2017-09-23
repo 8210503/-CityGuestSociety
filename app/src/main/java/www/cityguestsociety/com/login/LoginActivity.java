@@ -20,7 +20,6 @@ import butterknife.OnClick;
 import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
 import www.cityguestsociety.com.activity.MainActivity;
-import www.cityguestsociety.com.application.MyApplication;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 import www.cityguestsociety.com.utils.Constans;
 import www.cityguestsociety.com.utils.SPUtils;

@@ -24,6 +24,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
+import www.cityguestsociety.com.activity.MainActivity;
 import www.cityguestsociety.com.adapter.BaseRecyclerAdapter;
 import www.cityguestsociety.com.adapter.BaseRecyclerHolder;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
@@ -94,6 +95,11 @@ public class HouseManagerActivity extends BaseToolbarActivity {
                 mLists.remove(pos);
                 if (mLists.size() == 0) {
                     Constans.isBindHouse = false;
+                    Constans.city = "";
+                    Constans.community = "";
+                    Constans.ban = "";
+                    Constans.Room = "";
+                    MainActivity.position = 5;
                 }
                 ShowToast(object.getString("info"));
                 mPresentHouseListView.refresh();
@@ -183,8 +189,6 @@ public class HouseManagerActivity extends BaseToolbarActivity {
         });
         mPresentHouseListView.refresh();
         mPresentHouseListView.setLoadMoreEnabled(false);
-
-
 
 
     }

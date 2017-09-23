@@ -103,7 +103,7 @@ public class SellerInfoActivity extends BaseToolbarActivity {
                 mWebView.loadUrl(object.getJSONArray("data").getJSONObject(0).getString("content"));
                 break;
             case 1:
-                ShowToast("已经领取了" + countdes + "的优惠卷");
+                ShowToast("已经领取了" + countdes + "折的优惠卷");
                 mPopWindow.dismiss();
                 break;
         }

@@ -27,11 +27,11 @@
 
                 <ImageView
                     android:id="@+id/sellerPhoto"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:layout_marginLeft="@dimen/margin_15"
                     android:layout_marginTop="55dp"
-                    android:scaleType="fitXY"/>
+                    android:scaleType="centerCrop"/>
 
                 <TextView
                     android:id="@+id/sellerName"

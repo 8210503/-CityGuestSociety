@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.apkfuns.logutils.LogUtils;
 import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class SelectCommunityActivity extends BaseToolbarActivity {
     public void getSuccess(JSONObject object, int what) {
         super.getSuccess(object, what);
         mAllCities.addAll(filledData(object.getJSONArray("data").toJavaList(Community.class)));
-
+        LogUtils.e(mAllCities.toString());
         mCityAdapter = new CommunityAdapter(this, mAllCities, networkHotCityBeen);
         initLocal();
 

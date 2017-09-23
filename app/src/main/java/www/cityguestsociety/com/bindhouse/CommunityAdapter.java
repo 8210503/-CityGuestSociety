@@ -192,8 +192,11 @@ public class CommunityAdapter extends BaseAdapter {
 
         final Object obj = mCities.get(position);
         holder.name.setText(city);
-        String currentLetter = PinyinUtils.getFirstLetter(mCities.get(position).getPinyin());
-        String previousLetter = position >= 1 ? PinyinUtils.getFirstLetter(mCities.get(position - 1).getPinyin()) : "";
+        String currentLetter = PinyinUtils.getFirstLetter(mCities.get(position).getSortLetters());
+        String previousLetter = position >= 1 ? PinyinUtils.getFirstLetter(mCities.get(position - 1).getSortLetters()) : "";
+
+
+
         if (!TextUtils.equals(currentLetter, previousLetter)) {
             holder.letter.setVisibility(View.VISIBLE);
             holder.letter.setText(currentLetter);

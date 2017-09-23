@@ -27,6 +27,22 @@
             android:layout_toRightOf="@+id/userImage"
             android:text="西西里"/>
 
+        <RelativeLayout
+            android:id="@+id/colocationRelative"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <ImageView
+                android:id="@+id/colocation"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/btn_compassion_bule"/>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/sharedContent"
             android:layout_width="wrap_content"
@@ -38,6 +54,7 @@
             android:text="11111111111111111111"
             android:textColor="@color/balck"
             android:textSize="17sp"/>
+
 
         <RelativeLayout
             android:id="@+id/ImageViewRelative"

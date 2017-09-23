@@ -9,14 +9,21 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.loopj.android.http.RequestParams;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import www.cityguestsociety.com.R;
+import www.cityguestsociety.com.UrlFactory;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
+import www.cityguestsociety.com.entity.VIPintegral;
 import www.cityguestsociety.com.firstfragmentactivity.VIPfragment.GouFangFragment;
 import www.cityguestsociety.com.firstfragmentactivity.VIPfragment.JiFenExchangeActivity;
 import www.cityguestsociety.com.firstfragmentactivity.VIPfragment.JoinActivityFragment;
 import www.cityguestsociety.com.firstfragmentactivity.VIPfragment.OldWithYoungFragment;
+import www.cityguestsociety.com.utils.Constans;
 
 public class VIPActivity extends BaseToolbarActivity {
 
@@ -44,7 +51,7 @@ public class VIPActivity extends BaseToolbarActivity {
 
     @Override
     protected void initView() {
-        initToobar( "会员积分");
+        initToobar("会员积分");
 
         {
             mManager = getSupportFragmentManager();
@@ -59,12 +66,26 @@ public class VIPActivity extends BaseToolbarActivity {
             transaction.commit();
         }
 
+
     }
 
     @Override
     protected void initData() {
-
+        RequestParams params = new RequestParams();
+        params.put("member_id", Constans.ID);
+        params.put("next", 1);
+        params.put("type", 3);
+        getDataFromInternet(UrlFactory.integral, params, 0);
     }
+
+    @Override
+    public void getSuccess(JSONObject object, int what) {
+        super.getSuccess(object, what);
+        Gson gson = new Gson();
+        VIPintegral VIPintegra = gson.fromJson(object.toString(), VIPintegral.class);
+        mPresentJiFen.setText(VIPintegra.getZongintegral());
+    }
+
 
     @Override
     protected void setListener() {

@@ -12,12 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 
 import www.cityguestsociety.com.R;
+import www.cityguestsociety.com.application.MyApplication;
 
 
 /**
@@ -289,7 +291,7 @@ public abstract class NineGridLayout extends ViewGroup {
 
     }
 
-    protected void setOneImageLayoutParams(RatioImageView imageView, int width, int height) {
+    protected void setOneImageLayoutParams(RatioImageView imageView, int width, int height, String url) {
         imageView.setLayoutParams(new LayoutParams(width, height));
         imageView.layout(0, 0, width, height);
 
@@ -297,6 +299,7 @@ public abstract class NineGridLayout extends ViewGroup {
         //        params.width = width;
         params.height = height;
         setLayoutParams(params);
+        Glide.with(MyApplication.getContext()).load(url).placeholder(R.drawable.wrong_image).error(R.drawable.wrong_image).into(imageView);
     }
 
     private int getListSize(List<String> list) {

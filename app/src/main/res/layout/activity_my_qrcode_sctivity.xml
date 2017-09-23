@@ -29,6 +29,7 @@
                 android:background="@color/white">
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/userCorn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"

@@ -102,6 +102,12 @@ public class TenderShowActivity extends BaseToolbarActivity {
         mTenderShowListView.refreshComplete(REQUEST_COUNT);
     }
 
+    @Override
+    public void getFailed(JSONObject jsonObject, int what) {
+        mTenderShowListView.refreshComplete(REQUEST_COUNT);
+
+    }
+
     private void setAdapter() {
 
         mAdapter = new BaseRecyclerAdapter<Tender.DataBean>(this, mDataList, R.layout.item_tendershow) {

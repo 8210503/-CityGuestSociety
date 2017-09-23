@@ -12,8 +12,8 @@ public class SharedBean {
     /**
      * code : 1
      * info : 获取成功
-     * pagecount : 4
-     * data : [{"id":"6","title":"分享","member_id":"1","wo":0,"img":[{"img":"/chengkehui/Uploads/Activity/2017-09-13/59b8a19d630f1.jpg"}],"pub":{"nickname":"","img":""},"give":[{"reply_id":"26","nickname":"i被拒绝"}],"information":[{"reply_id":"26","content":"你好","cover_reply_id":"6","type":"2","reply_name":"i被拒绝","cover_reply_name":"的撒大声的撒"},{"reply_id":"26","content":"你好","cover_reply_id":"6","type":"3","reply_name":"i被拒绝","cover_reply_name":"的撒大声的撒"}]}]
+     * pagecount : 18
+     * data : [{"id":"22","title":"冯滚滚滚滚滚","member_id":"4","release_time":"2017.09.23 16:56","wo":0,"img":[{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a083ae1.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0855ec.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0863b5.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a092917.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a092eab.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a09f6ac.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0ad162.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0b8a21.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0ba95f.jpg"}],"pub":{"nickname":"二点多发发发","img":"http://120.26.141.238/chengkehui/Uploads/touxiang/2017-09-23/59c610ea3f798.jpg"},"give":[{"reply_id":"2","nickname":"ifind"}],"collection":0,"givemi":1,"information":[{"reply_id":"2","content":"11111","cover_reply_id":"4","type":"2","reply_name":"ifind","cover_reply_name":"二点多发发发"}]},{"id":"21","title":"dffefe丹参滴丸我单位·","member_id":"4","release_time":"2017.09.23 16:30","wo":0,"img":[{"img":"/chengkehui/Uploads/Share/2017-09-23/59c61bc31b874.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c61bc31e291.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c61bc31e65e.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c61bc328fb3.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c61bc334873.jpg"}],"pub":{"nickname":"二点多发发发","img":"http://120.26.141.238/chengkehui/Uploads/touxiang/2017-09-23/59c610ea3f798.jpg"},"give":[{"reply_id":"2","nickname":"ifind"}],"collection":0,"givemi":1,"information":[]},{"id":"20","title":"dffefe丹参滴丸我单位·","member_id":"4","release_time":"2017.09.23 16:26","wo":0,"img":[{"img":"/chengkehui/Uploads/Share/2017-09-23/59c61abcd707a.jpg"}],"pub":{"nickname":"二点多发发发","img":"http://120.26.141.238/chengkehui/Uploads/touxiang/2017-09-23/59c610ea3f798.jpg"},"give":[{"reply_id":"2","nickname":"ifind"}],"collection":0,"givemi":1,"information":[]},{"id":"19","title":"dffefe丹参滴丸我单位·","member_id":"4","release_time":"2017.09.23 16:25","wo":0,"img":[],"pub":{"nickname":"二点多发发发","img":"http://120.26.141.238/chengkehui/Uploads/touxiang/2017-09-23/59c610ea3f798.jpg"},"give":[],"collection":0,"givemi":0,"information":[]},{"id":"18","title":"dffefe丹参滴丸我单位·","member_id":"4","release_time":"2017.09.23 16:25","wo":0,"img":[],"pub":{"nickname":"二点多发发发","img":"http://120.26.141.238/chengkehui/Uploads/touxiang/2017-09-23/59c610ea3f798.jpg"},"give":[],"collection":0,"givemi":0,"information":[]}]
      */
 
     private int code;
@@ -55,42 +55,30 @@ public class SharedBean {
 
     public static class DataBean {
         /**
-         * id : 6
-         * title : 分享
-         * member_id : 1
+         * id : 22
+         * title : 冯滚滚滚滚滚
+         * member_id : 4
+         * release_time : 2017.09.23 16:56
          * wo : 0
-         * img : [{"img":"/chengkehui/Uploads/Activity/2017-09-13/59b8a19d630f1.jpg"}]
-         * pub : {"nickname":"","img":""}
-         * give : [{"reply_id":"26","nickname":"i被拒绝"}]
-         * information : [{"reply_id":"26","content":"你好","cover_reply_id":"6","type":"2","reply_name":"i被拒绝","cover_reply_name":"的撒大声的撒"},{"reply_id":"26","content":"你好","cover_reply_id":"6","type":"3","reply_name":"i被拒绝","cover_reply_name":"的撒大声的撒"}]
+         * img : [{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a083ae1.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0855ec.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0863b5.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a092917.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a092eab.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a09f6ac.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0ad162.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0b8a21.jpg"},{"img":"/chengkehui/Uploads/Share/2017-09-23/59c621a0ba95f.jpg"}]
+         * pub : {"nickname":"二点多发发发","img":"http://120.26.141.238/chengkehui/Uploads/touxiang/2017-09-23/59c610ea3f798.jpg"}
+         * give : [{"reply_id":"2","nickname":"ifind"}]
+         * collection : 0
+         * givemi : 1
+         * information : [{"reply_id":"2","content":"11111","cover_reply_id":"4","type":"2","reply_name":"ifind","cover_reply_name":"二点多发发发"}]
          */
 
         private String id;
         private String title;
         private String member_id;
+        private String release_time;
         private int wo;
         private PubBean pub;
+        private int collection;
+        private int givemi;
         private List<ImgBean> img;
         private List<GiveBean> give;
         private List<InformationBean> information;
-        private String release_time;
-        private int givemi;
-
-        public String getRelease_time() {
-            return release_time;
-        }
-
-        public void setRelease_time(String release_time) {
-            this.release_time = release_time;
-        }
-
-        public int getGivemi() {
-            return givemi;
-        }
-
-        public void setGivemi(int givemi) {
-            this.givemi = givemi;
-        }
 
         public String getId() {
             return id;
@@ -116,6 +104,14 @@ public class SharedBean {
             this.member_id = member_id;
         }
 
+        public String getRelease_time() {
+            return release_time;
+        }
+
+        public void setRelease_time(String release_time) {
+            this.release_time = release_time;
+        }
+
         public int getWo() {
             return wo;
         }
@@ -130,6 +126,22 @@ public class SharedBean {
 
         public void setPub(PubBean pub) {
             this.pub = pub;
+        }
+
+        public int getCollection() {
+            return collection;
+        }
+
+        public void setCollection(int collection) {
+            this.collection = collection;
+        }
+
+        public int getGivemi() {
+            return givemi;
+        }
+
+        public void setGivemi(int givemi) {
+            this.givemi = givemi;
         }
 
         public List<ImgBean> getImg() {
@@ -158,8 +170,8 @@ public class SharedBean {
 
         public static class PubBean {
             /**
-             * nickname :
-             * img :
+             * nickname : 二点多发发发
+             * img : http://120.26.141.238/chengkehui/Uploads/touxiang/2017-09-23/59c610ea3f798.jpg
              */
 
             private String nickname;
@@ -184,7 +196,7 @@ public class SharedBean {
 
         public static class ImgBean {
             /**
-             * img : /chengkehui/Uploads/Activity/2017-09-13/59b8a19d630f1.jpg
+             * img : /chengkehui/Uploads/Share/2017-09-23/59c621a083ae1.jpg
              */
 
             private String img;
@@ -200,17 +212,15 @@ public class SharedBean {
 
         public static class GiveBean {
 
-
             public GiveBean(String reply_id, String nickname) {
                 this.reply_id = reply_id;
                 this.nickname = nickname;
             }
 
             /**
-             * reply_id : 26
-             * nickname : i被拒绝
+             * reply_id : 2
+             * nickname : ifind
              */
-
 
             private String reply_id;
             private String nickname;
@@ -233,22 +243,6 @@ public class SharedBean {
         }
 
         public static class InformationBean {
-            /**
-             * reply_id : 26
-             * content : 你好
-             * cover_reply_id : 6
-             * type : 2
-             * reply_name : i被拒绝
-             * cover_reply_name : 的撒大声的撒
-             */
-
-            private String reply_id;
-            private String content;
-            private String cover_reply_id;
-            private String type;
-            private String reply_name;
-            private String cover_reply_name;
-
             public InformationBean(String reply_id, String content, String cover_reply_id, String type, String reply_name, String cover_reply_name) {
                 this.reply_id = reply_id;
                 this.content = content;
@@ -257,6 +251,24 @@ public class SharedBean {
                 this.reply_name = reply_name;
                 this.cover_reply_name = cover_reply_name;
             }
+
+            /**
+             * reply_id : 2
+             * content : 11111
+             * cover_reply_id : 4
+             * type : 2
+             * reply_name : ifind
+             * cover_reply_name : 二点多发发发
+             */
+
+
+
+            private String reply_id;
+            private String content;
+            private String cover_reply_id;
+            private String type;
+            private String reply_name;
+            private String cover_reply_name;
 
             public String getReply_id() {
                 return reply_id;

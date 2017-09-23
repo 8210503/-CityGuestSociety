@@ -51,9 +51,9 @@ public class CityListAdapter extends BaseAdapter {
         sections = new String[size];
         for (int index = 0; index < size; index++) {
             //当前城市拼音首字母
-            String currentLetter = PinyinUtils.getFirstLetter(mCities.get(index).getPinyin());
+            String currentLetter = PinyinUtils.getFirstLetter(mCities.get(index).getSortLetters());
             //上个首字母，如果不存在设为""
-            String previousLetter = index >= 1 ? PinyinUtils.getFirstLetter(mCities.get(index - 1).getPinyin()) : "";
+            String previousLetter = index >= 1 ? PinyinUtils.getFirstLetter(mCities.get(index - 1).getSortLetters()) : "";
             if (!TextUtils.equals(currentLetter, previousLetter)) {
                 letterIndexes.put(currentLetter, index);
                 sections[index] = currentLetter;

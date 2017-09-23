@@ -682,8 +682,8 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
 
             @Override
             public void onStart() {
-                LogUtils.wtf(params.toString());
-                LogUtils.e(url, params.toString());
+                LogUtils.e(params.toString());
+                LogUtils.e(url);
                 super.onStart();
             }
 
@@ -696,7 +696,7 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
                 } else if (jsonObject.getInteger("code") == 2) {
                     noData(jsonObject, what);
                 } else {
-                    getFailed(jsonObject,what);
+                    getFailed(jsonObject, what);
                     cancleLoadingDialog();
                     ShowToast(jsonObject.getString("info"));
                 }
@@ -748,7 +748,7 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
                     ShowToast(jsonObject.getString("info"));
                     getSuccess(jsonObject, what);
                 } else {
-
+                    getFailed(jsonObject, what);
                     ShowToast(jsonObject.getString("info"));
                     cancleLoadingDialog();
                 }
@@ -763,16 +763,16 @@ public abstract class BaseToolbarActivity extends AppCompatActivity implements V
         cancleLoadingDialog();
     }
 
+
     public Boolean isCorrentPasswrold(EditText text) {
         return ((text.getText().toString().trim().length() < 6) || (text.getText().toString().trim().length() > 18));
     }
 
-    /**两种情况 1：
-     *              没有登录 ：跳转到登录界面
-     *              登录了-没有绑定房屋： 跳转到绑定房屋界面*/
-
-
-
+    /**
+     * 两种情况 1：
+     * 没有登录 ：跳转到登录界面
+     * 登录了-没有绑定房屋： 跳转到绑定房屋界面
+     */
 
 
     public boolean isBindHouse() {

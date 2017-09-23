@@ -94,6 +94,12 @@ public class ProjectShowActivity extends BaseToolbarActivity {
     }
 
     @Override
+    public void getFailed(JSONObject jsonObject, int what) {
+        super.getFailed(jsonObject, what);
+        mProjectShowListView.refreshComplete(REQUEST_COUNT);
+    }
+
+    @Override
     protected void initView() {
         initToobar("项目展示");
         mProjectShowListView.setLayoutManager(new LinearLayoutManager(this));

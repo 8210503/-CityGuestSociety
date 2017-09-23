@@ -5,11 +5,14 @@ import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.List;
 
+import www.cityguestsociety.com.R;
+import www.cityguestsociety.com.application.MyApplication;
 import www.cityguestsociety.com.utils.ImageLoaderUtil;
 
 
@@ -33,7 +36,8 @@ public class NineGridTestLayout extends NineGridLayout {
     }
 
     @Override
-    protected boolean displayOneImage(final RatioImageView imageView, String url, final int parentWidth) {
+    protected boolean displayOneImage(final RatioImageView imageView, final String url, final int parentWidth) {
+
 
         ImageLoaderUtil.displayImage(mContext, imageView, url, ImageLoaderUtil.getPhotoImageOption(), new ImageLoadingListener() {
             @Override
@@ -48,22 +52,24 @@ public class NineGridTestLayout extends NineGridLayout {
 
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap bitmap) {
-                int w = bitmap.getWidth();
-                int h = bitmap.getHeight();
 
-                int newW;
-                int newH;
-                if (h > w * MAX_W_H_RATIO) {//h:w = 5:3
-                    newW = parentWidth / 2;
-                    newH = newW * 5 / 3;
-                } else if (h < w) {//h:w = 2:3
-                    newW = parentWidth * 2 / 3;
-                    newH = newW * 2 / 3;
-                } else {//newH:h = newW :w
-                    newW = parentWidth / 2;
-                    newH = h * newW / w;
-                }
-                setOneImageLayoutParams(imageView, newW, newH);
+            int w = bitmap.getWidth();
+            int h = bitmap.getHeight();
+
+            int newW;
+            int newH;
+            if (h > w * MAX_W_H_RATIO) {//h:w = 5:3
+                newW = parentWidth / 2;
+                newH = newW * 5 / 3;
+            } else if (h < w) {//h:w = 2:3
+                newW = parentWidth * 2 / 3;
+                newH = newW * 2 / 3;
+            } else {//newH:h = newW :w
+                newW = parentWidth / 2;
+                newH = h * newW / w;
+            }
+            setOneImageLayoutParams(imageView, newW, newH,url);
+
             }
 
             @Override
@@ -76,7 +82,8 @@ public class NineGridTestLayout extends NineGridLayout {
 
     @Override
     protected void displayImage(RatioImageView imageView, String url) {
-        ImageLoaderUtil.getImageLoader(mContext).displayImage(url, imageView, ImageLoaderUtil.getPhotoImageOption());
+        //        ImageLoaderUtil.getImageLoader(mContext).displayImage(url, imageView, ImageLoaderUtil.getPhotoImageOption());
+        Glide.with(MyApplication.getContext()).load(url).error(R.drawable.wrong_image).placeholder(R.drawable.wrong_image).into(imageView);
     }
 
     @Override

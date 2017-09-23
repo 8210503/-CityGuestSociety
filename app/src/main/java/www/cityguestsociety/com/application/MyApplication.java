@@ -66,7 +66,7 @@ public class MyApplication extends Application {
         // 自定义配置
         QrScanConfiguration configuration = new QrScanConfiguration.Builder(this)
                 .setTitleHeight(53)
-                .setTitleText("签到")
+                .setTitleText("扫描二维码")
                 .setTitleTextSize(18)
                 .setTitleTextColor(R.color.white)
                 .setTipText("将二维码放入框内扫描~")

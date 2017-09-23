@@ -109,7 +109,7 @@ public class FourthFragemnt extends BaseFragment implements View.OnClickListener
         Constans.birthday = object.getJSONArray("data").getJSONObject(0).getString("birthday");
 
         /** owner[city] 城市     owner[community]社区     owner[ban] 楼栋号*/
-        if (object.getJSONArray("data").getJSONObject(0).getJSONObject("owner").getString("city").isEmpty()) {
+        if (object.getJSONArray("data").getJSONObject(0).getJSONObject("owner").isEmpty()) {
             return;
         } else {
             Constans.city = object.getJSONArray("data").getJSONObject(0).getJSONObject("owner").getString("city");

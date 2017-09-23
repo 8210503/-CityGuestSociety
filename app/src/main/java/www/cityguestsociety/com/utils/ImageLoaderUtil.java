@@ -17,11 +17,14 @@ import www.cityguestsociety.com.R;
 public class ImageLoaderUtil {
 
     public static ImageLoader getImageLoader(Context context) {
+
         return ImageLoader.getInstance();
     }
 
     public static DisplayImageOptions getPhotoImageOption() {
         Integer extra = 1;
+
+
         DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
                 .showImageForEmptyUri(R.drawable.wrong_image).showImageOnFail(R.drawable.wrong_image)
                 .showImageOnLoading(R.drawable.wrong_image)

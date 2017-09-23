@@ -21,6 +21,7 @@ public class Constans {
     public static String city = "";
     public static String community = "";
     public static String ban = "";
+    public static String Room="";
 
 
 }

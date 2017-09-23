@@ -1,9 +1,12 @@
 package www.cityguestsociety.com.fourthfragmentactivity.newsfragments;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 
 import com.alibaba.fastjson.JSONObject;
 import com.apkfuns.logutils.LogUtils;
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
@@ -29,6 +32,7 @@ public class MyAnnuncetionFragment extends BaseFragment {
     private List<Annuncetion.DataBean> mLists = new ArrayList<>();
     private BaseRecyclerAdapter mAdapter;
     private LRecyclerViewAdapter mAdapter1;
+    private boolean isRefresh=false;
 
     @Override
     protected void initView() {
@@ -38,11 +42,10 @@ public class MyAnnuncetionFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        setAdapter();
     }
 
     public void getData() {
-        setAdapter();
         RequestParams params = new RequestParams();
         params.put("num", 20);
         getDataFromInternet(UrlFactory.system, params, 0);
@@ -50,7 +53,9 @@ public class MyAnnuncetionFragment extends BaseFragment {
 
     @Override
     public void getSuccess(JSONObject object, int what) {
-        mLists.clear();
+        if(isRefresh){
+            mLists.clear();
+        }
         super.getSuccess(object, what);
         Gson gson = new Gson();
         Annuncetion annuncetion = gson.fromJson(object.toString(), Annuncetion.class);
@@ -79,11 +84,21 @@ public class MyAnnuncetionFragment extends BaseFragment {
         notifyListView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-              getData();
+                isRefresh=true;
+                getData();
             }
         });
         notifyListView.refresh();
 
+
+        mAdapter1.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString(SystemAnnuncationWebView.ID, mLists.get(position).getId());
+                jumpToActivity(SystemAnnuncationWebView.class, bundle, false);
+            }
+        });
     }
 
     @Override

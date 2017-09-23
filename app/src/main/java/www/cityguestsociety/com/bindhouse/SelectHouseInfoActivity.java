@@ -66,10 +66,10 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
     public final int HOUSE = 4;
     private City mCity = new City();
     private String mId = "";
-    private Community mCommunity;
-    private Ban.DataBean mBan;
-    private Room.DataBean Room;
-    private String mPhone;
+    private Community mCommunity = new Community();
+    private Ban.DataBean mBan = new Ban.DataBean();
+    private Room.DataBean Room = new Room.DataBean();
+    private String mPhone="请补全房屋信息";
     public static boolean isCheckSuccess = false;
 
     @Override
@@ -148,6 +148,13 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
             case R.id.beginCheck:
                 if (mSellerPhoneLast4.getText().toString().trim().isEmpty()) {
                     ShowToast("请输入手机号");
+                } else if (mUserNumber7.getText().toString().trim().equals("请补全房屋信息")) {
+
+                    ShowToast("请补全房屋信息");
+
+                } else if (mUserNumber7.getText().toString().trim().equals("暂无此房屋信息")) {
+
+                    ShowToast("请联系开发商");
                 } else {
                     String phoneNumber = mPhone.replace("-", "");
                     RequestParams params = new RequestParams();
@@ -172,14 +179,33 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
                     mId = mCity.getId();
                     LogUtils.e(mId);
                     mTvCity.setText(mCity.getCity());
+
+                    mCommunity = new Community();
+                    mBan = new Ban.DataBean();
+                    Room = new Room.DataBean();
+                    mCommunityTextView.setText(mCommunity.getCommunity());
+                    mLoudongTextView.setText(mBan.getBan());
+                    mHouseIDTextview.setText(Room.getRoom());
+
                     break;
                 case COMMUNITY:
                     mCommunity = (Community) data.getSerializableExtra(SelectCommunityActivity.RESULT);
                     mCommunityTextView.setText(mCommunity.getCommunity());
+
+                    mBan = new Ban.DataBean();
+                    Room = new Room.DataBean();
+                    mLoudongTextView.setText(mBan.getBan());
+                    mHouseIDTextview.setText(Room.getRoom());
+
+
                     break;
                 case LOUDONG:
                     mBan = (Ban.DataBean) data.getSerializableExtra(SlectLouDongActivity.RESULT);
                     mLoudongTextView.setText(mBan.getBan());
+
+                    Room = new Room.DataBean();
+                    mHouseIDTextview.setText(Room.getRoom());
+
                     break;
                 case HOUSE:
                     Room = (Room.DataBean) data.getSerializableExtra(HouseIDActivity.RESULT);
@@ -188,6 +214,7 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
 
                     break;
             }
+            mUserNumber7.setText("请补全房屋信息");
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -202,6 +229,12 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
     }
 
     @Override
+    protected void noData(JSONObject jsonObject, int what) {
+        super.noData(jsonObject, what);
+        mUserNumber7.setText("暂无此房屋信息");
+    }
+
+    @Override
     public void getSuccess(JSONObject object, int what) {
         switch (what) {
             case 0:
@@ -212,7 +245,11 @@ public class SelectHouseInfoActivity extends BaseToolbarActivity {
             case 1:
                 /**验证成功*/
                 isCheckSuccess = true;
-                Constans.isBindHouse=true;
+                Constans.isBindHouse = true;
+                Constans.city = mCity.getCity();
+                Constans.community = mCommunity.getCommunity();
+                Constans.ban = mBan.getBan();
+                Constans.Room = Room.getRoom();
                 jumpToActivity(CheckSuccessActivity.class, false);
                 break;
         }

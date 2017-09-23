@@ -81,5 +81,13 @@ public class Community implements Serializable {
         this.id = id;
     }
 
-
+    @Override
+    public String toString() {
+        return "Community{" +
+                "pinyin='" + pinyin + '\'' +
+                ", community='" + community + '\'' +
+                ", id='" + id + '\'' +
+                ", sortLetters='" + sortLetters + '\'' +
+                '}';
+    }
 }

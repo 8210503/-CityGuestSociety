@@ -65,4 +65,6 @@ public class UrlFactory {
 
     public static String addblacklist = baseurl + "Share/add_blacklist";
     public static String blacklist = baseurl + "Share/blacklist";
+    public static String delblacklist = baseurl + "Share/delblacklist";
+    public static String collection_cont = baseurl + "Collection/collection_cont";
 }

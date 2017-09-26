@@ -15,16 +15,23 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:src="@mipmap/icon_add_pic"/>
+        <RelativeLayout
+            android:id="@+id/shanchuRelative"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp">
 
         <ImageView
-            android:id="@+id/iv_delete"
+            android:layout_alignParentRight="true"
+            android:id="@+id/shanchu"
             android:background="@color/black_gray"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/shanchu"
             android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/imageView"
-            android:layout_alignEnd="@+id/imageView"/>
+            />
+        </RelativeLayout>
     </RelativeLayout>
 
 

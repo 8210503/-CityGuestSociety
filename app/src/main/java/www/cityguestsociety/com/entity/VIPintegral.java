@@ -63,11 +63,21 @@ public class VIPintegral {
     }
 
     public static class DataBean {
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "title='" + title + '\'' +
+                    ", integral='" + integral + '\'' +
+                    ", time='" + time + '\'' +
+                    '}';
+        }
+
         /**
          * title : 买房3
          * integral : 50
          * time : 2017-09-23 09:13
          */
+
 
         private String title;
         private String integral;

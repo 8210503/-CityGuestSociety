@@ -1,8 +1,6 @@
 package www.cityguestsociety.com.login;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -146,25 +144,12 @@ public class RegiestActivity extends BaseToolbarActivity {
                     public void OnReceiveDecodeResult(final Context context, String result) {
                         mCaptureContext = (CaptureActivity) context;
                         mCaptureContext.setTitle("推荐码");
-                        AlertDialog dialog = new AlertDialog.Builder(mCaptureContext)
-                                .setMessage(result)
-                                .setCancelable(false)
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        QrScan.getInstance().restartScan(mCaptureContext);
-                                    }
-                                })
-                                .setPositiveButton("关闭", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                        QrScan.getInstance().finishScan(mCaptureContext);
-                                    }
-                                })
-                                .create();
-                        dialog.show();
+                        if (result != null && !result.isEmpty()) {
+                            QrScan.getInstance().finishScan(mCaptureContext);
+                            mPwd4.setText(result);
+                        }
+
+
                     }
                 });
             }
@@ -181,11 +166,13 @@ public class RegiestActivity extends BaseToolbarActivity {
         if (mExtra.equals(LoginActivity.FORGETPASSWORLD)) {
             mRegisetComplete.setText(R.string.confirm);
             initToobar("忘记密码");
+            mPassworldRelative1.setVisibility(View.GONE);
             mTextViewinfo.setVisibility(View.INVISIBLE);
             mAggrement.setVisibility(View.INVISIBLE);
         } else if (mExtra.equals(LoginActivity.REGIEST)) {
             mRegisetComplete.setText(R.string.completeRigest);
             initToobar("注册");
+            mPassworldRelative1.setVisibility(View.VISIBLE);
             mTextViewinfo.setVisibility(View.VISIBLE);
             mAggrement.setVisibility(View.VISIBLE);
         }
@@ -264,6 +251,7 @@ public class RegiestActivity extends BaseToolbarActivity {
                     params.put("username", mPhoneNumber.getText().toString().trim());
                     params.put("yzm", mCheckCode.getText().toString().trim());
                     params.put("password", mPwd.getText().toString().trim());
+                    params.put("band_new", mPwd4.getText().toString().trim());
                     getDataFromInternet(UrlFactory.forgot_password, params, 2);
                     showLoadingDialog();
                 }

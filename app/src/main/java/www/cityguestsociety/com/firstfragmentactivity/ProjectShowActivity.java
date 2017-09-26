@@ -104,7 +104,7 @@ public class ProjectShowActivity extends BaseToolbarActivity {
         initToobar("项目展示");
         mProjectShowListView.setLayoutManager(new LinearLayoutManager(this));
         //设置底部加载颜色
-        mProjectShowListView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
+        mProjectShowListView.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
         //设置底部加载文字提示
         mProjectShowListView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
 

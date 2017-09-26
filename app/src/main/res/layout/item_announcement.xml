@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/notifyKind"
             android:layout_marginLeft="@dimen/margin_15"
-            android:layout_marginRight="@dimen/margin_15"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="@dimen/margin_15"
             android:text="1111111111111111"
             android:textColor="@color/balck"
@@ -27,12 +27,21 @@
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignLeft="@+id/notifyContent"
             android:layout_below="@+id/notifyContent"
             android:layout_marginBottom="@dimen/margin_top_5"
-            android:layout_marginRight="@dimen/margin_15"
-            android:layout_marginTop="@dimen/margin_top_5"
+            android:layout_marginTop="10dp"
             android:text="2017-9-5 12:40"/>
+
+        <TextView
+            android:id="@+id/statue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/notifyContent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_15"
+            android:text="未读"
+            android:textColor="@color/colorAccent"/>
 
     </RelativeLayout>
 

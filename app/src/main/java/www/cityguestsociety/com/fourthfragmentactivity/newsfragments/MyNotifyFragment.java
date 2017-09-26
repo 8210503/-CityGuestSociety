@@ -1,8 +1,6 @@
 package www.cityguestsociety.com.fourthfragmentactivity.newsfragments;
 
-import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
-import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.apkfuns.logutils.LogUtils;
@@ -58,7 +56,7 @@ public class MyNotifyFragment extends BaseFragment {
         notifyListView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //设置底部加载颜色
-        notifyListView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
+        notifyListView.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
         //设置底部加载文字提示
         notifyListView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
     }
@@ -116,16 +114,7 @@ public class MyNotifyFragment extends BaseFragment {
                     holder.setText(R.id.notifyKind, "缴费通知");
                 }
                 holder.setText(R.id.notifyContent, item.getContent());
-                if (item.getState().equals("0")) {
-
-                    TextView tv_statue = holder.getView(R.id.statue);
-                    tv_statue.setTextColor(Color.parseColor("#FA646F"));
-                    holder.setText(R.id.statue, "未读");
-                } else if (item.getState().equals("1")) {
-                    holder.setText(R.id.statue, "已读");
-                    TextView tv_statue = holder.getView(R.id.statue);
-                    tv_statue.setTextColor(Color.parseColor("#8C9397"));
-                }
+                holder.setText(R.id.statue,item.getRelease_time());
             }
         };
 

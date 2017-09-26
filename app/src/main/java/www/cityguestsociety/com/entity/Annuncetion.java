@@ -8,11 +8,12 @@ import java.util.List;
 
 public class Annuncetion {
 
+
     /**
      * code : 1
      * info : 获取成功
      * pagecount : 0
-     * data : [{"id":"7","title":"大大","creation_time":"1505355051"},{"id":"6","title":"das大神大神多大大","creation_time":"0"},{"id":"5","title":"dsa","creation_time":"0"},{"id":"4","title":"eqw","creation_time":"0"},{"id":"3","title":"eq","creation_time":"0"},{"id":"2","title":"qwe","creation_time":"0"},{"id":"1","title":"rerq","creation_time":"0"}]
+     * data : [{"id":"3","title":"系统公告三","creation_time":"2017.09.26  09:43","state":0},{"id":"1","title":"系统公告一","creation_time":"2017.09.23  10:14","state":0}]
      */
 
     private int code;
@@ -53,26 +54,28 @@ public class Annuncetion {
     }
 
     public static class DataBean {
-
-
         @Override
         public String toString() {
             return "DataBean{" +
                     "id='" + id + '\'' +
                     ", title='" + title + '\'' +
                     ", creation_time='" + creation_time + '\'' +
+                    ", state=" + state +
                     '}';
         }
 
         /**
-         * id : 7
-         * title : 大大
-         * creation_time : 1505355051
+         * id : 3
+         * title : 系统公告三
+         * creation_time : 2017.09.26  09:43
+         * state : 0
          */
+
 
         private String id;
         private String title;
         private String creation_time;
+        private int state;
 
         public String getId() {
             return id;
@@ -97,5 +100,14 @@ public class Annuncetion {
         public void setCreation_time(String creation_time) {
             this.creation_time = creation_time;
         }
+
+        public int getState() {
+            return state;
+        }
+
+        public void setState(int state) {
+            this.state = state;
+        }
     }
+
 }

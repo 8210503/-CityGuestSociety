@@ -4,11 +4,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Environment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.apkfuns.logutils.LogUtils;
 import com.lzy.imagepicker.ImagePicker;
@@ -16,6 +22,7 @@ import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.view.CropImageView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -24,6 +31,7 @@ import www.cityguestsociety.com.adapter.SendSharedGirdAdapter;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 import www.cityguestsociety.com.shared.GlideLoader;
 import www.cityguestsociety.com.shared.UpLoadServices;
+import www.cityguestsociety.com.utils.CacheUtils;
 
 public class SendSharedActivity extends BaseToolbarActivity {
 
@@ -40,7 +48,8 @@ public class SendSharedActivity extends BaseToolbarActivity {
     public static String CONTENT = "content";
     public String message;
     public static final String mAction = "com.cityGuestsociety.com.sendSuccess";
-
+    public static final String mFialed = "com.cityGuestsociety.com.sendFailed";
+    PopupWindow mPopWindow;
 
     @Override
     protected int getContentView() {
@@ -116,13 +125,24 @@ public class SendSharedActivity extends BaseToolbarActivity {
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(this);
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(mAction);
+        intentFilter.addAction(mFialed);
         BroadcastReceiver br = new BroadcastReceiver() {
 
             @Override
             public void onReceive(Context context, Intent intent) {
                 LogUtils.e("onReceive");
                 cancleLoadingDialog();
-                finish();
+
+                if (intent.getAction().equals(mAction)) {
+                    /**上传成功后删除压缩过后的图片*/
+                    File DatalDir = Environment.getExternalStorageDirectory();
+                    File myDir = new File(DatalDir, "/DCIM/北京城建");
+                    CacheUtils.deleteFolderFile(myDir.getPath(), true);
+                    finish();
+                } else if (intent.getAction().equals(mFialed)) {
+
+                }
+
 
             }
 
@@ -176,5 +196,53 @@ public class SendSharedActivity extends BaseToolbarActivity {
         }
     }
 
+    private void showPopWindows() {
+        View parent = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+        View popView = null;
+        popView = View.inflate(this, R.layout.pop_exit_edit, null);
 
+        TextView cancle = (TextView) popView.findViewById(R.id.cancle);
+        TextView comfirm = (TextView) popView.findViewById(R.id.comfirm);
+
+        cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopWindow.dismiss();
+            }
+        });
+        comfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopWindow.dismiss();
+                finish();
+            }
+        });
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        mPopWindow = new PopupWindow(popView, width, height);
+        mPopWindow.setAnimationStyle(R.style.AnimBottom);
+        mPopWindow.setFocusable(true);
+        mPopWindow.update();
+        mPopWindow.setOutsideTouchable(true);// 设置允许在外点击消失
+        ColorDrawable dw = new ColorDrawable(0x30000000);
+        mPopWindow.setBackgroundDrawable(dw);
+        mPopWindow.showAtLocation(parent, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+
+    }
+
+    @Override
+    public void LeftOnClick() {
+        showPopWindows();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mPopWindow == null) {
+            showPopWindows();
+        } else if (mPopWindow.isShowing()) {
+            mPopWindow.dismiss();
+        } else {
+            showPopWindows();
+        }
+    }
 }

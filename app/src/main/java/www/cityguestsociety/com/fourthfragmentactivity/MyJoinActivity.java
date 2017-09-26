@@ -190,7 +190,7 @@ public class MyJoinActivity extends BaseToolbarActivity {
         initToobar( "参加的活动");
         mJoinedActivityListView.setLayoutManager(new LinearLayoutManager(this));
         //设置底部加载颜色
-        mJoinedActivityListView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
+        mJoinedActivityListView.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
         //设置底部加载文字提示
         mJoinedActivityListView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
 

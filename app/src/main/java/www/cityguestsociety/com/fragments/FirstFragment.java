@@ -30,6 +30,7 @@ import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
 import www.cityguestsociety.com.application.MyApplication;
 import www.cityguestsociety.com.baseui.BaseFragment;
+import www.cityguestsociety.com.entity.Annuncetion;
 import www.cityguestsociety.com.entity.Banner;
 import www.cityguestsociety.com.firstfragmentactivity.GuoJiangActivity;
 import www.cityguestsociety.com.firstfragmentactivity.OpenDoorActivity;
@@ -113,6 +114,10 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             params.put("username", SPUtils.getCount());
             params.put("password", SPUtils.getPWD());
             getDataFromInternet(UrlFactory.logins, params, 3);
+        } else {
+            Intent intent = new Intent();
+            intent.setAction("bindHouse");
+            LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
         }
 
 
@@ -215,13 +220,22 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 Constans.ID = object.getJSONArray("data").getJSONObject(0).getString("id");
                 if (object.getJSONArray("data").getJSONObject(0).getInteger("house") == 1) {
                     Constans.isBindHouse = true;
+
                 } else {
                     Constans.isBindHouse = false;
+                    Intent intent = new Intent();
+                    intent.setAction("bindHouse");
+                    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+
                 }
 
-                Intent intent = new Intent("autoLogined");
-                intent.putExtra("name", "Logined");
-                LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+                /**查询最新的系统通知*/
+                params = new RequestParams();
+                params.put("num", 1);
+                params.put("member_id", Constans.ID);
+                params.put("next", 1);
+                params.put("page", 1);
+                getDataFromInternet(UrlFactory.system, params, 5);
 
 
                 /**获取用户的个人资料*/
@@ -251,8 +265,16 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                     Constans.ban = object.getJSONArray("data").getJSONObject(0).getJSONObject("owner").getString("ban");
                 }
                 break;
+            case 5:
+                gson = new Gson();
+                Annuncetion annuncetion = gson.fromJson(object.toString(), Annuncetion.class);
+                if (annuncetion.getData().get(0).getState() == 0) {
+                    Intent intent = new Intent();
+                    intent.setAction("notify");
+                    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+                }
 
-
+                break;
         }
     }
 
@@ -288,7 +310,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             @Override
             public void onItemClick(int position) {
                 Bundle bundle = new Bundle();
-                bundle.putString(ActivityInfoActivity.TITLE, "活动详情");
+                bundle.putString(ActivityInfoActivity.TITLE, "详情");
                 bundle.putInt(ActivityInfoActivity.STATUE, Integer.parseInt(mStatue));
                 bundle.putInt(ActivityInfoActivity.CAN, mCan);
                 bundle.putString(ActivityInfoActivity.URL, UrlFactory.topbanner_content + "/id/" + mBanner.getData().get(position).getId());
@@ -342,7 +364,7 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 break;
             case R.id.webViewImage:
                 Bundle bundle = new Bundle();
-                bundle.putString(ActivityInfoActivity.TITLE, "活动详情");
+                bundle.putString(ActivityInfoActivity.TITLE, "详情");
                 bundle.putInt(ActivityInfoActivity.STATUE, Integer.parseInt(mStatue));
                 bundle.putInt(ActivityInfoActivity.CAN, mCan);
                 bundle.putString(ActivityInfoActivity.URL, UrlFactory.zbanner_content + "/id/" + mBannerId);

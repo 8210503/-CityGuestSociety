@@ -1,8 +1,6 @@
 package www.cityguestsociety.com;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -74,6 +72,7 @@ public class ActivityInfo extends BaseToolbarActivity {
     private String mId;
     private boolean isHaveCheck;
     private CaptureActivity mCaptureContext;
+    String checkInUrl="";
 
 
     @Override
@@ -119,6 +118,9 @@ public class ActivityInfo extends BaseToolbarActivity {
                 /**报名成功*/
                 ShowToast(object.getString("info"));
                 break;
+            case 2:
+                ShowToast(object.getString("info"));
+                break;
         }
 
     }
@@ -142,7 +144,6 @@ public class ActivityInfo extends BaseToolbarActivity {
 
 
         mPath = intent.getStringExtra(URL);
-
 
 
     }
@@ -239,26 +240,14 @@ public class ActivityInfo extends BaseToolbarActivity {
             @Override
             public void OnReceiveDecodeResult(final Context context, String result) {
                 mCaptureContext = (CaptureActivity) context;
+                if (result != null && !result.isEmpty()) {
+                    checkInUrl=result;
+                    LogUtils.e(checkInUrl);
+                    QrScan.getInstance().finishScan(mCaptureContext);
+                    getDataFromGet(checkInUrl+"/member_id/"+Constans.ID,2);
+                }
 
-                AlertDialog dialog = new AlertDialog.Builder(mCaptureContext)
-                        .setMessage(result)
-                        .setCancelable(false)
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                QrScan.getInstance().restartScan(mCaptureContext);
-                            }
-                        })
-                        .setPositiveButton("关闭", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                QrScan.getInstance().finishScan(mCaptureContext);
-                            }
-                        })
-                        .create();
-                dialog.show();
+
             }
         });
     }

@@ -78,6 +78,12 @@ public class SellerFragment extends BaseFragment {
         mClassifyMorelist = getView(R.id.classify_morelist);
         mClassifyMorelist.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+
+
+        mClassifyMorelist.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
+        //设置底部加载文字提示
+        mClassifyMorelist.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
+
         mLocationClient = new LocationClient(MyApplication.getContext());
         //声明LocationClient类
         mLocationClient.registerLocationListener(new BDLocationListener() {

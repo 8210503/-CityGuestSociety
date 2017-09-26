@@ -61,7 +61,7 @@ public class TenderShowActivity extends BaseToolbarActivity {
         initToobar("招商展示");
         mTenderShowListView.setLayoutManager(new LinearLayoutManager(this));
         //设置底部加载颜色
-        mTenderShowListView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
+        mTenderShowListView.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
         //设置底部加载文字提示
         mTenderShowListView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
     }

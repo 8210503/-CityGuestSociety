@@ -2,6 +2,7 @@ package www.cityguestsociety.com.fourthfragmentactivity;
 
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.apkfuns.logutils.LogUtils;
 import com.bumptech.glide.Glide;
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
@@ -57,6 +59,7 @@ public class MyColoctionActivity extends BaseToolbarActivity {
 
     private BaseRecyclerAdapter mAdapter1;
     Colocation.DataBean data = new Colocation.DataBean();
+    private LRecyclerViewAdapter mLRecyclerViewAdapter;
 
     @Override
     protected int getContentView() {
@@ -150,15 +153,22 @@ public class MyColoctionActivity extends BaseToolbarActivity {
                 holder.setText(R.id.tv_love, item.getShare().getCollection_num());
                 holder.setText(R.id.tv_comments, item.getShare().getComment());
                 holder.setImageByUrl(R.id.userCorn, item.getMember().getImg());
+
+                ImageView zan = holder.getView(R.id.imageview);
+                if (Integer.parseInt(mDatalists.get(position).getShare().getCollection_num()) > 0) {
+                    Glide.with(getApplicationContext()).load(R.mipmap.youse).asBitmap().into(zan);
+                } else {
+                    Glide.with(getApplicationContext()).load(R.mipmap.zanwuse).asBitmap().into(zan);
+
+                }
+
                 final NineGridTestLayout gridView = holder.getView(R.id.userPhotoGridView);
                 final List<String> imageList = new ArrayList<>();
                 imageList.clear();
                 for (int i = 0; i < item.getShare_img().size(); i++) {
                     imageList.add(UrlFactory.imaPath + item.getShare_img().get(i).getImg());
                 }
-                /*if(position==1){
-                    imageList.add(1,"https://ss2.ba");
-                }*/
+
                 LogUtils.e(item.getId(), imageList.toString());
                 gridView.setUrlList(imageList);
                 gridView.setIsShowAll(true);
@@ -197,8 +207,8 @@ public class MyColoctionActivity extends BaseToolbarActivity {
                 });
             }
         };
-        LRecyclerViewAdapter adapter = new LRecyclerViewAdapter(mAdapter1);
-        mMyColoctionListView.setAdapter(adapter);
+        mLRecyclerViewAdapter = new LRecyclerViewAdapter(mAdapter1);
+        mMyColoctionListView.setAdapter(mLRecyclerViewAdapter);
 
     }
 
@@ -250,6 +260,16 @@ public class MyColoctionActivity extends BaseToolbarActivity {
             }
         });
         mMyColoctionListView.refresh();
+
+        mLRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString(MyColocationInfoActivity.id, mDatalists.get(position).getId());
+                bundle.putInt(MyColocationInfoActivity.typeKind, 0);
+                jumpToActivity(MyColocationInfoActivity.class, bundle, false);
+            }
+        });
     }
 
     @Override

@@ -39,7 +39,7 @@ public class MyCommentsFragment extends BaseFragment {
         mMyCommentsListView = getView(R.id.notifyListView);
         mMyCommentsListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //设置底部加载颜色
-        mMyCommentsListView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
+        mMyCommentsListView.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
         //设置底部加载文字提示
         mMyCommentsListView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
     }

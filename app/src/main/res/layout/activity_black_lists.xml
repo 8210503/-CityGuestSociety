@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context="www.cityguestsociety.com.fourthfragmentactivity.BlackListsActivity">
 
-    <GridView
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/blackListGridView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:horizontalSpacing="@dimen/margin_15"
         android:verticalSpacing="@dimen/margin_15"
-        android:numColumns="3"
         />
 
 </RelativeLayout>

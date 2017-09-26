@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginTop="@dimen/margin_45"
+            android:text="是否退出本次编辑？"
+            android:textColor="@color/black"/>
+
+
+        <TextView
+            android:id="@+id/comfirm"
+            android:layout_width="@dimen/margin_30"
+            android:layout_height="@dimen/margin_30"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="确定"
+            android:textColor="@color/balck"/>
+
+        <TextView
+            android:id="@+id/cancle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/margin_15"
+            android:layout_toLeftOf="@+id/comfirm"
+            android:text="取消"
+            android:textColor="@color/orange"/>
+    </RelativeLayout>
+</RelativeLayout>

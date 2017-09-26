@@ -62,7 +62,8 @@ public class GouFangFragment extends BaseFragment {
         mTextViewRelative = getView(R.id.textviewRemaltive);
         mJifenInfolistView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //设置底部加载颜色
-        mJifenInfolistView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
+        mJifenInfolistView.setFooterViewColor(R.color.colorAccent, R.color.white, R.color.white);
+
         //设置底部加载文字提示
         mJifenInfolistView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
     }
@@ -129,8 +130,8 @@ public class GouFangFragment extends BaseFragment {
         mJifenInfolistView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh = false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
-                    isRefresh = false;
                     // loading more
                     getData();
                 } else {

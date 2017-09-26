@@ -14,6 +14,7 @@ import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
 import www.cityguestsociety.com.baseui.BaseToolbarActivity;
 import www.cityguestsociety.com.baseui.ProgressWebview;
+import www.cityguestsociety.com.utils.Constans;
 
 public class SystemAnnuncationWebView extends BaseToolbarActivity {
 
@@ -40,6 +41,7 @@ public class SystemAnnuncationWebView extends BaseToolbarActivity {
     protected void initData() {
         RequestParams params = new RequestParams();
         params.put("id", id);
+        params.put("member_id", Constans.ID);
         getDataFromInternet(UrlFactory.system_content, params, 0);
         showLoadingDialog();
 

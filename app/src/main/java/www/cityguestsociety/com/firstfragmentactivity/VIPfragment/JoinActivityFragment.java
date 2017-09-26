@@ -1,9 +1,11 @@
 package www.cityguestsociety.com.firstfragmentactivity.VIPfragment;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSONObject;
+import com.apkfuns.logutils.LogUtils;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
@@ -59,6 +61,12 @@ public class JoinActivityFragment extends BaseFragment {
     protected void initView() {
         mJifenInfolistView = getView(R.id.jifenInfoListview);
         mTextViewRelative = getView(R.id.textviewRemaltive);
+        mJifenInfolistView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //设置底部加载颜色
+        mJifenInfolistView.setFooterViewColor(R.color.colorAccent, R.color.white, R.color.white);
+
+        //设置底部加载文字提示
+        mJifenInfolistView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
     }
 
     @Override
@@ -93,15 +101,17 @@ public class JoinActivityFragment extends BaseFragment {
 
         mLists.addAll(VIPintegra.getData());
         mDataLists.addAll(mLists);
-        currentIntegral=VIPintegra.getZongintegral();
+        currentIntegral = VIPintegra.getZongintegral();
+
+        LogUtils.e(mDataLists.toString());
+
         TOTAL_COUNTER = Integer.parseInt(VIPintegra.getPagecount());
         mCurrentPage++;
         mCurrentCounter += mLists.size();
 
-
+        mJifenInfolistView.refreshComplete(20);
         mAdapter.notifyDataSetChanged();
 
-        mJifenInfolistView.refreshComplete(20);
         if (mLists.size() == 0) {
             mTextViewRelative.setVisibility(View.GONE);
         }

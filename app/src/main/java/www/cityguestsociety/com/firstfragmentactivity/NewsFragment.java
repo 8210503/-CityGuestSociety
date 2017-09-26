@@ -59,6 +59,7 @@ public class NewsFragment extends BaseFragment implements LazyFragmentPagerAdapt
     private List<GuojiangNews.DataBean> mDataList;
     private View mEmptyView;
     private LRecyclerViewAdapter mRecyclerViewAdapter;
+    private boolean isRefresh = false;
 
     @SuppressLint({"NewApi", "ValidFragment"})
     public NewsFragment() {
@@ -92,6 +93,7 @@ public class NewsFragment extends BaseFragment implements LazyFragmentPagerAdapt
         mListView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                isRefresh = false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     initData();
@@ -105,7 +107,7 @@ public class NewsFragment extends BaseFragment implements LazyFragmentPagerAdapt
         mListView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mDataList.clear();
+                isRefresh = true;
                 mCurrentPage = 1;
                 mCurrentCounter = 0;
                 initData();
@@ -138,7 +140,7 @@ public class NewsFragment extends BaseFragment implements LazyFragmentPagerAdapt
                 holder.setText(R.id.textViewGJInfo, item.getCreation_time());
                 if (item.getImg() != null) {
                     ImageView imageView = holder.getView(R.id.imageViewGJ);
-                    Glide.with(getActivity()).load(UrlFactory.imaPath+item.getImg()).asBitmap().centerCrop().into(imageView);
+                    Glide.with(getActivity()).load(UrlFactory.imaPath + item.getImg()).asBitmap().centerCrop().into(imageView);
                 } else {
                     holder.setImageResource(R.id.imageViewGJ, R.drawable.sysyh);
                 }
@@ -155,7 +157,12 @@ public class NewsFragment extends BaseFragment implements LazyFragmentPagerAdapt
     protected void initView() {
         mListView = getView(R.id.newsFragments);
         mEmptyView = getView(R.id.empty_view);
-        mListView.setEmptyView(mEmptyView);
+        //        mListView.setEmptyView(mEmptyView);
+
+
+        mListView.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
+        //设置底部加载文字提示
+        mListView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
         setAdapter();
 
     }
@@ -176,6 +183,10 @@ public class NewsFragment extends BaseFragment implements LazyFragmentPagerAdapt
         switch (what) {
             case 0:
                 Gson gson = new Gson();
+                lists.clear();
+                if (isRefresh) {
+                    mDataList.clear();
+                }
                 GuojiangNews guojiangNews = gson.fromJson(object.toString(), GuojiangNews.class);
                 lists = guojiangNews.getData();
 

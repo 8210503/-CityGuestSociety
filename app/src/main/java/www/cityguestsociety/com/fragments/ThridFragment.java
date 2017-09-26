@@ -126,7 +126,7 @@ public class ThridFragment extends BaseFragment {
         sharedRecylerView = getView(R.id.sharedListView);
         sharedRecylerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //设置底部加载颜色
-        sharedRecylerView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
+        sharedRecylerView.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
         //设置底部加载文字提示
         sharedRecylerView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
 
@@ -160,9 +160,14 @@ public class ThridFragment extends BaseFragment {
 
             @Override
             public void convert(BaseRecyclerHolder holder, final SharedBean.DataBean item, final int position, boolean isScrolling) {
+                if (item.getPub() != null) {
+                    holder.setImageByUrl(R.id.userImage, item.getPub().getImg());
+                    holder.setText(R.id.userNickName, item.getPub().getNickname());
+                } else {
+                    Glide.with(getActivity()).load(R.mipmap.icon_head_portrait).asBitmap().into((ImageView) holder.getView(R.id.userImage));
+                    holder.setText(R.id.userNickName, "用户昵称");
+                }
 
-                holder.setImageByUrl(R.id.userImage, item.getPub().getImg());
-                holder.setText(R.id.userNickName, item.getPub().getNickname());
                 holder.setText(R.id.sharedTime, item.getRelease_time());
                 //                holder.setText(R.id.sharedTime, item.getTime());
 
@@ -180,7 +185,7 @@ public class ThridFragment extends BaseFragment {
 
                             // TODO: 2017/9/23  弹出对话框
                             new AlertDialog.Builder(getActivity()).setTitle("提示")//设置对话框标题
-                                    .setMessage("是否不看此人动态")//设置显示的内容
+                                    .setMessage("是否不看此人动态?")//设置显示的内容
                                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
@@ -349,7 +354,7 @@ public class ThridFragment extends BaseFragment {
                     }
                 });
 
-                /**点赞的人的昵称*/
+           /*     *//**点赞的人的昵称*//*
                 mPraiseTextView.setonPraiseListener(new PraiseTextView.onPraiseClickListener() {
 
 
@@ -363,7 +368,7 @@ public class ThridFragment extends BaseFragment {
                         ShowToast("点击了其他的");
                     }
                 });
-
+*/
 
                 commentListTextView = holder.getView(R.id.commentsListView);
                 commentListTextView.setData(item.getInformation());
@@ -553,6 +558,9 @@ public class ThridFragment extends BaseFragment {
                 TOTAL_COUNTER = Integer.parseInt(sharedBean.getPagecount());
                 mCurrentPage++;
                 mCurrentCounter += mdataLists.size();
+
+                LogUtils.e(mCurrentCounter + "----" + TOTAL_COUNTER);
+
                 mRecylerAdapter.notifyDataSetChanged();
                 sharedRecylerView.refreshComplete(REQUEST_COUNT);
                 break;

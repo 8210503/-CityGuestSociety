@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -51,28 +52,38 @@ public class SendSharedGirdAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_add_goods_adapter, null);
             holder.mImageView = (ImageView) convertView.findViewById(R.id.imageView);
-            holder.iv_delete = (ImageView) convertView.findViewById(R.id.iv_delete);
-
+            holder.iv_delete = (ImageView) convertView.findViewById(R.id.shanchu);
+            holder.shanchuRelative = (RelativeLayout) convertView.findViewById(R.id.shanchuRelative);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         if (position <= mLists.size() - 1) {
-            Glide.with(mContext).load(mLists.get(position).path).into(holder.mImageView);
+            Glide.with(mContext).load(mLists.get(position).path).asBitmap().into(holder.mImageView);
             holder.iv_delete.setVisibility(View.VISIBLE);
+
+            holder.shanchuRelative.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mLists.remove(position);
+                    notifyDataSetChanged();
+                }
+            });
+
         } else {
-            Glide.with(mContext).load(R.mipmap.icon_add_pic).into(holder.mImageView);
+            Glide.with(mContext).load(R.mipmap.icon_add_photos).asBitmap().into(holder.mImageView);
             holder.iv_delete.setVisibility(View.INVISIBLE);
 
         }
+
 
         return convertView;
     }
@@ -80,5 +91,6 @@ public class SendSharedGirdAdapter extends BaseAdapter {
     class ViewHolder {
         ImageView mImageView;
         ImageView iv_delete;
+        RelativeLayout shanchuRelative;
     }
 }

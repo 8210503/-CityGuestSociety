@@ -1,5 +1,6 @@
 package www.cityguestsociety.com.firstfragmentactivity.VIPfragment;
 
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -59,8 +60,11 @@ public class OldWithYoungFragment extends BaseFragment {
 
         mJifenInfolistView = getView(R.id.jifenInfoListview);
         mTextViewRelative = getView(R.id.textviewRemaltive);
-
-
+        mJifenInfolistView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //设置底部加载颜色
+        mJifenInfolistView.setFooterViewColor(R.color.colorAccent, R.color.white, R.color.white);
+        //设置底部加载文字提示
+        mJifenInfolistView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
     }
 
     @Override

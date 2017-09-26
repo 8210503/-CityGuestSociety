@@ -2,6 +2,7 @@ package www.cityguestsociety.com.fourthfragmentactivity;
 
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Gravity;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
@@ -77,6 +79,7 @@ public class MyPostActivity extends BaseToolbarActivity {
 
     private int mCurrentPage = 1;
     public boolean isRefresh = false;
+    private LRecyclerViewAdapter mAdapter1;
 
 
     @Override
@@ -152,13 +155,13 @@ public class MyPostActivity extends BaseToolbarActivity {
         mAdapter = new BaseRecyclerAdapter<PostBean.DataBean>(this, mDataLists, R.layout.item_mypost_listview) {
             @Override
             public void convert(BaseRecyclerHolder holder, final PostBean.DataBean item, final int position, boolean isScrolling) {
-                ImageView love_image=holder.getView(R.id.imageview);
-                    if(Integer.parseInt(item.getCollection_num())>0){
-                      Glide.with(getApplicationContext()).load(R.mipmap.btn_compassion_pre).asBitmap().into(love_image) ;
-                    }else {
-                        Glide.with(getApplicationContext()).load(R.mipmap.btn_compassion_bule).asBitmap().into(love_image) ;
+                ImageView love_image = holder.getView(R.id.imageview);
+                if (Integer.parseInt(item.getCollection_num()) > 0) {
+                    Glide.with(getApplicationContext()).load(R.mipmap.youse).asBitmap().into(love_image);
+                } else {
+                    Glide.with(getApplicationContext()).load(R.mipmap.zanwuse).asBitmap().into(love_image);
 
-                    }
+                }
 
                 holder.setText(R.id.userNickName, item.getMember().getNickname());
                 holder.setText(R.id.content, item.getTitle());
@@ -209,8 +212,8 @@ public class MyPostActivity extends BaseToolbarActivity {
             }
 
         };
-        LRecyclerViewAdapter adapter = new LRecyclerViewAdapter(mAdapter);
-        mMyPostListView.setAdapter(adapter);
+        mAdapter1 = new LRecyclerViewAdapter(mAdapter);
+        mMyPostListView.setAdapter(mAdapter1);
 
 
     }
@@ -278,7 +281,7 @@ public class MyPostActivity extends BaseToolbarActivity {
         mMyPostListView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                isRefresh=false;
+                isRefresh = false;
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
                     getData();
@@ -288,7 +291,15 @@ public class MyPostActivity extends BaseToolbarActivity {
                 }
             }
         });
-
+        mAdapter1.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString(MyColocationInfoActivity.id, mDataLists.get(position).getId());
+                bundle.putInt(MyColocationInfoActivity.typeKind, 1);
+                jumpToActivity(MyColocationInfoActivity.class, bundle, false);
+            }
+        });
 
     }
 
@@ -304,7 +315,7 @@ public class MyPostActivity extends BaseToolbarActivity {
         mMyPostListView.setLayoutManager(new LinearLayoutManager(this));
         mMyPostListView.setEmptyView(noPost);
         //设置底部加载颜色
-        mMyPostListView.setFooterViewColor(R.color.colorAccent, R.color.orange, android.R.color.white);
+        mMyPostListView.setFooterViewColor(R.color.colorAccent, R.color.white, android.R.color.white);
         //设置底部加载文字提示
         mMyPostListView.setFooterViewHint("拼命加载中", "已经全部为你呈现了", "网络不给力啊，点击再试一次吧");
     }

@@ -60,6 +60,56 @@ public class CompressImageUtils {
         }
         return isBm;
     }
+   /* public static File saveBitmap(String file,String name) {
+        BitmapFactory.Options newOpts = new BitmapFactory.Options();
+        //开始读入图片，此时把options.inJustDecodeBounds 设回true了
+        newOpts.inJustDecodeBounds = true;
+        newOpts.inPreferredConfig = Bitmap.Config.RGB_565;
+
+        Bitmap bitmap1 = BitmapFactory.decodeFile(file, newOpts);
+        int w = newOpts.outWidth;
+        int h = newOpts.outHeight;
+        float hh = 850f;//这里设置高度为850f
+        float ww = 540f;//这里设置宽度为540f
+        //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+        int be = 1;//be=1表示不缩放
+        if (w > h && w > ww) {//如果宽度大的话根据宽度固定大小缩放
+            be = (int) (newOpts.outWidth / ww);
+        } else if (w < h && h > hh) {//如果高度高的话根据宽度固定大小缩放
+            be = (int) (newOpts.outHeight / hh);
+        }
+        if (be <= 0)
+            be = 1;
+        newOpts.inSampleSize = be;//设置缩放比例
+        //重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
+        newOpts.inJustDecodeBounds = false;
+        bitmap1 = BitmapFactory.decodeFile(file, newOpts);
+
+        File DatalDir = Environment.getExternalStorageDirectory();
+        File myDir = new File(DatalDir, "/DCIM/北京城建");
+
+        File imgefile = new File(myDir, name);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap1.compress(Bitmap.CompressFormat.JPEG, 60, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 100;
+        while (baos.toByteArray().length / (1024 * 10) > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压
+            baos.reset();//重置baos即清空baos
+            bitmap1.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            options -= 10;//每次都减少10
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(imgefile);
+            out.write(baos.toByteArray());
+            out.flush();
+            out.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return imgefile;
+    }*/
 
 
     /**
@@ -81,8 +131,7 @@ public class CompressImageUtils {
     /**
      * 保存图片
      */
-    public static String savePhoto(Bitmap photoBitmap, String path,
-                                   String photoName) {
+    public static String savePhoto(Bitmap photoBitmap, String path,String photoName) {
         String localPath = null;
         if (android.os.Environment.getExternalStorageState().equals(
                 android.os.Environment.MEDIA_MOUNTED)) {
@@ -213,4 +262,38 @@ public class CompressImageUtils {
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
         return bitmap;
     }
+
+
+    private static Bitmap decodeSampledBitmapFromPath(String path, int width, int height) {
+
+        //      获取图片的宽和高，并不把他加载到内存当中
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
+
+        options.inSampleSize = caculateInSampleSize(options, width, height);
+        //      使用获取到的inSampleSize再次解析图片(此时options里已经含有压缩比 options.inSampleSize，再次解析会得到压缩后的图片，不会oom了 )
+        options.inJustDecodeBounds = false;
+        Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+        return bitmap;
+
+    }
+    private static int caculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        int width = options.outWidth;
+        int height = options.outHeight;
+
+        int inSampleSize = 1;
+
+        if (width >= reqWidth || height >= reqHeight) {
+
+            int widthRadio = Math.round(width * 1.0f / reqWidth);
+            int heightRadio = Math.round(width * 1.0f / reqHeight);
+
+            inSampleSize = Math.max(widthRadio, heightRadio);
+
+        }
+
+        return inSampleSize;
+    }
+
 }

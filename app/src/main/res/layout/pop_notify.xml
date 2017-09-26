@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/infoRelative"
+            android:layout_width="300dp"
+            android:layout_height="410dp"
+            android:background="@android:color/transparent"
+            >
+
+            <ImageView
+                android:id="@+id/chaImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_10"
+                android:src="@mipmap/btn_cha"/>
+
+            <TextView
+                android:id="@+id/verticalTextView"
+                android:layout_width="1dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/chaImageView"
+                android:layout_marginRight="23dp"
+                android:background="@color/white"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/verticalTextView"
+                android:layout_centerHorizontal="true"
+                android:background="@color/white"
+                android:paddingBottom="@dimen/margin_20">
+
+                <ImageView
+                    android:id="@+id/notifyImageView"
+                    android:layout_width="270dp"
+                    android:layout_height="290dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/tongzhi"/>
+
+                <Button
+                    android:id="@+id/checkInfobutton"
+                    android:layout_width="@dimen/height_125"
+                    android:layout_height="@dimen/margin_35"
+                    android:layout_below="@+id/notifyImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_18"
+                    android:background="@drawable/all_corners5_orange"
+                    android:text="查看详情"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

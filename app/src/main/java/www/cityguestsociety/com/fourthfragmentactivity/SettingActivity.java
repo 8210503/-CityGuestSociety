@@ -96,7 +96,7 @@ public class SettingActivity extends BaseToolbarActivity {
     }
 
 
-    @OnClick({R.id.changePassworldRelative, R.id.ClearCacheRelative, R.id.switchButton, R.id.tv_loginOut,R.id.blackListrRelative})
+    @OnClick({R.id.changePassworldRelative, R.id.ClearCacheRelative, R.id.switchButton, R.id.tv_loginOut, R.id.blackListrRelative})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.changePassworldRelative:
@@ -124,6 +124,7 @@ public class SettingActivity extends BaseToolbarActivity {
                 showPopWindows(this, LOGINOUT);
                 break;
             case R.id.blackListrRelative:
+                jumpToActivity(BlackListsActivity.class, false);
 
                 break;
         }

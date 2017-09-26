@@ -1,0 +1,10 @@
+# -CityGuestSociety
+项目使用二维码进行签到和推荐码。
+使用NineGridLayout布局去显示分享的图片。
+使用了TransFeree去展示大图。
+将NineGridLayout中的imageLoader改动成了使用Glide去加载图片。
+使用了LuBan去压缩图片上传，忽略Gif动图的压缩。
+使用了PraiseTextView和CommentListTextView去展示赞和评论。
+使用了ImagePicker去选择图片并且加载到Girdview中上传。上传完成后删除文件及文件夹。
+使用Lrecylerview去展示列表，下拉刷新和加载更多，
+利用SwipeMenuView去侧滑删除(侧滑删除和点击事件冲突，需要利用item的id的点击事件才能顺利点击)

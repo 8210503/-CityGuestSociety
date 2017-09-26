@@ -13,6 +13,7 @@ import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.application.MyApplication;
 import www.cityguestsociety.com.baseui.BaseFragment;
 import www.cityguestsociety.com.bindhouse.HouseManagerActivity;
+import www.cityguestsociety.com.fourthfragmentactivity.AboutUsActivity;
 import www.cityguestsociety.com.fourthfragmentactivity.AdvicesFeedBackActivity;
 import www.cityguestsociety.com.fourthfragmentactivity.MineDataActivity;
 import www.cityguestsociety.com.fourthfragmentactivity.MyColoctionActivity;
@@ -207,7 +208,7 @@ public class FourthFragemnt extends BaseFragment implements View.OnClickListener
                     jumpToActivity(AdvicesFeedBackActivity.class, false);
                 break;
             case R.id.aboutApp:
-                //  intent = new Intent(getActivity(), AboutThisAppActivity.class);
+                jumpToActivity(AboutUsActivity.class, false);
 
                 break;
         }

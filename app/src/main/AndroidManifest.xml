@@ -177,6 +177,8 @@
         </activity>
         <activity android:name=".fourthfragmentactivity.MyColocationInfoActivity">
         </activity>
+        <activity android:name=".fourthfragmentactivity.AboutUsActivity">
+        </activity>
     </application>
 
 </manifest>

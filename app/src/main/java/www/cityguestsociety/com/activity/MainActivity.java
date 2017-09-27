@@ -162,9 +162,9 @@ public class MainActivity extends BaseToolbarActivity {
         bt_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPopWindow.dismiss();
+
                 if (message.equals(NOTIFY)) {
-                    // TODO: 2017/9/26 跳转未知页面
+                    mPopWindow.dismiss();
                     jumpToActivity(MyNewsActivity.class, false);
                 } else {
                     if (isLogined())

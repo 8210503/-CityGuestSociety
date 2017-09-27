@@ -50,7 +50,7 @@ public class GuoJiangWebViewActivity extends BaseToolbarActivity {
         String time = object.getJSONArray("data").getJSONObject(0).getString("creation_time");
         String content = object.getJSONArray("data").getJSONObject(0).getString("content");
         mNewsTitle.setText(title);
-        mNewsTime.setText(time);
+        mNewsTime.setText("北京城建·" + time);
         mProgressWebview.loadUrl(content);
     }
 

@@ -182,10 +182,11 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
                 break;
             case 1:
                 /**中间的广告图片*/
-                String bannerImage = object.getJSONArray("data").getJSONObject(0).getString("img");
-                Glide.with(MyApplication.getContext()).load(UrlFactory.imaPath + bannerImage).centerCrop().into(mImageView);
-                mBannerId = object.getJSONArray("data").getJSONObject(0).getString("id");
-
+                if (object.getJSONArray("data").getJSONObject(0) != null) {
+                    String bannerImage = object.getJSONArray("data").getJSONObject(0).getString("img");
+                    Glide.with(MyApplication.getContext()).load(UrlFactory.imaPath + bannerImage).centerCrop().into(mImageView);
+                    mBannerId = object.getJSONArray("data").getJSONObject(0).getString("id");
+                }
 
                 /**最新活动*/
                 params = new RequestParams();
@@ -196,15 +197,17 @@ public class FirstFragment extends BaseFragment implements View.OnClickListener 
             case 2:
                 /**最新活动*/
                 refreshLayout.finishRefreshing();
-                String title = object.getJSONArray("data").getJSONObject(0).getString("title");
-                String sendTime = object.getJSONArray("data").getJSONObject(0).getString("release_time");
-                String endTime = object.getJSONArray("data").getJSONObject(0).getString("end_time");
-                String startTime = object.getJSONArray("data").getJSONObject(0).getString("start_time");
-                mId = object.getJSONArray("data").getJSONObject(0).getString("id");
-                mStatue = object.getJSONArray("data").getJSONObject(0).getString("state");
-                mCan = object.getJSONArray("data").getJSONObject(0).getInteger("can");
-                newActivityTime.setText(sendTime);
-                newActivityTextInfo.setText(startTime + "到" + endTime + "  " + title);
+                if (object.getJSONArray("data").getJSONObject(0) != null) {
+                    String title = object.getJSONArray("data").getJSONObject(0).getString("title");
+                    String sendTime = object.getJSONArray("data").getJSONObject(0).getString("release_time");
+                    String endTime = object.getJSONArray("data").getJSONObject(0).getString("end_time");
+                    String startTime = object.getJSONArray("data").getJSONObject(0).getString("start_time");
+                    mId = object.getJSONArray("data").getJSONObject(0).getString("id");
+                    mStatue = object.getJSONArray("data").getJSONObject(0).getString("state");
+                    mCan = object.getJSONArray("data").getJSONObject(0).getInteger("can");
+                    newActivityTime.setText(sendTime);
+                    newActivityTextInfo.setText(startTime + "到" + endTime + "  " + title);
+                }
                 break;
             case 3:
 

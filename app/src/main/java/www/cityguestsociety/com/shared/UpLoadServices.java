@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MediaType;
-import top.zibin.luban.Luban;
 import top.zibin.luban.OnCompressListener;
 import www.cityguestsociety.com.R;
 import www.cityguestsociety.com.UrlFactory;
@@ -73,17 +72,17 @@ public class UpLoadServices extends IntentService {
 
             List<String> imageLists = new ArrayList<>();
             for (int i = 0; i < imageItemList.size(); i++) {
-                if (imageItemList.get(i).name.endsWith("gif")) {
-                    /**如果是以gif结尾的动图 就不去压缩*/
+               /* if (imageItemList.get(i).name.endsWith("gif")) {
+                    *//**如果是以gif结尾的动图 就不去压缩*//*
                     fileList.add(new File(imageItemList.get(i).path));
-                } else {
-                    imageLists.add(imageItemList.get(i).path);
-                }
+                } else {*/
+                imageLists.add(imageItemList.get(i).path);
+                //                }
             }
             File DatalDir = Environment.getExternalStorageDirectory();
             File myDir = new File(DatalDir, "/DCIM/北京城建");
             myDir.mkdirs();
-            Luban.with(this)
+            Luban_Self.with(this)
                     .load(imageLists)                                   // 传人要压缩的图片列表
                     .ignoreBy(100)                                  // 忽略不压缩图片的大小
                     .setTargetDir(myDir.getPath())                        // 设置压缩后文件存储位置
@@ -99,6 +98,7 @@ public class UpLoadServices extends IntentService {
                             fileList.add(file);
 
                             LogUtils.e(fileList.size() + "-----" + imageItemList.size());
+
                             if (fileList.size() == imageItemList.size()) {
                                 sendShared(fileList);
                             }
@@ -108,6 +108,11 @@ public class UpLoadServices extends IntentService {
                         @Override
                         public void onError(Throwable e) {
                             // TODO 当压缩过程出现问题时调用
+                            Intent intent = new Intent();
+                            intent.setAction(SendSharedActivity.mFialed);
+                            LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
+                            Toast.makeText(getApplicationContext(), "图片路径有误", Toast.LENGTH_SHORT).show();
+
                         }
                     }).launch();    //启动压缩
 
